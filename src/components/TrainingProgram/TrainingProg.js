@@ -1,0 +1,61 @@
+import React, { useEffect, useState } from "react";
+import Button from "@material-ui/core/Button";
+import axios from "axios";
+import Grid from "@material-ui/core/Grid";
+import { useHistory } from "react-router-dom";
+import { ProgramH3, DivSection, Paragraph, FirstDiv } from "./TrainingProgElements";
+import CourtImg from '../../media/images/Court.png';
+import DisplayPrograms from "./displayPrograms";
+
+const TrainingProg = () => {
+  const history = useHistory();
+  const [programs, setPrograms] = useState([]);
+  // useRef(() => { });
+
+  useEffect(() => {
+    axios({
+      url: `${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/training/programs`,
+      method: "get",
+    })
+      .then((res) => {
+        setPrograms(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // const startTrainingProgram = async (minReq) => {
+  //   axios
+  //     .post(`http://localhost:5001/api/training/programs/start`, {
+  //       minRequest: { minReq },
+  //     })
+  //     .then((docs) => console.log(docs))
+  //     .catch((err) => console.log(err));
+
+  //   let path = "/duringTraining";
+  //   history.push(path);
+  // };
+
+  return (
+    <FirstDiv>
+      <h3
+        style={{
+          fontWeight: 90,
+          fontSize: 50,
+          textAlign: "center",
+        }}
+      >
+        Training programs
+      </h3>
+      <div style={{marginLeft:'120px'}}>
+          <img src={CourtImg} style={{float:'left'}}/>
+      </div>
+      <DivSection>
+        <DisplayPrograms programs={programs} />
+      </DivSection>
+    </FirstDiv>
+  );
+};
+
+export default TrainingProg;
