@@ -16,6 +16,6 @@ RUN npm run-script build
 FROM node:slim
 WORKDIR /frontend
 COPY --from=build /frontend/build ./build
-ENTRYPOINT ls
+ENTRYPOINT tail -f
 
 
