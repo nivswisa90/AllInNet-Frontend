@@ -1,9 +1,9 @@
-import { Typography } from "@material-ui/core";
-import { Paper } from '@mui/material';
+import {Typography} from "@material-ui/core";
+import {Paper} from '@mui/material';
 // Material UI imports
 import Button from '@mui/material/Button';
 import React from "react";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import RedCircle from '../../media/images/redCircle.png'
 import GreenCircle from '../../media/images/greenCircle.png'
 import BlueCircle from '../../media/images/blueCircle.png'
@@ -47,29 +47,34 @@ const ProgramCard = (props) => {
                 <Typography>{props.index + 1}/{props.length}</Typography>
                 <h2>{props.program.level}</h2>
                 <p>
-                    <img alt="black-circle" src={BlackCircle} style={{ marginRight: '10px' }} />
-                    Position One- At least {props.program.positions.minReqPos1} shots out of {props.program.positions.pos1}
+                    <img alt="black-circle" src={BlackCircle} style={{marginRight: '10px'}}/>
+                    Position One- At least {props.program.positions.minReqPos1} shots out
+                    of {props.program.positions.pos1}
                 </p>
                 <p>
-                    <img alt="yellow-circle" src={YellowCircle} style={{ marginRight: '10px' }} />
-                    Position Two- At least {props.program.positions.minReqPos2} shots out of {props.program.positions.pos2}
+                    <img alt="yellow-circle" src={YellowCircle} style={{marginRight: '10px'}}/>
+                    Position Two- At least {props.program.positions.minReqPos2} shots out
+                    of {props.program.positions.pos2}
                 </p>
                 <p>
-                    <img alt="blue-circle" src={BlueCircle} style={{ marginRight: '10px' }} />
-                    Position Three- At least {props.program.positions.minReqPos3} shots out of {props.program.positions.pos3}
+                    <img alt="blue-circle" src={BlueCircle} style={{marginRight: '10px'}}/>
+                    Position Three- At least {props.program.positions.minReqPos3} shots out
+                    of {props.program.positions.pos3}
                 </p>
                 <p>
-                    <img alt="green-circle" src={GreenCircle} style={{ marginRight: '10px' }} />
-                    Position Four- At least {props.program.positions.minReqPos4} shots out of {props.program.positions.pos4}
+                    <img alt="green-circle" src={GreenCircle} style={{marginRight: '10px'}}/>
+                    Position Four- At least {props.program.positions.minReqPos4} shots out
+                    of {props.program.positions.pos4}
                 </p>
                 <p>
-                    <img alt="red-circle" src={RedCircle} style={{ marginRight: '10px' }} />
-                    Position Five- At least {props.program.positions.minReqPos5} shots out of {props.program.positions.pos5}
+                    <img alt="red-circle" src={RedCircle} style={{marginRight: '10px'}}/>
+                    Position Five- At least {props.program.positions.minReqPos5} shots out
+                    of {props.program.positions.pos5}
                 </p>
-                <p >Minimum Shots For Pass-{props.program.minimumRequest}</p>
+                <p>Minimum Shots For Pass-{props.program.minimumRequest}</p>
 
                 <Button onClick={routeChange}
-                    className="CheckButton">
+                        className="CheckButton">
                     Start Training!
                 </Button>
             </Paper>

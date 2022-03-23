@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { Link as LinkR} from 'react-router-dom'
-import { Link as LinkS} from 'react-scroll';
+import {Link as LinkR} from 'react-router-dom'
+import {Link as LinkS} from 'react-scroll';
 
 export const MyImage = styled.img`
     width: 102px;
     height: 64px;
     margin: 55px;
-    background-image: url(${({ background }) => background});
+    background-image: url(${({background}) => background});
     background-repeat: no-repeat;
     background-size: cover;
     float: left;
@@ -14,7 +14,7 @@ export const MyImage = styled.img`
 `;
 
 export const Nav = styled.nav`
-    background: ${({ scrollNav}) => (scrollNav ? '#ff8c62' : '#ff8c62')};
+    background: ${({scrollNav}) => (scrollNav ? '#ff8c62' : '#ff8c62')};
     height: 80px;
     //margin-top: -80px;
     display: flex;
@@ -126,7 +126,7 @@ export const NavBtnLink = styled(LinkR)`
 
     &:hover {
         transition: all 0.2s ease-in-out;
-        background: ${({primary}) => (primary ? '#fff': '#01bf71') };
+        background: ${({primary}) => (primary ? '#fff' : '#01bf71')};
         color: #010606;
     }
 `;

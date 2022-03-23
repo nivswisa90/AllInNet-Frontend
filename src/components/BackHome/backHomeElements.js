@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md';
+import {MdArrowForward, MdKeyboardArrowRight} from 'react-icons/md';
 
 
 export const BackHomeContainer = styled.div` 

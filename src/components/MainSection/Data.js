@@ -1,5 +1,3 @@
-
-
 export const homeObjOne = {
     id: 'main',
     lightBg: false,
@@ -17,7 +15,6 @@ export const homeObjOne = {
     darkText: false
 
 };
-
 
 
 export const homeObjTwo = {
@@ -56,7 +53,6 @@ export const homeObjThree = {
     darkText: false
 
 };
-
 
 
 export const homeObjFour = {

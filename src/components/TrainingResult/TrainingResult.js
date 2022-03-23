@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 // import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 
-import {
-    Table,
-    TableRow,
-    TableH,
-    TableData,
-    TrainingResultPageH1,
-    TableBody
-} from './trainingResultElements';
-import { TableHead } from "@material-ui/core";
+import {Table, TableBody, TableData, TableH, TableRow, TrainingResultPageH1} from './trainingResultElements';
+import {TableHead} from "@material-ui/core";
 
 const TrainingResult = () => {
     const [results, setResults] = useState(null);
@@ -36,7 +29,18 @@ const TrainingResult = () => {
         return results.map((res, index) => {
             const {
                 id,
-                positions: { counterPos1, counterPos2, counterPos3, counterPos4, counterPos5, successPos1, successPos2, successPos3, successPos4, successPos5 },
+                positions: {
+                    counterPos1,
+                    counterPos2,
+                    counterPos3,
+                    counterPos4,
+                    counterPos5,
+                    successPos1,
+                    successPos2,
+                    successPos3,
+                    successPos4,
+                    successPos5
+                },
                 totalThrows,
                 date,
                 result,
@@ -59,7 +63,7 @@ const TrainingResult = () => {
 
     return (
         <div>
-            <TrainingResultPageH1>Training Program Results   </TrainingResultPageH1>
+            <TrainingResultPageH1>Training Program Results </TrainingResultPageH1>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -75,7 +79,7 @@ const TrainingResult = () => {
                 </TableHead>
                 {results ? <TableBody>{renderData()}</TableBody> : null}
             </Table>
-            <Grid container justifyContent="center" >
+            <Grid container justifyContent="center">
                 {/* <Button
                 className="get_results_btn"
                 variant="contained"

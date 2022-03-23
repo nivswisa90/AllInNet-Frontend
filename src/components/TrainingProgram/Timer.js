@@ -5,21 +5,21 @@
 // const Timer = () => {
 
 //     onTimerStart({duration, progress, time}) {
- 
+
 //     }
-   
+
 //     onTimerStop({duration, progress, time}) {
-   
+
 //     }
-   
+
 //     onTimerTimeUpdate({duration, progress, time}) {
-   
+
 //     }
-   
+
 //     onTimerFinish({duration, progress, time}) {
-   
+
 //     }
-   
+
 //     render() {
 //       const {
 //         timerActive,

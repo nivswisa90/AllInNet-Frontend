@@ -2,7 +2,7 @@ import React from 'react'
 import ProgramCard from './programCard'
 import Carousel from 'react-material-ui-carousel'
 // import { Paper, Button } from '@mui/material'
-import { Container } from '@material-ui/core'
+import {Container} from '@material-ui/core'
 //import Container from './TrainingProgElements'
 
 
@@ -12,7 +12,7 @@ const DisplayPrograms = (programs) => {
 
     return (
         <div>
-            <Container style={{ width: '60vh', height: '55vh' }} fixed maxWidth="sm">
+            <Container style={{width: '60vh', height: '55vh'}} fixed maxWidth="sm">
                 <Carousel
                     fullHeightHover={true}
                     navButtonsProps={{
@@ -32,11 +32,12 @@ const DisplayPrograms = (programs) => {
                 >
                     {
                         programsArray[0].map((program, index) => (
-                            < ProgramCard key={program.id} index={index} program={program} length={programsArray[0].length} style={{ flexWrap: 'wrap' }} />
+                            < ProgramCard key={program.id} index={index} program={program}
+                                          length={programsArray[0].length} style={{flexWrap: 'wrap'}}/>
                         ))
                     }
                 </Carousel>
-            </Container >
+            </Container>
         </div>
     )
 }
