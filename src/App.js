@@ -7,6 +7,7 @@ import TrainingResult from "./pages/trainingResult";
 import DuringTraining from "./pages/DuringTraining";
 
 function App() {
+    console.log("Hello World");
     return (
         <Router>
             <Switch>
