@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from "react";
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-
+import {useHistory} from "react-router-dom";
 import {Table, TableBody, TableData, TableH, TableRow, TrainingResultPageH1} from './trainingResultElements';
 import {TableHead} from "@material-ui/core";
 
 const TrainingResult = () => {
     const [results, setResults] = useState(null);
 
-    const getResult = async () => {
-        // const id = "b584673d-e3e9-471c-841b-e44ec089ab63";
+    const getResult =  () => {
+        const id = "66bb8ab1-a2ce-470b-a269-f73160c04c97";
         axios({
-            url: `/api/training/results`,
+            url: `http://localhost:5001/api/training/results/${id}`,
             method: "get",
         })
             .then((res) => {
@@ -22,8 +22,16 @@ const TrainingResult = () => {
                 console.log(err);
             });
     };
+    
 
     useEffect(() => getResult(), [])
+
+    const history = useHistory();
+    const routeChange = () => {
+        let path = '/duringTraining';
+        history.push(path);
+    }
+
 
     const renderData = () => {
         return results.map((res, index) => {
@@ -47,7 +55,8 @@ const TrainingResult = () => {
             } = res;
 
             return (
-                <TableRow key={id}>
+                <>
+                  <TableRow key={id}>
                     <TableData>{date}</TableData>
                     <TableData>{successPos1}/{counterPos1}</TableData>
                     <TableData>{successPos2}/{counterPos2}</TableData>
@@ -57,6 +66,10 @@ const TrainingResult = () => {
                     <TableData>{totalThrows}</TableData>
                     <TableData>{result}</TableData>
                 </TableRow>
+                
+               
+                
+                </>
             );
         });
     };
@@ -77,13 +90,23 @@ const TrainingResult = () => {
                         <TableH>Result</TableH>
                     </TableRow>
                 </TableHead>
+
                 {results ? <TableBody>{renderData()}</TableBody> : null}
             </Table>
+            {(results?.[0]?.result) === 'Fail' ? 
+                <Button
+                    className="get_results_btn"
+                    variant="contained"
+                    onClick={() => routeChange()}
+                    >
+                Again
+                </Button>
+                 : console.log('dana')}    
             <Grid container justifyContent="center">
                 {/* <Button
                 className="get_results_btn"
                 variant="contained"
-                onClick={getResult}
+                onClick={IfResultFail(results.result)}
                 style={{display:  results ? 'none' : 'block'}}
             >
                 Get all training results

@@ -45,10 +45,12 @@ const MainSection = ({
             <MainContatiner lightBg={lightBg} id={id}>
                 <MainWrapper>
                     <MainRow>
+                        
                         <Column1>
                             <TextWrapper>
                                 <TopLine>{topLine}</TopLine>
                                 <Heading lightText={lightText}>{headLine}</Heading>
+                                <div></div>
                                 <Subtitle darkText={darkText}>{description}</Subtitle>
                                 <BtnWrap>
                                     <Button to='home'

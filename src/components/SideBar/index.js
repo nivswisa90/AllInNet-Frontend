@@ -21,11 +21,11 @@ const Sidebar = ({isOpen, toggle}) => {
             </Icon>
             <SidebarWrapper>
                 <SidebarMenu>
-                    <SidebarLink to='main'
+                    <SidebarLink to={{pathname:"/", hash:"#main"}}
                                  onClick={toggle}>Main</SidebarLink>
-                    <SidebarLink to="search" onClick={toggle}>Search</SidebarLink>
-                    <SidebarLink to="events" onClick={toggle}>Events</SidebarLink>
-                    <SidebarLink to="profile" onClick={toggle}>Profile</SidebarLink>
+                    <SidebarLink to='/#search' onClick={toggle}>Search</SidebarLink>
+                    <SidebarLink to="/#events" onClick={toggle}>Events</SidebarLink>
+                    <SidebarLink to="/#profile" onClick={toggle}>Profile</SidebarLink>
                 </SidebarMenu>
                 <SideBtnWrap>
                     <SidebarRoute to="/signin"> Sign In</SidebarRoute>

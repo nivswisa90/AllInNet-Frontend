@@ -38,9 +38,9 @@ const ProgramCard = (props) => {
         <>
             <Paper style={{
                 background: `linear-gradient(
-            108deg,
-            #FAEBD7 -90%,
-            #DEB887 100%)`,
+                    108deg,
+                    #FAEBD7 -90%,
+                    #DEB887 100%)`,
                 textAlign: 'center', marginTop: '20px'
             }}
             >

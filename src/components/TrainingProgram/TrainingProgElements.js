@@ -37,9 +37,33 @@ export const FirstDiv = styled.div`
     font-weight: bold;
     font-family: 'Encode sans Expanded', sans-serif;
 
-      @media screen and (max-width: 480px) {
+      @media screen and (max-width: 420px) {
         transition: 0.8s all ease;
+        //padding: 100%;
+    }
+
+`
+export const DivOpen = styled.div`
+    //margin-left: 120px;
+    display: block;
+    position: absolute;
+
+    @media screen and (max-width: 420px) {
+        transition: 0.8s all ease;
+        padding: 10%;
+
+    }
+
+`
+export const ImgChange = styled.img`
+    margin-left: 120px;
+    display: block;
+    position: absolute;
     
+    @media screen and (max-width: 480px) {
+        transition: 0.8s all ease;
+        padding: 10%;
+
     }
 
 `
@@ -53,8 +77,10 @@ export const DivSection = styled.div`
     margin-left: "3vh";
     font-family: 'Encode sans Expanded', sans-serif;
 
-    @media screen and (max-width: 480px) {
-        transition: 0.8s all ease;
+    @media screen and (max-width: 420px) {
+        /* transition: 0.8s all ease; */
+        padding: 100%;
+        display: flex;
     
     }
 
