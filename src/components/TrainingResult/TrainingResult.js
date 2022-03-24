@@ -12,7 +12,7 @@ const TrainingResult = () => {
     const getResult = async () => {
         // const id = "b584673d-e3e9-471c-841b-e44ec089ab63";
         axios({
-            url: `/api/training/results`,
+            url: `api/training/results`,
             method: "get",
         })
             .then((res) => {

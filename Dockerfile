@@ -13,9 +13,11 @@ COPY public ./public
 RUN npm run-script build
 
 # Second Stage
-FROM node:slim
+FROM nginx:1.21.6
 WORKDIR /frontend
-COPY --from=build /frontend/build ./build
+
+
+COPY --from=build /frontend/build /usr/share/nginx/html
 ENTRYPOINT tail -f > /dev/null
 
 

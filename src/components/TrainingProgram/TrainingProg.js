@@ -11,6 +11,7 @@ const TrainingProg = () => {
     // useRef(() => { });
 
     useEffect(() => {
+        debugger;
         axios({
             url: `/api/training/programs`,
             method: "get",
