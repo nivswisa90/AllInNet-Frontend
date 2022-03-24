@@ -1,10 +1,6 @@
 # First stage
 FROM node as build
-ARG REACT_APP_DOMAIN
-ARG REACT_APP_PORT
-ENV REACT_APP_DOMAIN=$REACT_APP_DOMAIN
-ENV REACT_APP_PORT=$REACT_APP_PORT
-WORKDIR frontend
+WORKDIR /frontend
 COPY package.json .
 RUN npm install -g npm@latest
 RUN npm install --force --silent
@@ -16,6 +12,7 @@ RUN npm run-script build
 FROM nginx:1.21.6
 WORKDIR /frontend
 
+COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /frontend/build /usr/share/nginx/html
 ENTRYPOINT tail -f > /dev/null
