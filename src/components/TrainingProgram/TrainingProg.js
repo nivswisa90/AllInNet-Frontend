@@ -12,7 +12,7 @@ const TrainingProg = () => {
 
     useEffect(() => {
         axios({
-            url: `${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/training/programs`,
+            url: `/api/training/programs`,
             method: "get",
         })
             .then((res) => {
