@@ -15,6 +15,3 @@ WORKDIR /frontend
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /frontend/build /usr/share/nginx/html
-ENTRYPOINT tail -f > /dev/null
-
-
