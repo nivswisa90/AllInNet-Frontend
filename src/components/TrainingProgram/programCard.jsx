@@ -9,12 +9,30 @@ import GreenCircle from '../../media/images/greenCircle.png'
 import BlueCircle from '../../media/images/blueCircle.png'
 import YellowCircle from '../../media/images/yellowCircle.png'
 import BlackCircle from '../../media/images/blackCircle.png'
+import axios from "../../axios";
 // import { RouteChange } from "../Utils/RouteChange";
 // import axios from 'axios'
 
 
 const ProgramCard = (props) => {
+    const startTrainingProgram = async (minReq) => {
+        console.log('WHERE HERE')
+        // axios({
+        //     url:'/api/training/programs/start',
+        //     method:'post',
+        //     minRequest: { minReq }
+        // })
 
+
+            axios.post(`/api/training/programs/start`, {
+              minReq ,
+            })
+            .then((docs) => console.log(docs))
+            .catch((err) => console.log(err));
+
+        // let path = "/duringTraining";
+        // history.push(path);
+    };
     // const startTrainingProgram = async (minReq, id) => {
     //     axios
     //       .post(`http://localhost:5001/api/training/programs/start`, {
@@ -73,7 +91,7 @@ const ProgramCard = (props) => {
                 </p>
                 <p>Minimum Shots For Pass-{props.program.minimumRequest}</p>
 
-                <Button onClick={routeChange}
+                <Button onClick={()=>startTrainingProgram(props.program.minimumRequest)}
                         className="CheckButton">
                     Start Training!
                 </Button>

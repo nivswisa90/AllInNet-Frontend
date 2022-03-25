@@ -38,7 +38,6 @@ const StopTraining = () => {
                 <Button
                     variant="outlined"
                     color="secondary"
-
                 >
                     Timer - {timer}
                 </Button>

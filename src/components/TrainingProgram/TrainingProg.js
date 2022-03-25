@@ -22,17 +22,6 @@ const TrainingProg = () => {
             });
     }, []);
 
-    // const startTrainingProgram = async (minReq) => {
-    //   axios
-    //     .post(`http://localhost:5001/api/training/programs/start`, {
-    //       minRequest: { minReq },
-    //     })
-    //     .then((docs) => console.log(docs))
-    //     .catch((err) => console.log(err));
-
-    //   let path = "/duringTraining";
-    //   history.push(path);
-    // };
 
     return (
         <FirstDiv>
