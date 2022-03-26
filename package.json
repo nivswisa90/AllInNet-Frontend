@@ -25,6 +25,7 @@
     "react-scripts": "5.0.0",
     "react-scroll": "^1.8.5",
     "react-timer-wrapper": "^0.4.1",
+    "react-toastify": "^8.2.0",
     "styled-components": "^5.3.3",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",

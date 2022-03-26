@@ -9,13 +9,18 @@ import CardMedia from '@mui/material/CardMedia';
 //import CardActionArea from '@mui/material/CardActionArea';
 import img from '../../media/images/throw1.jpg'
 import img1 from '../../media/images/throw2.jpg'
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const TrainingResult = () => {
     const [results, setResults] = useState(null);
-
-    const getResult =  () => {
+    const [lastResult, setLastResult] = useState(null);
+    const [alertCounter, setAlertCounter] = useState(0);
+    const getResult = () => {
         const id = "66bb8ab1-a2ce-470b-a269-f73160c04c97";
         axios({
-            url: `/api/training/results/${id}`,
+            url: `/api/training/results/`,
             method: "get",
         })
             .then((res) => {
@@ -24,8 +29,26 @@ const TrainingResult = () => {
             .catch((err) => {
                 console.log(err);
             });
+        axios({
+            url: `/api/training/results/${id}`,
+            method: "get",
+        })
+            .then((res) => {
+                setLastResult(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
-    
+    const AlertResult = () => {
+        if (lastResult[0].result === 'Pass' && alertCounter !== 1) {
+            toast("You passed the training program!");
+            setAlertCounter(1)
+        } else if (lastResult[0].result === 'Fail' && alertCounter !== 1){
+            setAlertCounter(1)
+            toast("You failed!");
+        }
+    }
 
     useEffect(() => getResult(), [])
 
@@ -34,7 +57,6 @@ const TrainingResult = () => {
         let path = '/duringTraining';
         history.push(path);
     }
-
 
     const renderData = () => {
         return results.map((res, index) => {
@@ -56,29 +78,28 @@ const TrainingResult = () => {
                 date,
                 result,
             } = res;
-
             return (
                 <>
-                  <TableRow key={id}>
-                    <TableData>{date}</TableData>
-                    <TableData>{successPos1}/{counterPos1}</TableData>
-                    <TableData>{successPos2}/{counterPos2}</TableData>
-                    <TableData>{successPos3}/{counterPos3}</TableData>
-                    <TableData>{successPos4}/{counterPos4}</TableData>
-                    <TableData>{successPos5}/{counterPos5}</TableData>
-                    <TableData>{totalThrows}</TableData>
-                    <TableData>{result}</TableData>
-                </TableRow>
-                
-               
-                
+                    <TableRow key={index}>
+                        <TableData>{date}</TableData>
+                        <TableData>{successPos1}/{counterPos1}</TableData>
+                        <TableData>{successPos2}/{counterPos2}</TableData>
+                        <TableData>{successPos3}/{counterPos3}</TableData>
+                        <TableData>{successPos4}/{counterPos4}</TableData>
+                        <TableData>{successPos5}/{counterPos5}</TableData>
+                        <TableData>{totalThrows}</TableData>
+                        <TableData>{result}</TableData>
+                    </TableRow>
                 </>
             );
         });
     };
-
     return (
         <div>
+            <div>
+                {lastResult ? AlertResult() : null}
+                <ToastContainer/>
+            </div>
             <TrainingResultPageH1>Training Program Results </TrainingResultPageH1>
             <Table>
                 <TableHead>
@@ -95,27 +116,25 @@ const TrainingResult = () => {
                 </TableHead>
 
                 {results ? <TableBody>{renderData()}</TableBody> : null}
+
             </Table>
-            {(results?.[0]?.result) === 'Fail' ? 
-                <Grid container justifyContent="center">
-                    {alert('You Fail')}
-                    <h3 style={{
-                        fontWeight: 90,
-                        fontSize: 20,
-                        textAlign: "center",
-                        fontFamily: "'Encode sans Expanded', sans-serif"
-                    }}>
-                    You can do this training again 
-                    </h3>
+            <Grid container justifyContent="center">
+                <h3 style={{
+                    fontWeight: 90,
+                    fontSize: 20,
+                    textAlign: "center",
+                    fontFamily: "'Encode sans Expanded', sans-serif"
+                }}>
+                    You can do this training again
+                </h3>
                 <Button
                     className="get_results_btn"
                     variant="contained"
                     onClick={() => routeChange()}
-                    >
-                Again
+                >
+                    Again
                 </Button>
-                </Grid>
-                 : console.log('dana')}    
+            </Grid>
             <Grid container justifyContent="center">
                 {/* <Button
                 className="get_results_btn"
@@ -136,7 +155,7 @@ const TrainingResult = () => {
                         height: '250px',
                         width: '250px',
                     }}
-                /> 
+                />
                 <CardMedia
                     component="img"
                     image={img1}
@@ -146,7 +165,7 @@ const TrainingResult = () => {
                         height: '250px',
                         width: '250px',
                     }}
-                />    
+                />
             </Grid>
         </div>
     );
