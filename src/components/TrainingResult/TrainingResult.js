@@ -5,7 +5,10 @@ import {useHistory} from "react-router-dom";
 import axios from "../../axios";
 import {Table, TableBody, TableData, TableH, TableRow, TrainingResultPageH1} from './trainingResultElements';
 import {TableHead} from "@material-ui/core";
-
+import CardMedia from '@mui/material/CardMedia';
+//import CardActionArea from '@mui/material/CardActionArea';
+import img from '../../media/images/throw1.jpg'
+import img1 from '../../media/images/throw2.jpg'
 const TrainingResult = () => {
     const [results, setResults] = useState(null);
 
@@ -94,6 +97,16 @@ const TrainingResult = () => {
                 {results ? <TableBody>{renderData()}</TableBody> : null}
             </Table>
             {(results?.[0]?.result) === 'Fail' ? 
+                <Grid container justifyContent="center">
+                    {alert('You Fail')}
+                    <h3 style={{
+                        fontWeight: 90,
+                        fontSize: 20,
+                        textAlign: "center",
+                        fontFamily: "'Encode sans Expanded', sans-serif"
+                    }}>
+                    You can do this training again 
+                    </h3>
                 <Button
                     className="get_results_btn"
                     variant="contained"
@@ -101,6 +114,7 @@ const TrainingResult = () => {
                     >
                 Again
                 </Button>
+                </Grid>
                  : console.log('dana')}    
             <Grid container justifyContent="center">
                 {/* <Button
@@ -111,6 +125,28 @@ const TrainingResult = () => {
             >
                 Get all training results
             </Button> */}
+            </Grid>
+            <Grid container justifyContent="center">
+                <CardMedia
+                    component="img"
+                    image={img}
+                    alt="CardMedia Image Example"
+                    title="CardMedia Image Example"
+                    style={{
+                        height: '250px',
+                        width: '250px',
+                    }}
+                /> 
+                <CardMedia
+                    component="img"
+                    image={img1}
+                    alt="CardMedia Image Example"
+                    title="CardMedia Image Example"
+                    style={{
+                        height: '250px',
+                        width: '250px',
+                    }}
+                />    
             </Grid>
         </div>
     );
