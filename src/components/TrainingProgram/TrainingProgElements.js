@@ -23,8 +23,8 @@ export const Container = styled.div`
         width: 100%;
         padding: 100px 0;
      */
-        display: block;
-        position: absolute;
+        //display: block;
+        //position: absolute;
         top: 0;
         right: 0;
         transform: translate(-100%,60%);
@@ -37,9 +37,9 @@ export const FirstDiv = styled.div`
     font-weight: bold;
     font-family: 'Encode sans Expanded', sans-serif;
 
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 320px) {
         transition: 0.8s all ease;
-        //padding: 100%;
+        padding: 100%;
     }
 
 `
@@ -63,7 +63,9 @@ export const ImgChange = styled.img`
     @media screen and (max-width: 480px) {
         transition: 0.8s all ease;
         padding: 10%;
-
+        //max-width: 50%;
+        flex: -50%;
+        height: auto;
     }
 
 `

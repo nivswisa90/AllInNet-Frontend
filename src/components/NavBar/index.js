@@ -13,7 +13,7 @@ import {
     NavLogo,
     NavMenu
 } from './NavBarElements';
-import {useHistory} from "react-router-dom";
+//import {useHistory} from "react-router-dom";
 import {IconContext} from 'react-icons/lib';
 import img from '../../media/images/All-In-Net-Icon.ico';
 
