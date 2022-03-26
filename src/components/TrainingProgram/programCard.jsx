@@ -30,8 +30,8 @@ const ProgramCard = (props) => {
             .then((docs) => console.log(docs))
             .catch((err) => console.log(err));
 
-        // let path = "/duringTraining";
-        // history.push(path);
+        let path = "/duringTraining";
+        history.push(path);
     };
     // const startTrainingProgram = async (minReq, id) => {
     //     axios
