@@ -26,7 +26,7 @@ const ProgramCard = (props) => {
 
             axios.post(`/api/training/programs/start`, {
               minReq ,
-            })
+            }, {withCredenitals: true})
             .then((docs) => console.log(docs))
             .catch((err) => console.log(err));
 
