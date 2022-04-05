@@ -34,14 +34,14 @@ const useStyles = makeStyles(() => ({
         borderRadius: '23px',
     }
 }));
-const Login = () => {
+const Login = (props) => {
     const classes = useStyles();
 
     return (
             <Box className={classes.loginBox}>
                 <div className={classes.titleBox}>
                     <Typography className={classes.loginTitle}>Sing In</Typography>
-                    <LoginForm/>
+                    <LoginForm setToken={props.setToken}/>
                 </div>
             </Box>
  )
