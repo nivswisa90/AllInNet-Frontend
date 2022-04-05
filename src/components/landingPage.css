@@ -1,0 +1,11 @@
+.loginBox{
+    position: absolute;
+    width: 373px;
+    height: 233px;
+    left: 8px;
+    top: 470px;
+
+    background: #FEFEFE;
+    border-radius: 23px;
+}
+
