@@ -5,10 +5,14 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient();
 
 ReactDOM.render(
     <Router>
+        <QueryClientProvider client={queryClient}>
         <App />
+        </QueryClientProvider>
     </Router>,
   document.getElementById('root')
 );

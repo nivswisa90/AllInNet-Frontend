@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -47,7 +49,11 @@ async function loginUser(credentials) {
         .catch(err => console.log(err))
 }
 
+
 const LoginForm = (props) => {
+    const navigate = useNavigate();
+
+
     const classes = useStyles()
     // const [username, setUserName] = useState()
     // const [password, setPassword] = useState()
@@ -73,9 +79,9 @@ const LoginForm = (props) => {
             values
         });
         props.setToken(token);
+        navigate('/programs')
 
     };
-
 
     return (
         <form onSubmit={handleSubmit} className={classes.loginFrom}>

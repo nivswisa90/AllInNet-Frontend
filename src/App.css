@@ -39,12 +39,3 @@
 
 
 
-body {
-  background-color: #F5C796;
-  background-image: url("./media/logo.png");
-  background-repeat: no-repeat;
-  width: 380px;
-  height: 517px;
-
-  background-position: center;
-}

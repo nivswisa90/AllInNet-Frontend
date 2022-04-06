@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Box from '@mui/material/Box';
-import './landingPage.css'
 import {Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
 

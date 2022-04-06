@@ -1,106 +1,101 @@
 import React, {useEffect, useState} from 'react'
+import axios from "../axios";
+import {useQuery} from "react-query";
+
+// Style imports
 import {Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
-import court from '../media/courtPositions.jpeg'
-import ProgramCard from "./programCard";
 import {CardGroup} from "react-bootstrap";
-import {toast, ToastContainer} from 'react-toastify';
+import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "../axios";
+
+// Local imports
+import ProgramCard from "./programCard";
+import LoadingTriangle from "./LoadingTriangle";
+
+async function fetchPrograms() {
+    const {data} = await axios.get('/api/training/programs/')
+    return data
+}
+
 
 const useStyles = makeStyles(() => ({
-    mainProgram:{
-        position: 'relative',
-        width: '350px',
-        height: '800px',
-        top: '280px',
-        background:'#FFF9F4',
-        borderRadius:'28px',
-        opacity:'95%'
-    },
-    mainTitle:{
-        fontFamily: 'Roboto Mono',
-        contrastText: "black",
-        left:'5vh',
-        fontSize:'30px',
-        top:'5vh'
-    },
-    courtPositions:{
-        backgroundImage: `url(${court})`,
-        backgroundRepeat: 'no-repeat',
-        marginLeft:'29vh',
-        height: '189px',
-    },
-    programsContainer:{
-        marginLeft:'3vh',
-        marginTop:'2vh',
+    programsContainer: {
+        marginLeft: '3vh',
+        marginTop: '2vh',
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'center'
     },
-    programsTitle:{
+    programsTitle: {
         fontFamily: 'Roboto Mono',
-        fontSize:'15px',
-        margin:'0 auto',
-        width:'50%'
+        fontSize: '15px',
+        margin: '0 auto',
+        width: '50%'
     }
-
 }))
+
 
 const TrainingPrograms = () => {
     const classes = useStyles();
-    const [results, setResults] = useState(null);
-    const [lastResult, setLastResult] = useState(null);
-    const [alertCounter, setAlertCounter] = useState(0);
+    const {data, error, isError, isLoading} = useQuery('programs', fetchPrograms)
+    const [programs, setPrograms] = useState(null);
 
-    const getResult = () => {
-        const id = "66bb8ab1-a2ce-470b-a269-f73160c04c97";
-        axios({
-            url: `/api/training/results/`,
-            method: "get",
-        })
-            .then((res) => {
-                setResults(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        axios({
-            url: `/api/training/results/${id}`,
-            method: "get",
-        })
-            .then((res) => {
-                setLastResult(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-    const AlertResult = () => {
-        if (lastResult[0].result === 'Pass' && alertCounter !== 1) {
-            toast("You passed the training program!");
-            setAlertCounter(1)
-        } else if (lastResult[0].result === 'Fail' && alertCounter !== 1){
-            setAlertCounter(1)
-            toast("You failed!");
-        }
+    useEffect(() => {
+        setPrograms(data)
+    }, [data])
+
+    if (isLoading) {
+        return <LoadingTriangle/>
     }
-    useEffect(() => getResult(), [])
+
+    if (isError) {
+        toast.error(error.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: 0,
+        });
+        return <div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            /></div>
+    }
+
+
+    // const [lastResult, setLastResult] = useState(null);
+    // const [alertCounter, setAlertCounter] = useState(0);
+
+    // const AlertResult = () => {
+    //     if (lastResult[0].result === 'Pass' && alertCounter !== 1) {
+    //         toast("You passed the training program!");
+    //         setAlertCounter(1)
+    //     } else if (lastResult[0].result === 'Fail' && alertCounter !== 1) {
+    //         setAlertCounter(1)
+    //         toast("You failed!");
+    //     }
+    // }
+
     return (
-        <div className={classes.mainProgram}>
-            <Typography className={classes.mainTitle}> Welcome Back ...</Typography>
-            <section className={classes.courtPositions}>
-            </section>
-            <div >
+            <div>
                 <Typography className={classes.programsTitle}> Training Programs </Typography>
-                <CardGroup className={classes.programsContainer} >
-                    <ProgramCard />
-                    <ProgramCard />
-                    <ProgramCard />
-                    <ProgramCard />
+                <CardGroup className={classes.programsContainer}>
+                    {programs ? programs.map((program, index) => (
+                        <ProgramCard key={program.id} index={index} program={program}/>
+                    )) : null}
                 </CardGroup>
             </div>
-        </div>
     )
 }
-export default  TrainingPrograms
+export default TrainingPrograms
