@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import axios from "../axios";
+import axios from "../../axios";
 import {useQuery} from "react-query";
 
 // Style imports
@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Local imports
 import ProgramCard from "./programCard";
-import LoadingTriangle from "./LoadingTriangle";
+import LoadingTriangle from "../Utils/LoadingTriangle";
 
 async function fetchPrograms() {
     const {data} = await axios.get('/api/training/programs/')
@@ -88,14 +88,14 @@ const TrainingPrograms = () => {
     // }
 
     return (
-            <div>
-                <Typography className={classes.programsTitle}> Training Programs </Typography>
-                <CardGroup className={classes.programsContainer}>
-                    {programs ? programs.map((program, index) => (
-                        <ProgramCard key={program.id} index={index} program={program}/>
-                    )) : null}
-                </CardGroup>
-            </div>
+        <div>
+            <Typography className={classes.programsTitle}> Training Programs </Typography>
+            <CardGroup className={classes.programsContainer}>
+                {programs ? programs.map((program, index) => (
+                    <ProgramCard key={program.id} index={index} program={program}/>
+                )) : null}
+            </CardGroup>
+        </div>
     )
 }
 export default TrainingPrograms

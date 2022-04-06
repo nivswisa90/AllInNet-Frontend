@@ -37,13 +37,13 @@ const Login = (props) => {
     const classes = useStyles();
 
     return (
-            <Box className={classes.loginBox}>
-                <div className={classes.titleBox}>
-                    <Typography className={classes.loginTitle}>Sing In</Typography>
-                    <LoginForm setToken={props.setToken}/>
-                </div>
-            </Box>
- )
+        <Box className={classes.loginBox}>
+            <div className={classes.titleBox}>
+                <Typography className={classes.loginTitle}>Sing In</Typography>
+                <LoginForm setToken={props.setToken}/>
+            </div>
+        </Box>
+    )
 }
 export default Login;
 

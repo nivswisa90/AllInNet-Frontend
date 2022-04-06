@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 //Style
 import {makeStyles} from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import {Card} from "react-bootstrap";
 import {MdOutlineAutoGraph} from "react-icons/md";
 
@@ -28,8 +27,8 @@ const useStyles = makeStyles(() => ({
         margin: '5px',
         width: '100%',
         fontSize: '29px',
-        fontWeight:'900',
-        textAlign:'center',
+        fontWeight: '900',
+        textAlign: 'center',
         color: ({resultsString}) => resultsString === 'pass' ? 'green' : 'red'
     },
     startBtn: {
@@ -47,7 +46,7 @@ const ResultCard = (props) => {
     console.log(props.results)
     return (
         <Card className={classes.resultCard}>
-            <Card.Body >
+            <Card.Body>
                 <Card.Title className={classes.cardTitle}>
                     {props.results.date}
                 </Card.Title>

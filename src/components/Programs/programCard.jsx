@@ -1,18 +1,14 @@
 import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom';
-import axios from "../axios";
+import {useNavigate} from 'react-router-dom';
+import axios from "../../axios";
 import {useMutation} from "react-query";
 
 //Style
 import {makeStyles} from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import {Card} from "react-bootstrap";
 
 // Icons
-import {FaAngleRight} from "react-icons/fa";
 import {RiNumber1, RiNumber2, RiNumber3, RiNumber4, RiNumber5} from "react-icons/ri"
-
-
 
 
 const useStyles = makeStyles(() => ({
@@ -36,8 +32,8 @@ const useStyles = makeStyles(() => ({
         margin: '5px',
         width: '100%',
         fontSize: '10px',
-        "& span":{
-            display:'block'
+        "& span": {
+            display: 'block'
         }
     },
     startBtn: {
@@ -52,16 +48,18 @@ const ProgramCard = (props) => {
     const navigate = useNavigate()
     const [message, setMessage] = useState('')
     const {isLoading, isError, error, mutate} = useMutation('training', startTraining)
+
     async function startTraining(minReq) {
         const response = await axios.post('/api/training/programs/startt', minReq)
         setMessage(response.data)
         // navigate('/start')
     }
+
     // if(is)
     // console.log(props.program.positions.pos1)
     return (
         <Card className={classes.programCard}>
-            <Card.Body >
+            <Card.Body>
                 <Card.Title className={classes.cardTitle}>
                     {props.program.level}
                 </Card.Title>

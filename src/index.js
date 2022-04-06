@@ -4,17 +4,18 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import {BrowserRouter as Router} from "react-router-dom";
+import {QueryClient, QueryClientProvider} from "react-query";
+
 const queryClient = new QueryClient();
 
 ReactDOM.render(
     <Router>
         <QueryClientProvider client={queryClient}>
-        <App />
+            <App/>
         </QueryClientProvider>
     </Router>,
-  document.getElementById('root')
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import {FormControl} from "@mui/material";
-import PropTypes from 'prop-types';
 
 // const defaultValues = {
 //     name: '',
@@ -65,7 +64,7 @@ const LoginForm = (props) => {
     // const [formValues, setFormValues] = useState(defaultValues)
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
 
         setValues({
             ...values,

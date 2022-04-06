@@ -1,6 +1,7 @@
 import React from 'react'
 import {BallTriangle} from "react-loader-spinner";
 import {makeStyles} from "@material-ui/core/styles";
+
 const useStyles = makeStyles(() => ({
     loading: {
         position: 'absolute',
@@ -8,7 +9,7 @@ const useStyles = makeStyles(() => ({
         left: '25vh'
     }
 }))
-const LoadingTriangle = () =>{
+const LoadingTriangle = () => {
     const classes = useStyles();
 
     return (

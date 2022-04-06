@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {Typography} from "@mui/material";
 import {CardGroup} from "react-bootstrap";
-import ProgramCard from "./programCard";
-import axios from "../axios";
+import axios from "../../axios";
 import {makeStyles} from "@material-ui/core/styles";
 import {useQuery} from "react-query";
-import LoadingTriangle from "./LoadingTriangle";
+import LoadingTriangle from "../Utils/LoadingTriangle";
 import {toast, ToastContainer} from "react-toastify";
 import ResultCard from "./ResultCard";
+
 async function fetchPrograms() {
     const {data} = await axios.get('/api/training/results/')
     return data
@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
         width: '50%'
     }
 }))
-const TrainingResults = () =>{
+const TrainingResults = () => {
     const classes = useStyles();
     const {data, error, isError, isLoading} = useQuery('results', fetchPrograms)
     const [results, setResults] = useState(null);
@@ -65,7 +65,7 @@ const TrainingResults = () =>{
                 pauseOnHover
             /></div>
     }
-    return(
+    return (
         <div>
             <Typography className={classes.resultsTitle}> Training Results </Typography>
             <CardGroup className={classes.resultsContainer}>

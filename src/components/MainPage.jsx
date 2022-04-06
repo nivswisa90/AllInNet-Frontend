@@ -1,19 +1,11 @@
-import React, { useState} from 'react'
+import React from 'react'
 import {Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
 import court from '../media/courtPositions.jpeg'
-import {CardGroup} from "react-bootstrap";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "../axios";
-import {useQuery} from "react-query";
-
-import {BallTriangle} from "react-loader-spinner";
-import {toast, ToastContainer} from "react-toastify";
-import ProgramCard from "./programCard";
-import LoadingTriangle from "./LoadingTriangle";
-import TrainingPrograms from "./trainingPrograms";
-import Button from "@material-ui/core/Button";
-import TrainingResults from "./TrainingResults";
+import TrainingPrograms from "./Programs/trainingPrograms";
+import TrainingResults from "./Results/TrainingResults";
 
 async function fetchPrograms() {
     const {data} = await axios.get('/api/training/programs/')
@@ -23,13 +15,10 @@ async function fetchPrograms() {
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
-        position: 'relative',
-        width: '396px',
-        height: '800px',
-        top: '280px',
+        // marginTop:'5vh',
         background: '#FFF9F4',
         borderRadius: '28px',
-        opacity: '95%'
+        opacity: '90%'
     },
     mainTitle: {
         fontFamily: 'Roboto Mono',
@@ -64,9 +53,9 @@ const useStyles = makeStyles(() => ({
     }
 
 }))
-const MainPage = () =>{
+const MainPage = () => {
     const classes = useStyles();
-    return(
+    return (
         <div className={classes.mainProgram}>
             <Typography className={classes.mainTitle}> Welcome Back ...</Typography>
             <section className={classes.courtPositions}>
