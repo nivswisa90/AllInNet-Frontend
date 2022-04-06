@@ -6,12 +6,12 @@ import {makeStyles} from "@material-ui/core/styles";
 import {FormControl} from "@mui/material";
 import PropTypes from 'prop-types';
 
-const defaultValues = {
-    username: '',
-    password: '',
-    remember: '',
-    forgot: '',
-};
+// const defaultValues = {
+//     name: '',
+//     password: '',
+//     remember: '',
+//     forgot: '',
+// };
 const useStyles = makeStyles(() => ({
     loginBtn: {
         color: '#44B6EF',
@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 async function loginUser(credentials) {
+    console.log(credentials)
     return fetch('http://localhost:5001/api/login', {
         method: 'POST',
         headers: {
@@ -40,19 +41,28 @@ async function loginUser(credentials) {
         },
         body: JSON.stringify(credentials)
     })
-        .then(data => data.json())
+        .then(data => {
+            data.json().then(token => console.log(token))
+        })
+        .catch(err => console.log(err))
 }
 
-const LoginForm = ({setToken}) => {
+const LoginForm = (props) => {
     const classes = useStyles()
-    const [username, setUserName] = useState()
-    const [password, setPassword] = useState()
+    // const [username, setUserName] = useState()
+    // const [password, setPassword] = useState()
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    });
 
-    const [formValues, setFormValues] = useState(defaultValues)
+    // const [formValues, setFormValues] = useState(defaultValues)
+
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setFormValues({
-            ...formValues,
+        const { name, value } = e.target;
+
+        setValues({
+            ...values,
             [name]: value,
         });
     };
@@ -60,10 +70,9 @@ const LoginForm = ({setToken}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = await loginUser({
-            username,
-            password
+            values
         });
-        setToken(token);
+        props.setToken(token);
 
     };
 
@@ -74,10 +83,9 @@ const LoginForm = ({setToken}) => {
                 <Grid item>
                     <TextField
                         id="name-input"
-                        name="username"
-                        label="Username"
+                        name="email"
+                        label="Email"
                         type="text"
-                        value={formValues.username}
                         onChange={handleInputChange}
                     />
                 </Grid>
@@ -87,7 +95,6 @@ const LoginForm = ({setToken}) => {
                         name="password"
                         label="password"
                         type="password"
-                        value={formValues.password}
                         onChange={handleInputChange}
                     />
                 </Grid>
@@ -107,6 +114,6 @@ const LoginForm = ({setToken}) => {
 }
 export default LoginForm;
 
-LoginForm.propTypes = {
-    setToken: PropTypes.func.isRequired
-}
+// LoginForm.propTypes = {
+//     setToken: PropTypes.func.isRequired
+// }

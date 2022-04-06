@@ -4,7 +4,7 @@ import TrainingPrograms from '../components/trainingPrograms'
 
 
 
-function setToken(userToken) {
+const setToken = (userToken) => {
     sessionStorage.setItem('token', JSON.stringify(userToken));
 }
 
@@ -15,7 +15,7 @@ const ReactRouter = () => {
 
     return (
         <Routes>
-            <Route exact path="/login" element={<Login setToken={{setToken}} />} />
+            <Route exact path="/login" element={<Login setToken={setToken} />} />
             <Route path="/programs" element={<TrainingPrograms />} />
         </Routes>
     );
