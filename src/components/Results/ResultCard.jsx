@@ -5,7 +5,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
 import {MdOutlineAutoGraph} from "react-icons/md";
 
-let resultsString
 const useStyles = makeStyles(() => ({
     resultCard: {
         float: 'left',
@@ -29,7 +28,6 @@ const useStyles = makeStyles(() => ({
         fontSize: '29px',
         fontWeight: '900',
         textAlign: 'center',
-        color: ({resultsString}) => resultsString === 'pass' ? 'green' : 'red'
     },
     startBtn: {
         margin: '0 auto',
@@ -39,18 +37,18 @@ const useStyles = makeStyles(() => ({
 }))
 
 const ResultCard = (props) => {
+    let resultsString
     const classes = useStyles()
     const [message, setMessage] = useState('')
     resultsString = props.results.result
-    // if(is)
-    console.log(props.results)
+    console.log(resultsString)
     return (
         <Card className={classes.resultCard}>
             <Card.Body>
                 <Card.Title className={classes.cardTitle}>
                     {props.results.date}
                 </Card.Title>
-                <Card.Text className={classes.cardText}>
+                <Card.Text style={{color: (resultsString === 'Pass' ? 'green' : 'red')}} className={classes.cardText}>
                     {props.results.result}
                 </Card.Text>
             </Card.Body>

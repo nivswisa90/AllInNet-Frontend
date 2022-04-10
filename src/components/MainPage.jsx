@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "../axios";
 import TrainingPrograms from "./Programs/trainingPrograms";
 import TrainingResults from "./Results/TrainingResults";
+import Container from "@mui/material/Container";
 
 async function fetchPrograms() {
     const {data} = await axios.get('/api/training/programs/')
@@ -18,7 +19,8 @@ const useStyles = makeStyles(() => ({
         // marginTop:'5vh',
         background: '#FFF9F4',
         borderRadius: '28px',
-        opacity: '90%'
+        opacity: '90%',
+        width:'100%'
     },
     mainTitle: {
         fontFamily: 'Roboto Mono',
@@ -50,19 +52,26 @@ const useStyles = makeStyles(() => ({
         position: 'absolute',
         top: '60vh',
         left: '25vh'
-    }
+    },
+    space:{
+        height:'180px'
+    },
 
 }))
 const MainPage = () => {
     const classes = useStyles();
     return (
-        <div className={classes.mainProgram}>
-            <Typography className={classes.mainTitle}> Welcome Back ...</Typography>
-            <section className={classes.courtPositions}>
-            </section>
-            <TrainingPrograms/>
-            <TrainingResults/>
+        <div>
+            <div className={classes.space}></div>
+            <div className={classes.mainProgram}>
+                <Typography className={classes.mainTitle}> Welcome Back ...</Typography>
+                <section className={classes.courtPositions}>
+                </section>
+                <TrainingPrograms/>
+                <TrainingResults/>
+            </div>
         </div>
+
     )
 }
 export default MainPage
