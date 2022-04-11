@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
-import {useNavigate} from 'react-router-dom';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {makeStyles} from "@material-ui/core/styles";
-import {FormControl} from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
+import { FormControl } from "@mui/material";
 
 // const defaultValues = {
 //     name: '',
@@ -33,9 +33,8 @@ const useStyles = makeStyles(() => ({
 
 }));
 
-async function loginUser(credentials) {
-    console.log(credentials)
-    return fetch('http://localhost:5001/api/login', {
+async function loginUser(credentials, setToken) {
+   fetch('http://localhost:5001/api/login/signin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -43,28 +42,32 @@ async function loginUser(credentials) {
         body: JSON.stringify(credentials)
     })
         .then(data => {
-            data.json().then(token => console.log(token))
+            data.json().then(d => {
+                if (d.msg === 'Successfully connected') {
+                    setToken(d.token)
+                }
+                else {
+                    console.log('No token')
+                }
+            })
         })
         .catch(err => console.log(err))
 }
 
 
 const LoginForm = (props) => {
-    const navigate = useNavigate();
-
+    const navigate = useNavigate()
 
     const classes = useStyles()
-    // const [username, setUserName] = useState()
-    // const [password, setPassword] = useState()
     const [values, setValues] = useState({
         email: '',
         password: ''
-    });
+    })
 
-    // const [formValues, setFormValues] = useState(defaultValues)
+    const [nav, setNav] = useState('')
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
 
         setValues({
             ...values,
@@ -74,12 +77,10 @@ const LoginForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await loginUser({
+        loginUser({
             values
-        });
-        props.setToken(token);
-        navigate('/programs')
-
+        }, props.setToken);
+        navigate('/')
     };
 
     return (
@@ -118,7 +119,3 @@ const LoginForm = (props) => {
     )
 }
 export default LoginForm;
-
-// LoginForm.propTypes = {
-//     setToken: PropTypes.func.isRequired
-// }
