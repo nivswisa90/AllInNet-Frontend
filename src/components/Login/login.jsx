@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Box from '@mui/material/Box';
-import {Typography} from "@mui/material";
-import {makeStyles} from "@material-ui/core/styles";
+import { Typography } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Local imports
 import LoginForm from './loginForm'
@@ -40,7 +40,7 @@ const Login = (props) => {
         <Box className={classes.loginBox}>
             <div className={classes.titleBox}>
                 <Typography className={classes.loginTitle}>Sing In</Typography>
-                <LoginForm setToken={props.setToken}/>
+                <LoginForm setToken={props.setToken} />
             </div>
         </Box>
     )

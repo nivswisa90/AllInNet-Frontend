@@ -1,4 +1,4 @@
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Login from "../components/Login/login";
 import TrainingPrograms from '../components/Programs/trainingPrograms'
 import TrainingResults from '../components/Results/TrainingResults'
@@ -10,6 +10,7 @@ const setToken = (userToken) => {
 }
 
 function getToken() {
+    return sessionStorage.getItem('token')
 }
 
 const ReactRouter = () => {
@@ -17,10 +18,10 @@ const ReactRouter = () => {
 
     return (
         <Routes>
-            <Route exact path="/login" element={<Login setToken={setToken}/>}/>
-            <Route path='/' element={<MainPage/>}/>
-            <Route path='/results' element={<TrainingResults/>}/>
-            <Route path="/programs" element={<TrainingPrograms/>}/>
+            <Route exact path="/login" element={<Login setToken={setToken} />} />
+            <Route path='/' element={<MainPage />} />
+            <Route path='/results' element={<TrainingResults />} />
+            <Route path="/programs" element={<TrainingPrograms />} />
         </Routes>
     );
 };

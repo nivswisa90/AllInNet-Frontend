@@ -41,7 +41,6 @@ const ResultCard = (props) => {
     const classes = useStyles()
     const [message, setMessage] = useState('')
     resultsString = props.results.result
-    console.log(resultsString)
     return (
         <Card className={classes.resultCard}>
             <Card.Body>
