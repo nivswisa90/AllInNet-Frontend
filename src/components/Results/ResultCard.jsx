@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 //Style
 import {makeStyles} from "@material-ui/core/styles";
@@ -39,7 +39,7 @@ const useStyles = makeStyles(() => ({
 const ResultCard = (props) => {
     let resultsString
     const classes = useStyles()
-    const [message, setMessage] = useState('')
+
     resultsString = props.results.result
     return (
         <Card className={classes.resultCard}>
