@@ -40,7 +40,7 @@ const Login = (props) => {
         <Box className={classes.loginBox}>
             <div className={classes.titleBox}>
                 <Typography className={classes.loginTitle}>Sing In</Typography>
-                <LoginForm setToken={props.setToken} />
+                <LoginForm />
             </div>
         </Box>
     )
