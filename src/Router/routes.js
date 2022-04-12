@@ -1,14 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Login from "../components/Login/login";
+// import Login from "../components/Login/login";
 import TrainingPrograms from '../components/Programs/trainingPrograms'
 import TrainingResults from '../components/Results/TrainingResults'
 import MainPage from "../components/MainPage";
 import ProtectedRoutes from "../components/RouteManagement/ProtectedRoutes";
 import PublicRoutes from "../components/RouteManagement/PublicRoutes";
 import InnerContent from "../components/RouteManagement/InnerContent";
+import Login from "../components/Login/Login";
+import Register from "../components/Register";
 
 const ReactRouter = () => (
-    < Routes >
+    <Routes>
         <Route path="/" element={<ProtectedRoutes />} >
             <Route path="/" element={<InnerContent />} >
                 <Route path='/' element={<Navigate replace to='main' />} />
@@ -18,9 +20,14 @@ const ReactRouter = () => (
             </Route>
         </Route>
 
-        <Route path="login" element={<PublicRoutes />}>
-            <Route path="/login" element={<Login />} />
+        <Route path="/" element={<PublicRoutes />}>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
+            {/*<Route path="/login" element={<Login />} />*/}
         </Route>
+        {/*<Route path="login" element={<PublicRoutes />}>*/}
+        {/*    <Route path="/login" element={<Login />} />*/}
+        {/*</Route>*/}
     </Routes >
 );
 export default ReactRouter;

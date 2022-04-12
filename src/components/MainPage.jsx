@@ -62,7 +62,7 @@ const MainPage = () => {
     const classes = useStyles();
     return (
         <div>
-            <div className={classes.space}></div>
+            <div className={classes.space}/>
             <div className={classes.mainProgram}>
                 <Typography className={classes.mainTitle}> Welcome Back ...</Typography>
                 <section className={classes.courtPositions}>

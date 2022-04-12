@@ -1,13 +1,13 @@
 import React from 'react'
 import {Typography} from "@mui/material";
-import Box from "@mui/material/Box";
-import LoginForm from "./Login/loginForm";
-import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
-import RegisterForm from "./RegisterForm";
+import Box from "@mui/material/Box";
+import LoginForm from "./loginForm";
+import { Link } from "react-router-dom";
+
 const useStyles = makeStyles(() => ({
     container: {
-        display: 'flex',
+        height: '800px'
     },
     mainTitle: {
         fontSize: "49px",
@@ -18,9 +18,11 @@ const useStyles = makeStyles(() => ({
         fontWeight: 200,
         fontFamily: 'Roboto Mono',
     },
-    registerBox: {
+    landingBox: {
+        // position: 'relative',
         width: '373px',
-        // height: '300px',
+        height: '300px',
+        // top: '470px',
         background: '#FEFEFE',
         borderRadius: '23px',
     },
@@ -42,23 +44,21 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-const Register =()=>{
+const Login = () => {
     const classes = useStyles()
-
     return (
-        <div>
-            <div className={classes.space}/>
-            <div className={classes.container}>
-                <Box className={classes.registerBox}>
-                    <div className={classes.titleBox}>
-                        <Typography className={classes.mainTitle}>Register</Typography>
-                        <RegisterForm/>
-                    </div>
-                </Box>
-            </div>
+        <div className={classes.container}>
+            <div className={classes.space}></div>
+            <Box className={classes.landingBox}>
+                <div className={classes.titleBox}>
+                    <Typography className={classes.mainTitle}>Sing In</Typography>
+                    <LoginForm />
+                    <Link className={classes.registerLink} to='/register'>
+                        <Typography className={classes.register}>Dont have user? Register now!</Typography>
+                    </Link>
+                </div>
+            </Box>
         </div>
-
-
     )
 }
-export default Register
+export default Login

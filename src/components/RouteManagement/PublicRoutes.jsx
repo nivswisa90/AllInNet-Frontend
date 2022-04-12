@@ -4,10 +4,10 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 const useAuth = () => {
     const token = localStorage.getItem('token')
-    return token ? true : false
+    return !!token
 }
 
-const PublicRoutes = (props) => {
+const PublicRoutes = () => {
     const auth = useAuth()
 
     return auth ? <Navigate to="/main" /> : <Outlet />
