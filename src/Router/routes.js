@@ -3,9 +3,9 @@ import Login from "../components/Login/login";
 import TrainingPrograms from '../components/Programs/trainingPrograms'
 import TrainingResults from '../components/Results/TrainingResults'
 import MainPage from "../components/MainPage";
-import ProtectedRoutes from "../components/ProtectedRoutes";
-import PublicRoutes from "../components/PublicRoutes";
-import InnerContent from "../components/InnerContent";
+import ProtectedRoutes from "../components/RouteManagement/ProtectedRoutes";
+import PublicRoutes from "../components/RouteManagement/PublicRoutes";
+import InnerContent from "../components/RouteManagement/InnerContent";
 
 const ReactRouter = () => (
     < Routes >

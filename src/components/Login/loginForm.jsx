@@ -69,7 +69,7 @@ const LoginForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        loginUser({
+        await loginUser({
             values
         })
     };
