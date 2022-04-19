@@ -16,9 +16,10 @@ const ReactRouter = () => (
             <Route path="/" element={<InnerContent />} >
                 <Route path='/' element={<Navigate replace to='main' />} />
                 <Route path="main" element={<MainPage />} />
-                <Route path='/results' element={<TrainingResults />} />
-                <Route path="/programs" element={<TrainingPrograms />} />
+                <Route path='/results' element={<TrainingResults />}/>
                 <Route path='/report' element={<ResultReport/>}/>
+                <Route path="/programs" element={<TrainingPrograms />} />
+
             </Route>
         </Route>
 

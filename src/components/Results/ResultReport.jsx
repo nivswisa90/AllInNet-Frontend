@@ -1,4 +1,5 @@
 import React from 'react'
+import {useLocation, useParams} from 'react-router-dom'
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
 import ReportCard from "./ReportCard";
@@ -45,7 +46,12 @@ const useStyles = makeStyles(() => ({
 }))
 const ResultReport = () =>{
     const classes = useStyles();
+    let location = useLocation();
 
+    let params= useParams()
+    // const { state } = location.state;
+    // console.log(state)
+    console.log(params)
     return(
         <div>
             <Back/>

@@ -18,7 +18,10 @@ const useStyles = makeStyles(() => ({
     cardText:{
         fontSize: '15px',
         textAlign:'center',
-        opacity:'90%'
+        opacity:'90%',
+        '& span':{
+            display:'block'
+        }
     }
 }))
 const ReportCard = () =>{
@@ -27,16 +30,16 @@ const ReportCard = () =>{
         <Card className={classes.reportCard}>
             <Card.Body>
                 <Card.Title className={classes.cardTitle}>
-                    <p>13/03/2022</p>
+                    <span>13/03/2022</span>
                     <p>3 Line Training</p>
                     <hr/>
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
-                    <p>position #1 4</p>
-                    <p>position #2 4</p>
-                    <p>position #3 4</p>
-                    <p>position #3 4</p>
-                    <p>position #3 4</p>
+                    <span>position #1 4</span>
+                    <span>position #2 4</span>
+                    <span>position #3 4</span>
+                    <span>position #3 4</span>
+                    <span>position #3 4</span>
                 </Card.Text>
             </Card.Body>
         </Card>

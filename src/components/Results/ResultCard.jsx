@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useEffect, useReducer, useState} from 'react'
 
 //Style
 import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
 import {MdOutlineAutoGraph} from "react-icons/md";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     resultCard: {
@@ -41,6 +42,7 @@ const ResultCard = (props) => {
     const classes = useStyles()
 
     resultsString = props.results.result
+
     return (
         <Card className={classes.resultCard}>
             <Card.Body>
@@ -52,8 +54,10 @@ const ResultCard = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
-                <MdOutlineAutoGraph/>
-                {/*<Button onClick={mutate({minReq:props.program.minimumRequest})}>Start <FaAngleRight/></Button>*/}
+                <Link to={'/report'} {...props}>
+                    <MdOutlineAutoGraph/>
+
+                </Link>
             </Card.Footer>
         </Card>
     )
