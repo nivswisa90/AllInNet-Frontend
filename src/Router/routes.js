@@ -7,7 +7,8 @@ import ProtectedRoutes from "../components/RouteManagement/ProtectedRoutes";
 import PublicRoutes from "../components/RouteManagement/PublicRoutes";
 import InnerContent from "../components/RouteManagement/InnerContent";
 import Login from "../components/Login/Login";
-import Register from "../components/Register";
+import Register from "../components/Register/Register";
+import ResultReport from "../components/Results/ResultReport";
 
 const ReactRouter = () => (
     <Routes>
@@ -17,6 +18,7 @@ const ReactRouter = () => (
                 <Route path="main" element={<MainPage />} />
                 <Route path='/results' element={<TrainingResults />} />
                 <Route path="/programs" element={<TrainingPrograms />} />
+                <Route path='/report' element={<ResultReport/>}/>
             </Route>
         </Route>
 

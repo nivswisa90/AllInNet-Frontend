@@ -53,9 +53,7 @@ const RegisterForm = () => {
     console.log(role)
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // await loginUser({
-        //     values
-        // })
+
     };
     const handleCheckbox = (event) => {
         setRole({

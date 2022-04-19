@@ -16,7 +16,6 @@ async function fetchPrograms() {
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
-        // marginTop:'5vh',
         background: '#FFF9F4',
         borderRadius: '28px',
         opacity: '90%',
