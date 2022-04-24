@@ -7,6 +7,7 @@ import axios from "../axios";
 import TrainingPrograms from "./Programs/trainingPrograms";
 import TrainingResults from "./Results/TrainingResults";
 import Container from "@mui/material/Container";
+import CoachView from "./CoachView";
 
 async function fetchPrograms() {
     const {data} = await axios.get('/api/training/programs/')
@@ -68,6 +69,7 @@ const MainPage = () => {
                 </section>
                 <TrainingPrograms/>
                 <TrainingResults/>
+                <CoachView/>
             </div>
         </div>
 
