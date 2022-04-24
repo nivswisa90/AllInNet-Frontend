@@ -52,17 +52,25 @@ const useStyles = makeStyles(() => ({
 
 }))
 const MainPage = () => {
+    const role = localStorage.getItem('role')
+    const name = localStorage.getItem('name')
+
     const classes = useStyles();
     return (
         <div>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
-                <Typography className={classes.mainTitle}> Welcome Back ...</Typography>
-                <section className={classes.courtPositions}>
-                </section>
-                <TrainingPrograms/>
-                <TrainingResults/>
-                <CoachView/>
+                <Typography className={classes.mainTitle}> {`Welcome Back ${name}`} </Typography>
+                {role === 'coach'? <CoachView/>:
+                    <div>
+                        <section className={classes.courtPositions}/>
+                        <TrainingPrograms/>
+                        <TrainingResults/>
+                    </div>
+
+                }
+
+
             </div>
         </div>
 
