@@ -47,7 +47,9 @@ const LoginForm = (props) => {
             .then(data => {
                 data.json().then(d => {
                     if (d.msg === 'Successfully connected') {
-                        localStorage.setItem('user', d.user)
+                        localStorage.setItem('name', d.user.name)
+                        localStorage.setItem('token', d.user.token)
+                        localStorage.setItem('role', d.user.role)
                         navigate('/main')
                     }
                     else {
