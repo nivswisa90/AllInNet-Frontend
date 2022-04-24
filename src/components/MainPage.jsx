@@ -3,16 +3,9 @@ import {Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
 import court from '../media/courtPositions.jpeg'
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "../axios";
 import TrainingPrograms from "./Programs/trainingPrograms";
 import TrainingResults from "./Results/TrainingResults";
-import Container from "@mui/material/Container";
 import CoachView from "./CoachView";
-
-async function fetchPrograms() {
-    const {data} = await axios.get('/api/training/programs/')
-    return data
-}
 
 
 const useStyles = makeStyles(() => ({
@@ -20,7 +13,7 @@ const useStyles = makeStyles(() => ({
         background: '#FFF9F4',
         borderRadius: '28px',
         opacity: '90%',
-        width:'100%'
+        width: '100%'
     },
     mainTitle: {
         fontFamily: 'Roboto Mono',
@@ -53,8 +46,8 @@ const useStyles = makeStyles(() => ({
         top: '60vh',
         left: '25vh'
     },
-    space:{
-        height:'180px'
+    space: {
+        height: '180px'
     },
 
 }))
