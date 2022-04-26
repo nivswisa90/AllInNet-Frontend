@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import TrainingPrograms from "./Programs/trainingPrograms";
 import TrainingResults from "./Results/TrainingResults";
 import CoachView from "./CoachView";
+import AvatarMenu from "./AvatarMenu";
+
 
 
 const useStyles = makeStyles(() => ({
@@ -58,6 +60,7 @@ const MainPage = () => {
     const classes = useStyles();
     return (
         <div>
+            <AvatarMenu/>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
                 <Typography className={classes.mainTitle}> {`Welcome Back ${name}`} </Typography>
@@ -67,10 +70,7 @@ const MainPage = () => {
                         <TrainingPrograms/>
                         <TrainingResults/>
                     </div>
-
                 }
-
-
             </div>
         </div>
 

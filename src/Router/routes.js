@@ -1,5 +1,5 @@
 import {Navigate, Route, Routes} from "react-router-dom";
-// import Login from "../components/Login/login";
+
 import TrainingPrograms from '../components/Programs/trainingPrograms'
 import TrainingResults from '../components/Results/TrainingResults'
 import MainPage from "../components/MainPage";
@@ -27,11 +27,7 @@ const ReactRouter = () => (
         <Route path="/" element={<PublicRoutes/>}>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
-            {/*<Route path="/login" element={<Login />} />*/}
         </Route>
-        {/*<Route path="login" element={<PublicRoutes />}>*/}
-        {/*    <Route path="/login" element={<Login />} />*/}
-        {/*</Route>*/}
     </Routes>
 );
 export default ReactRouter;

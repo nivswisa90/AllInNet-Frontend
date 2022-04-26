@@ -6,12 +6,13 @@ import {useQuery} from "react-query";
 import {Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
 import {CardGroup} from "react-bootstrap";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 // Local imports
 import ProgramCard from "./programCard";
 import LoadingTriangle from "../Utils/LoadingTriangle";
+import Error from "../Utils/Error";
 
 async function fetchPrograms() {
     const {data} = await axios.get('/api/training/programs/', {
@@ -19,9 +20,6 @@ async function fetchPrograms() {
             "x-access-token":localStorage.getItem('token')
         }
     })
-
-    console.log('token', localStorage.getItem('token'))
-
     return data
 }
 
@@ -49,7 +47,6 @@ const TrainingPrograms = () => {
     const [programs, setPrograms] = useState(null);
 
     useEffect(() => {
-        console.log(data)
         setPrograms(data)
     }, [data])
 
@@ -67,20 +64,8 @@ const TrainingPrograms = () => {
             draggable: true,
             progress: 0,
         });
-        return <div>
-            <ToastContainer
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            /></div>
+        return <Error/>
     }
-
 
     // const [lastResult, setLastResult] = useState(null);
     // const [alertCounter, setAlertCounter] = useState(0);
