@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import {Checkbox, FormControl, FormControlLabel} from "@mui/material";
@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import {useMutation} from "react-query";
 import axios from "../../axios";
+import {useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     registerBtn: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles(() => ({
 
 
 const RegisterForm = () => {
+    const navigate = useNavigate()
     const classes = useStyles()
     const [role, setRole] = useState({
         coach: false,
@@ -47,9 +49,14 @@ const RegisterForm = () => {
         const response = await axios.post('/api/login/adduser', user)
 
         console.log(response.data)
-        // setMessage(response.data)
-
+        setMessage(response.data)
     }
+
+    useEffect(() => {
+       if(message === 'User successfully registered'){
+           navigate("/login")
+       }
+    }, [message])
 
     const {isLoading, isError, error, mutate} = useMutation('user', Register)
 
