@@ -45,7 +45,10 @@ const RegisterForm = () => {
 
     async function Register(user) {
         const response = await axios.post('/api/login/adduser', user)
-        setMessage(response.data)
+
+        console.log(response.data)
+        // setMessage(response.data)
+
     }
 
     const {isLoading, isError, error, mutate} = useMutation('user', Register)
@@ -140,7 +143,7 @@ const RegisterForm = () => {
                 </Grid>
             </form>
             <div>
-                {isLoading ? "Saving...": " "}
+                {isLoading ? "Saving..." : " "}
                 {isError ? error.message : ""}
             </div>
         </div>
