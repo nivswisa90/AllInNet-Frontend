@@ -19,10 +19,8 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
     },
     landingBox: {
-        // position: 'relative',
         width: '373px',
         height: '300px',
-        // top: '470px',
         background: '#FEFEFE',
         borderRadius: '23px',
     },

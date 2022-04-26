@@ -14,7 +14,14 @@ import ProgramCard from "./programCard";
 import LoadingTriangle from "../Utils/LoadingTriangle";
 
 async function fetchPrograms() {
-    const {data} = await axios.get('/api/training/programs/')
+    const {data} = await axios.get('/api/training/programs/', {
+        headers:{
+            "x-access-token":localStorage.getItem('token')
+        }
+    })
+
+    console.log('token', localStorage.getItem('token'))
+
     return data
 }
 
@@ -42,6 +49,7 @@ const TrainingPrograms = () => {
     const [programs, setPrograms] = useState(null);
 
     useEffect(() => {
+        console.log(data)
         setPrograms(data)
     }, [data])
 
