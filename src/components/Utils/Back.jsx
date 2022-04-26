@@ -5,9 +5,9 @@ import {Link} from "react-router-dom";
 const Back = () =>{
     return (
         <Link to={'/main'}>
-         <p>
+         <span>
              <MdArrowBackIos/> Back
-         </p>
+         </span>
         </Link>
 
  )

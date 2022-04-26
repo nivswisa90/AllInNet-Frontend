@@ -1,7 +1,7 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 .App {
-    background-image: url("./media/logo.png");
+    background-image: url("../public/logo.ico");
     background-repeat: no-repeat;
     background-position: top;
     background-color: #EFD4B8;
