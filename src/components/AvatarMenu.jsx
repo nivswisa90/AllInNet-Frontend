@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
 
 // import Avatar from 'react-avatar';
-import {makeStyles} from "@material-ui/core/styles";
+// import {makeStyles} from "@material-ui/core/styles";
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -10,30 +9,38 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-const useStyles = makeStyles(() => ({
-    menuPosition:{
-        marginLeft:'65vh',
-    },space:{
-        height: '2vh'
+
+// const useStyles = makeStyles(() => ({
+//     menuPosition: {
+//         marginLeft: '65vh',
+//     }, space: {
+//         height: '2vh'
+//     }
+//
+// }));
+
+const AvatarMenu = () => {
+    // const classes = useStyles()
+    const [anchorEl, setAnchorEl] = useState(null)
+    const open = Boolean(anchorEl)
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget)
+    }
+    const handleClose = () => {
+        setAnchorEl(null)
     }
 
-}));
+    const handleLogOut = () => {
+        localStorage.clear()
+        window.location.reload()
+    }
 
-const AvatarMenu = () =>{
-    const classes = useStyles()
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
     return (
         // <div className={classes.menuPosition}>
         //     <div className={classes.space}/>
@@ -42,17 +49,17 @@ const AvatarMenu = () =>{
         //
         // </div>
         <React.Fragment>
-            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+            <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
                 <Tooltip title="Account settings">
                     <IconButton
                         onClick={handleClick}
                         size="small"
-                        sx={{ ml: 2 }}
+                        sx={{ml: 2}}
                         aria-controls={open ? 'account-menu' : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                        <Avatar sx={{width: 32, height: 32}}>M</Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -88,31 +95,31 @@ const AvatarMenu = () =>{
                         },
                     },
                 }}
-                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                transformOrigin={{horizontal: 'right', vertical: 'top'}}
+                anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             >
                 <MenuItem>
-                    <Avatar /> Profile
+                    <Avatar/> Profile
                 </MenuItem>
                 <MenuItem>
-                    <Avatar /> My account
+                    <Avatar/> My account
                 </MenuItem>
-                <Divider />
+                <Divider/>
                 <MenuItem>
                     <ListItemIcon>
-                        <PersonAdd fontSize="small" />
+                        <PersonAdd fontSize="small"/>
                     </ListItemIcon>
                     Add another account
                 </MenuItem>
                 <MenuItem>
                     <ListItemIcon>
-                        <Settings fontSize="small" />
+                        <Settings fontSize="small"/>
                     </ListItemIcon>
                     Settings
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={handleLogOut}>
                     <ListItemIcon>
-                        <Logout fontSize="small" />
+                        <Logout fontSize="small"/>
 
                     </ListItemIcon>
                     Logout

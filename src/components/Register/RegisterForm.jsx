@@ -50,11 +50,12 @@ const RegisterForm = () => {
 
         console.log(response.data)
         setMessage(response.data)
+        navigate("/main")
     }
 
     useEffect(() => {
-       if(message === 'User successfully registered'){
-           navigate("/login")
+       if(message.msg === "User successfully registered"){
+           localStorage.setItem('token', message.token)
        }
     }, [message])
 

@@ -19,7 +19,7 @@ const ReactRouter = () => (
                 <Route path="main" element={<MainPage/>}/>
                 <Route path='/results' element={<TrainingResults/>}/>
                 <Route path='/report' element={<ResultReport/>}/>
-                <Route path="/programs" element={<TrainingPrograms />} />
+                <Route path="/programs" element={<TrainingPrograms/>}/>
                 <Route path="/coach" element={<CoachView/>}/>
             </Route>
         </Route>
