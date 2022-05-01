@@ -48,7 +48,6 @@ const RegisterForm = () => {
     async function Register(user) {
         const response = await axios.post('/api/login/adduser', user)
 
-        console.log(response.data)
         setMessage(response.data)
         navigate("/main")
     }
