@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     container: {
-        height: '800px'
+        height: '100%'
     },
     mainTitle: {
         fontSize: "49px",
@@ -19,18 +19,20 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
     },
     landingBox: {
-        width: '373px',
-        height: '300px',
+        margin:'0 auto',
+        width: '550px',
+        height: '400px',
         background: '#FEFEFE',
         borderRadius: '23px',
     },
     titleBox: {
-        width: "373px",
-        height: '77px',
+        width: "550px",
+        height: '90px',
         background: 'rgba(68, 182, 239, 0.69)',
         borderRadius: ' 17px 17px 0px 0px',
     },
     register:{
+        marginLeft:'14vh',
         fontFamily: 'Roboto Mono',
         contrastText: "black",
     },
@@ -38,7 +40,7 @@ const useStyles = makeStyles(() => ({
         textDecoration:'none'
     },
     space:{
-        height:'440px'
+        height:'500px'
     },
 }))
 
@@ -56,6 +58,7 @@ const Login = () => {
                     </Link>
                 </div>
             </Box>
+            <div className={classes.space}></div>
         </div>
     )
 }

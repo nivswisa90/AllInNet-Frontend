@@ -1,13 +1,13 @@
 import React from 'react'
 import {Typography} from "@mui/material"
 import {makeStyles} from "@material-ui/core/styles"
-import court from '../media/courtPositions.jpeg'
 import 'react-toastify/dist/ReactToastify.css'
 import TrainingPrograms from "./Programs/trainingPrograms"
 import TrainingResults from "./Results/TrainingResults"
 // import CoachView from "./CoachView"
 import AvatarMenu from "./AvatarMenu"
 import {useOutletContext} from "react-router-dom"
+import CourtModal from "./Utils/CourtModal";
 
 
 const useStyles = makeStyles(() => ({
@@ -20,22 +20,9 @@ const useStyles = makeStyles(() => ({
     mainTitle: {
         fontFamily: 'Roboto Mono',
         contrastText: "black",
-        left: '5vh',
+        margin: "0 auto",
+        width: '60%',
         fontSize: '30px',
-        top: '5vh'
-    },
-    courtPositions: {
-        backgroundImage: `url(${court})`,
-        backgroundRepeat: 'no-repeat',
-        marginLeft: '30vh',
-        height: '189px',
-    },
-    programsContainer: {
-        marginLeft: '3vh',
-        marginTop: '2vh',
-        display: 'flex',
-        flexWrap: 'wrap',
-        alignItems: 'center'
     },
     programsTitle: {
         fontFamily: 'Roboto Mono',
@@ -56,7 +43,7 @@ const useStyles = makeStyles(() => ({
 const MainPage = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
-
+    console.log(user)
     return (
         <div>
             <AvatarMenu user={user}/>
@@ -65,9 +52,11 @@ const MainPage = () => {
                 <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>
                 {/*<CoachView/>*/}
                 <div>
-                    <section className={classes.courtPositions}/>
+                    <CourtModal/>
                     <TrainingPrograms/>
                     <TrainingResults/>
+
+
                 </div>
             </div>
         </div>

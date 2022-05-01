@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import TeamPlayers from "./TeamPlayers";
 
 const CoachView = () =>{
 
+
     return (
-        <h1>IMCOACH</h1>
+        <div>
+            <h1>Team Players</h1>
+            <TeamPlayers/>
+        </div>
     )
 }
 export default CoachView

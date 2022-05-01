@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
         contrastText: "black",
     },
     loginFrom: {
+        marginTop:'5vh',
         padding: '1vh'
     },
     forgotPass: {
@@ -86,6 +87,7 @@ const LoginForm = (props) => {
                         label="Email"
                         type="text"
                         onChange={handleInputChange}
+                        size="medium"
                     />
                 </Grid>
                 <Grid item>

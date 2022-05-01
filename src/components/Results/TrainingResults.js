@@ -8,7 +8,7 @@ import LoadingTriangle from "../Utils/LoadingTriangle";
 import {toast, ToastContainer} from "react-toastify";
 import ResultCard from "./ResultCard";
 
-async function fetchPrograms() {
+async function fetchResults() {
     const {data} = await axios.get('/api/training/results/', {
         headers: {
             "Content-type": "application/json",
@@ -36,13 +36,13 @@ const useStyles = makeStyles(() => ({
 }))
 const TrainingResults = () => {
     const classes = useStyles();
-    const {data, error, isError, isLoading} = useQuery('results', fetchPrograms)
+    const {data, error, isError, isLoading} = useQuery('results', fetchResults)
     const [results, setResults] = useState(null);
 
     useEffect(() => {
         setResults(data)
     }, [data])
-
+    console.log(results)
     if (isLoading) {
         return <LoadingTriangle/>
     }

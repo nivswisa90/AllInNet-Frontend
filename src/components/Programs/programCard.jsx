@@ -17,20 +17,20 @@ const useStyles = makeStyles(() => ({
         border: '1px solid black',
         borderRadius: '10px',
         margin: '5px',
-        width: '40%',
+        width: '25%',
         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)'
     },
     cardTitle: {
         fontFamily: 'Roboto Mono',
         contrastText: "black",
         margin: '0 auto',
-        width: '50%',
+        width: '20%',
         fontSize: '15px',
     },
     cardText: {
         fontFamily: 'Roboto Mono',
-        margin: '5px',
-        width: '100%',
+        margin: '0 auto',
+        width: '50%',
         fontSize: '10px',
         "& span": {
             display: 'block'

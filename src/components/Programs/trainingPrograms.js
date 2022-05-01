@@ -25,9 +25,13 @@ async function fetchPrograms() {
 
 
 const useStyles = makeStyles(() => ({
+    programsWrapper:{
+      width:'100%'
+    },
     programsContainer: {
-        marginLeft: '3vh',
+        marginLeft: '15vh',
         marginTop: '2vh',
+        width:'500px',
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'center'
@@ -36,7 +40,7 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
         margin: '0 auto',
-        width: '50%'
+        width: '20%'
     }
 }))
 
@@ -81,7 +85,7 @@ const TrainingPrograms = () => {
     // }
 
     return (
-        <div>
+        <div className={classes.programsWrapper}>
             <Typography className={classes.programsTitle}> Training Programs </Typography>
             <CardGroup className={classes.programsContainer}>
                 {programs ? programs.map((program, index) => (
