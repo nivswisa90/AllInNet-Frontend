@@ -1,13 +1,13 @@
 import React from 'react'
-import {Typography} from "@mui/material";
-import {makeStyles} from "@material-ui/core/styles";
+import {Typography} from "@mui/material"
+import {makeStyles} from "@material-ui/core/styles"
 import court from '../media/courtPositions.jpeg'
-import 'react-toastify/dist/ReactToastify.css';
-import TrainingPrograms from "./Programs/trainingPrograms";
-import TrainingResults from "./Results/TrainingResults";
-import CoachView from "./CoachView";
-import AvatarMenu from "./AvatarMenu";
-
+import 'react-toastify/dist/ReactToastify.css'
+import TrainingPrograms from "./Programs/trainingPrograms"
+import TrainingResults from "./Results/TrainingResults"
+// import CoachView from "./CoachView"
+import AvatarMenu from "./AvatarMenu"
+import {useOutletContext} from "react-router-dom"
 
 
 const useStyles = makeStyles(() => ({
@@ -54,22 +54,21 @@ const useStyles = makeStyles(() => ({
 
 }))
 const MainPage = () => {
-    const role = localStorage.getItem('role')
-    const name = localStorage.getItem('name')
+    const [user] = useOutletContext()
+    const classes = useStyles()
 
-    const classes = useStyles();
     return (
         <div>
-            <AvatarMenu/>
+            <AvatarMenu user={user}/>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
-                <Typography className={classes.mainTitle}> {`Welcome Back ${name}`} </Typography>
-                {role === 'coach'? <CoachView/>:
-                    <div>
-                        <section className={classes.courtPositions}/>
-                        <TrainingPrograms/>
-                        <TrainingResults/>
-                    </div>
+                <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>
+                {/*<CoachView/>*/}
+                <div>
+                    <section className={classes.courtPositions}/>
+                    <TrainingPrograms/>
+                    <TrainingResults/>
+                </div>
                 }
             </div>
         </div>

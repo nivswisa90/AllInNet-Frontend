@@ -24,7 +24,7 @@ import Logout from '@mui/icons-material/Logout';
 //
 // }));
 
-const AvatarMenu = () => {
+const AvatarMenu = (props) => {
     // const classes = useStyles()
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
@@ -59,7 +59,7 @@ const AvatarMenu = () => {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{width: 32, height: 32}}>M</Avatar>
+                        {props.user ? <Avatar sx={{width: 32, height: 32}}>{props.user.name.charAt(0)}</Avatar>: null}
                     </IconButton>
                 </Tooltip>
             </Box>
