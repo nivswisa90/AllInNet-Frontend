@@ -6,7 +6,6 @@ const InnerContent = () => {
     const [user, setUser] = useState('')
 
     useEffect(() => {
-        console.log("HERE")
         axios.get('/api/login/users/', {
             headers: {
                 "Content-type": "application/json",

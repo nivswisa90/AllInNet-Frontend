@@ -69,7 +69,6 @@ const MainPage = () => {
                     <TrainingPrograms/>
                     <TrainingResults/>
                 </div>
-                }
             </div>
         </div>
 
