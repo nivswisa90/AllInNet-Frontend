@@ -43,7 +43,7 @@ const useStyles = makeStyles(() => ({
 const MainPage = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
-    console.log(user)
+
     return (
         <div>
             <AvatarMenu user={user}/>
@@ -55,8 +55,6 @@ const MainPage = () => {
                     <CourtModal/>
                     <TrainingPrograms/>
                     <TrainingResults/>
-
-
                 </div>
             </div>
         </div>

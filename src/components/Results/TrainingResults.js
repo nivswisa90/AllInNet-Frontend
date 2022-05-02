@@ -37,12 +37,12 @@ const useStyles = makeStyles(() => ({
 const TrainingResults = () => {
     const classes = useStyles();
     const {data, error, isError, isLoading} = useQuery('results', fetchResults)
-    const [results, setResults] = useState(null);
+    const [results, setResults] = useState(null)
 
     useEffect(() => {
         setResults(data)
     }, [data])
-    console.log(results)
+
     if (isLoading) {
         return <LoadingTriangle/>
     }
