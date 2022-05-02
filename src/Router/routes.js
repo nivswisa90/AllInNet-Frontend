@@ -10,6 +10,7 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import ResultReport from "../components/Results/ResultReport";
 import CoachView from "../components/CoachView";
+import CoachPlayers from "../components/Coach/CoachPlayers";
 
 const ReactRouter = () => (
     <Routes>
@@ -20,7 +21,7 @@ const ReactRouter = () => (
                 <Route path='/results' element={<TrainingResults/>}/>
                 <Route path='/report' element={<ResultReport/>}/>
                 <Route path="/programs" element={<TrainingPrograms/>}/>
-                <Route path="/coach" element={<CoachView/>}/>
+                <Route path="/coach" element={<CoachPlayers/>}/>
             </Route>
         </Route>
 
