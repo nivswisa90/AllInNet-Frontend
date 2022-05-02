@@ -6,8 +6,11 @@ import TrainingPrograms from "./Programs/trainingPrograms"
 import TrainingResults from "./Results/TrainingResults"
 // import CoachView from "./CoachView"
 import AvatarMenu from "./AvatarMenu"
-import {useOutletContext} from "react-router-dom"
+import {Link, useOutletContext} from "react-router-dom"
 import CourtModal from "./Utils/CourtModal";
+import CoachPlayers from "./Coach/CoachPlayers";
+import AddTeamPlayer from "./Coach/AddTeamPlayer";
+import {VscAdd} from "react-icons/vsc";
 
 
 const useStyles = makeStyles(() => ({
@@ -43,7 +46,6 @@ const useStyles = makeStyles(() => ({
 const MainPage = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
-
     return (
         <div>
             <AvatarMenu user={user}/>
@@ -51,11 +53,19 @@ const MainPage = () => {
             <div className={classes.mainProgram}>
                 <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>
                 {/*<CoachView/>*/}
-                <div>
+                {user.role === 'player' ? <div>
                     <CourtModal/>
                     <TrainingPrograms/>
                     <TrainingResults/>
+                </div> : <div>
+                    <Link to='/buildtraining'>
+                        <Typography>Build new training program <VscAdd/></Typography>
+                    </Link>
+                    <CoachPlayers/>
+                    <AddTeamPlayer/>
                 </div>
+                }
+
             </div>
         </div>
 

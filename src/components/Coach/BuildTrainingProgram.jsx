@@ -1,16 +1,16 @@
 import React from 'react'
-import {Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
 import Box from "@mui/material/Box";
-import LoginForm from "./loginForm";
-import { Link } from "react-router-dom";
-
+import {Typography} from "@mui/material";
+import TrainingProgramForm from "./TrainingProgramForm";
+import LoginForm from "../Login/loginForm";
+import {Link} from "react-router-dom";
 const useStyles = makeStyles(() => ({
     container: {
-        height: '100%'
+        // height: '100%'
     },
     mainTitle: {
-        fontSize: "49px",
+        fontSize: "40px",
         display: 'flex',
         color: 'white',
         justifyContent: 'center',
@@ -31,35 +31,25 @@ const useStyles = makeStyles(() => ({
         background: 'rgba(68, 182, 239, 0.69)',
         borderRadius: ' 17px 17px 0px 0px',
     },
-    register:{
-        marginLeft:'14vh',
-        fontFamily: 'Roboto Mono',
-        contrastText: "black",
-    },
-    registerLink:{
-        textDecoration:'none'
-    },
     space:{
         height:'500px'
     },
 }))
 
-const Login = () => {
+const BuildTrainingProgram = () =>{
     const classes = useStyles()
     return (
         <div className={classes.container}>
             <div className={classes.space}/>
             <Box className={classes.landingBox}>
                 <div className={classes.titleBox}>
-                    <Typography className={classes.mainTitle}>Sing In</Typography>
-                    <LoginForm />
-                    <Link className={classes.registerLink} to='/register'>
-                        <Typography className={classes.register}>Dont have user? Register now!</Typography>
-                    </Link>
+                    <Typography className={classes.mainTitle}>New training program</Typography>
+                    <TrainingProgramForm/>
+
                 </div>
             </Box>
             <div className={classes.space}/>
         </div>
     )
 }
-export default Login
+export default BuildTrainingProgram

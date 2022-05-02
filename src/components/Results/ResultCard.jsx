@@ -1,9 +1,9 @@
-import React, {useEffect, useReducer, useState} from 'react'
+import React from 'react'
 
 //Style
 import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
-import {MdOutlineAutoGraph} from "react-icons/md";
+import {FcBullish} from "react-icons/fc";
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
@@ -55,7 +55,7 @@ const ResultCard = (props) => {
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
                 <Link to={'/report'} {...props}>
-                    <MdOutlineAutoGraph/>
+                    <FcBullish/>
 
                 </Link>
             </Card.Footer>

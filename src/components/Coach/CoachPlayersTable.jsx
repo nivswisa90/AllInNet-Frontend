@@ -15,6 +15,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import Button from "@mui/material/Button";
 
 function TablePaginationActions(props) {
     const theme = useTheme();
@@ -96,8 +97,8 @@ export default function CoachPlayersTable(props) {
     };
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{minWidth: 500}} aria-label="custom pagination table">
+        <TableContainer>
+            <Table sx={{minWidth: 500,border:'2px solid black',borderRadius:'20px',marginBottom:'5vh'}} aria-label="custom pagination table">
                 <TableBody>
                     {(rowsPerPage > 0
                             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -108,10 +109,10 @@ export default function CoachPlayersTable(props) {
                                 {row.name}
                             </TableCell>
                             <TableCell style={{width: 160}} align="right">
-                                <button>See results</button>
+                                <Button>See results</Button>
                             </TableCell>
                             <TableCell style={{width: 160}} align="right">
-                                <button>Create program</button>
+                                <Button>Create program</Button>
                             </TableCell>
                         </TableRow>
                     ))}
