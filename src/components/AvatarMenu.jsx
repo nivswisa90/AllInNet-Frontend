@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import {makeStyles} from "@material-ui/core/styles";
-
 
 
 import Box from '@mui/material/Box';
@@ -10,22 +8,12 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-
-// import Typography from '@mui/material/Typography';
-
 import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
-// const useStyles = makeStyles(() => ({
-//     menuPosition: {
-//         marginLeft: '65vh',
-//     }, space: {
-//         height: '2vh'
-//     }
-//
-// }));
+
 
 const AvatarMenu = (props) => {
     // const classes = useStyles()
@@ -45,12 +33,6 @@ const AvatarMenu = (props) => {
     }
 
     return (
-        // <div className={classes.menuPosition}>
-        //     <div className={classes.space}/>
-        //     <Avatar name="Wim Mostmans" size="40" round={true} color={'#44B6EF'}/>
-        //
-        //
-        // </div>
         <React.Fragment>
             <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
                 <Tooltip title="Account settings">

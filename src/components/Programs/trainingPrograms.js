@@ -16,8 +16,8 @@ import Error from "../Utils/Error";
 
 async function fetchPrograms() {
     const {data} = await axios.get('/api/training/programs/', {
-        headers:{
-            "x-access-token":localStorage.getItem('token')
+        headers: {
+            "x-access-token": localStorage.getItem('token')
         }
     })
     return data
@@ -25,13 +25,13 @@ async function fetchPrograms() {
 
 
 const useStyles = makeStyles(() => ({
-    programsWrapper:{
-      width:'100%'
+    programsWrapper: {
+        width: '100%'
     },
     programsContainer: {
         marginLeft: '15vh',
         marginTop: '2vh',
-        width:'500px',
+        width: '500px',
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'center'

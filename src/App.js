@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 function App() {
     return (
         <Container className='App'>
-            <ReactRouter />
+            <ReactRouter/>
         </Container>
     );
 }
