@@ -1,11 +1,8 @@
 import React, {useState} from 'react'
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import {Checkbox, FormControl, FormControlLabel, Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
-import {VscChevronDown, VscChevronUp} from "react-icons/vsc";
-import {toast, ToastContainer} from "react-toastify";
-import IconButton from "@mui/material/IconButton";
+import { ToastContainer} from "react-toastify";
 import PositionsFormSection from "./PositionsFormSection";
 import Button from "@mui/material/Button";
 
@@ -21,41 +18,36 @@ const useStyles = makeStyles(() => ({
         marginBottom: '2vh',
         marginTop: '2vh',
         width: '60%'
-    }
-
+    },
+    levelTitle:{
+        fontFamily: 'Roboto Mono',
+        fontSize: '15px',
+        margin: '0 auto',
+        width:'100%'
+    },
+    checkboxes: {
+        opacity: '60%',
+        margin: '2vh',
+    },
+    registerBtn: {
+        color: '#44B6EF',
+        fontFamily: 'Roboto Mono',
+        contrastText: "black",
+    },
 
 }))
 const TrainingProgramForm = () => {
     const classes = useStyles()
-    const [role, setRole] = useState({
-        coach: false,
-        player: false,
+    const [level, setLevel] = useState({
+        easy: false,
+        medium: false,
+        hard: false
     })
-
-    const {coach, player} = role;
-    const [values, setValues] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        role: ''
-    })
-
-
-    const handleInputChange = (e) => {
-        e.preventDefault()
-        const {name, value} = e.target
-
-        setValues({
-            ...values,
-            [name]: value,
-        });
-    };
+    const {easy, medium, hard} = level;
 
     const handleCheckbox = (event) => {
-
-        setRole({
-            ...role,
+        setLevel({
+            ...level,
             [event.target.name]: event.target.checked,
         });
     };
@@ -66,7 +58,27 @@ const TrainingProgramForm = () => {
         <div>
             <form className={classes.trainingForm}>
                 <Grid container alignItems="center" justifyContent="center" direction="column">
-
+                    <Grid style={{display: (!nextPage ? 'block' : 'none')}} item className={classes.checkboxes}>
+                        <Typography  className={classes.levelTitle}>Choose Level of the training program</Typography>
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={easy} onChange={handleCheckbox} name="easy"/>
+                            }
+                            label="Easy"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={medium} onChange={handleCheckbox} name="medium"/>
+                            }
+                            label="Medium"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={hard} onChange={handleCheckbox} name="hard"/>
+                            }
+                            label="Hard"
+                        />
+                    </Grid>
                     <div>
                         <Typography
                             className={classes.subTitlePositions}>{!nextPage ? "Select Positions For Throws" : "Select Minimum Per Position"}</Typography>
@@ -75,12 +87,15 @@ const TrainingProgramForm = () => {
 
                     </div>
 
-
-                    <Button disabled={nextPage} onClick={() => {
+                    <Button style={{display: (!nextPage ? 'block' : 'none')}} onClick={() => {
                         setNext(true)
                     }}>Next</Button>
-                    <Grid item>
+
+                    <Grid item style={{display: (nextPage ? 'block' : 'none')}}>
                         <FormControl>
+                            <Button className={classes.registerBtn} variant="outlined">
+                                Register
+                            </Button>
                         </FormControl>
                     </Grid>
                 </Grid>
