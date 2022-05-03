@@ -7,7 +7,6 @@ import {VscChevronDown, VscChevronUp} from "react-icons/vsc";
 import {toast, ToastContainer} from "react-toastify";
 import IconButton from "@mui/material/IconButton";
 import PositionsFormSection from "./PositionsFormSection";
-import MinimumRequestSection from "./MinimumRequestSection";
 import Button from "@mui/material/Button";
 
 const useStyles = makeStyles(() => ({
@@ -19,8 +18,8 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
         margin: '0 auto',
-        marginBottom:'2vh',
-        marginTop:'2vh',
+        marginBottom: '2vh',
+        marginTop: '2vh',
         width: '60%'
     }
 
@@ -41,7 +40,6 @@ const TrainingProgramForm = () => {
         password: '',
         role: ''
     })
-
 
 
     const handleInputChange = (e) => {
@@ -68,15 +66,14 @@ const TrainingProgramForm = () => {
         <div>
             <form className={classes.trainingForm}>
                 <Grid container alignItems="center" justifyContent="center" direction="column">
-                    {!nextPage ?
-                        <div>
-                            <Typography className={classes.subTitlePositions}>Select Positions For Throws</Typography>
-                            <PositionsFormSection/>
-                        </div>
-                        : <div>
-                            <Typography className={classes.subTitlePositions}>Select Minimum Request Per Positions</Typography>
-                            <MinimumRequestSection/>
-                        </div>}
+
+                    <div>
+                        <Typography
+                            className={classes.subTitlePositions}>{!nextPage ? "Select Positions For Throws" : "Select Minimum Per Position"}</Typography>
+                        <PositionsFormSection next={nextPage}/>
+                        <ToastContainer/>
+
+                    </div>
 
 
                     <Button disabled={nextPage} onClick={() => {
