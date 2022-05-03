@@ -6,7 +6,7 @@ const InnerContent = () => {
     const [user, setUser] = useState('')
 
     useEffect(() => {
-        axios.get('/api/login/users/', {
+        axios.get('/api/login/user/', {
             headers: {
                 "Content-type": "application/json",
                 "x-access-token": localStorage.getItem('token')

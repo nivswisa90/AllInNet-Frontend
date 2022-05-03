@@ -2,12 +2,13 @@ import React, {useState} from 'react'
 import Grid from "@material-ui/core/Grid";
 import {Checkbox, FormControl, FormControlLabel, Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import PositionsFormSection from "./PositionsFormSection";
 import Button from "@mui/material/Button";
 import axios from "../../../axios";
 import {useMutation} from "react-query";
 import {useNavigate} from "react-router-dom";
+import LoadingTriangle from "../../Utils/LoadingTriangle";
 
 const useStyles = makeStyles(() => ({
     trainingForm: {
@@ -84,7 +85,6 @@ const TrainingProgramForm = (props) => {
                 "x-access-token": localStorage.getItem('token')
             }
         })
-        console.log(response)
 
         setMessage(response.data)
         navigate("/main")
@@ -161,8 +161,17 @@ const TrainingProgramForm = (props) => {
                 </Grid>
             </form>
             <div>
-                {isLoading ? "Saving..." : " "}
-                {isError ? error.message : ""}
+                {isLoading ? <LoadingTriangle/>
+                    : " "}
+                {isError ? toast.error(error.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: 0,
+                }) : ""}
             </div>
         </div>
     )

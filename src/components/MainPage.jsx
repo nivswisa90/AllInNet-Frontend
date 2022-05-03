@@ -4,13 +4,11 @@ import {makeStyles} from "@material-ui/core/styles"
 import 'react-toastify/dist/ReactToastify.css'
 import TrainingPrograms from "./Programs/trainingPrograms"
 import TrainingResults from "./Results/TrainingResults"
-// import CoachView from "./CoachView"
 import AvatarMenu from "./AvatarMenu"
-import {Link, useOutletContext} from "react-router-dom"
+import {useOutletContext} from "react-router-dom"
 import CourtModal from "./Utils/CourtModal";
 import CoachPlayers from "./Coach/CoachPlayers";
 import AddTeamPlayer from "./Coach/AddTeamPlayer";
-import {VscAdd} from "react-icons/vsc";
 
 
 const useStyles = makeStyles(() => ({
@@ -46,24 +44,22 @@ const useStyles = makeStyles(() => ({
 const MainPage = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
+
     return (
         <div>
             <AvatarMenu user={user}/>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
                 <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>
-                {/*<CoachView/>*/}
                 {user.role === 'player' ? <div>
                     <CourtModal/>
                     <TrainingPrograms/>
                     <TrainingResults/>
                 </div> : <div>
-
                     <CoachPlayers/>
                     <AddTeamPlayer/>
                 </div>
                 }
-
             </div>
         </div>
 

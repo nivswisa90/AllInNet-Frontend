@@ -3,8 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Box from "@mui/material/Box";
 import {Typography} from "@mui/material";
 import TrainingProgramForm from "./TrainingProgramForm";
-import LoginForm from "../../Login/loginForm";
-import {Link, useLocation, useParams} from "react-router-dom";
+import { useLocation} from "react-router-dom";
 const useStyles = makeStyles(() => ({
     container: {
         // height: '100%'
