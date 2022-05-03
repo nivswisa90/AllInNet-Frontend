@@ -9,14 +9,14 @@ import InnerContent from "../components/RouteManagement/InnerContent";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import ResultReport from "../components/Results/ResultReport";
-import BuildTrainingProgram from "../components/Coach/BuildTrainingProgram";
+import BuildTrainingProgram from "../components/Coach/BuildTraining/BuildTrainingProgram";
 
 const ReactRouter = () => (
     <Routes>
         <Route path="/" element={<ProtectedRoutes/>}>
             <Route path="/" element={<InnerContent/>}>
                 <Route path='/' element={<Navigate replace to='main'/>}/>
-                <Route path="main" element={<MainPage/>}/>
+                <Route path="/main" element={<MainPage/>}/>
                 <Route path='/results' element={<TrainingResults/>}/>
                 <Route path='/report' element={<ResultReport/>}/>
                 <Route path="/programs" element={<TrainingPrograms/>}/>

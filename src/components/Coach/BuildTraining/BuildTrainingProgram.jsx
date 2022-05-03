@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Box from "@mui/material/Box";
 import {Typography} from "@mui/material";
 import TrainingProgramForm from "./TrainingProgramForm";
-import LoginForm from "../Login/loginForm";
+import LoginForm from "../../Login/loginForm";
 import {Link} from "react-router-dom";
 const useStyles = makeStyles(() => ({
     container: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     landingBox: {
         margin:'0 auto',
         width: '550px',
-        height: '400px',
+        height: '600px',
         background: '#FEFEFE',
         borderRadius: '23px',
     },
