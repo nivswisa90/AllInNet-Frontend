@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import {Typography} from "@mui/material";
 import TrainingProgramForm from "./TrainingProgramForm";
 import LoginForm from "../../Login/loginForm";
-import {Link} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 const useStyles = makeStyles(() => ({
     container: {
         // height: '100%'
@@ -38,13 +38,16 @@ const useStyles = makeStyles(() => ({
 
 const BuildTrainingProgram = () =>{
     const classes = useStyles()
+    const location = useLocation()
+    const id = location.state.id
+
     return (
         <div className={classes.container}>
             <div className={classes.space}/>
             <Box className={classes.landingBox}>
                 <div className={classes.titleBox}>
                     <Typography className={classes.mainTitle}>New training program</Typography>
-                    <TrainingProgramForm/>
+                    <TrainingProgramForm id={id}/>
 
                 </div>
             </Box>

@@ -42,44 +42,13 @@ const PositionsFormSection = (props) => {
     const classes = useStyles()
     // const posCounter = props.posCounter
     // const setPosCounter = props.setPosCounter
-
-    const [posCounter, setPosCounter] = useState({
-        position1: 0,
-        position2: 0,
-        position3: 0,
-        position4: 0,
-        position5: 0,
-        position6: 0
-    })
-
-    const [minCounter, setMinCounter] = useState({
-        position1: 0,
-        position2: 0,
-        position3: 0,
-        position4: 0,
-        position5: 0,
-        position6: 0
-    })
-
-    const IncMinReq = (min, total) => {
-        if (min < total) {
-            min++
-        } else
-            toast.error('Unable to do more then the position!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            })
-    }
+    // const minCounter = props;
+    const {posCounter,setPosCounter,minCounter,setMinCounter, next } = props
 
 
     const changePos = (pos, method) => {
         let value
-        if (!props.next) {
+        if (!next) {
             value = posCounter[pos]
             method === 'increment' ? value++ : (
                 value > 0 ? value-- : toast.error('Unable to do less then 0!', {
@@ -125,20 +94,15 @@ const PositionsFormSection = (props) => {
                         draggable: true,
                         progress: 0,
                     });
-
-
-
                 }
-
             }
-
         }
     }
 
 
     return (
         <Grid className={classes.positionsSection}>
-            {!props.next ?
+            {!next ?
                 Object.keys(posCounter).map((position, index) => {
                     return (
                         <div key={index}>

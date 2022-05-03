@@ -16,6 +16,9 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from "@mui/material/Button";
+import {Link} from "react-router-dom";
+import {Typography} from "@mui/material";
+import {VscAdd} from "react-icons/vsc";
 
 function TablePaginationActions(props) {
     const theme = useTheme();
@@ -98,7 +101,8 @@ export default function CoachPlayersTable(props) {
 
     return (
         <TableContainer>
-            <Table sx={{minWidth: 500,border:'2px solid black',borderRadius:'20px',marginBottom:'5vh'}} aria-label="custom pagination table">
+            <Table sx={{minWidth: 500, border: '2px solid black', borderRadius: '20px', marginBottom: '5vh'}}
+                   aria-label="custom pagination table">
                 <TableBody>
                     {(rowsPerPage > 0
                             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -112,7 +116,9 @@ export default function CoachPlayersTable(props) {
                                 <Button>See results</Button>
                             </TableCell>
                             <TableCell style={{width: 160}} align="right">
-                                <Button>Create program</Button>
+                                <Link to='/buildtraining' state={{id: row.id}}>
+                                    <Button>Create program</Button>
+                                </Link>
                             </TableCell>
                         </TableRow>
                     ))}

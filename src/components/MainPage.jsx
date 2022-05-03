@@ -58,9 +58,7 @@ const MainPage = () => {
                     <TrainingPrograms/>
                     <TrainingResults/>
                 </div> : <div>
-                    <Link to='/buildtraining'>
-                        <Typography>Build new training program <VscAdd/></Typography>
-                    </Link>
+
                     <CoachPlayers/>
                     <AddTeamPlayer/>
                 </div>

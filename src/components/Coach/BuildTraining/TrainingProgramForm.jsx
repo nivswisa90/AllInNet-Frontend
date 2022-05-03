@@ -2,9 +2,12 @@ import React, {useState} from 'react'
 import Grid from "@material-ui/core/Grid";
 import {Checkbox, FormControl, FormControlLabel, Typography} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
-import { ToastContainer} from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import PositionsFormSection from "./PositionsFormSection";
 import Button from "@mui/material/Button";
+import axios from "../../../axios";
+import {useMutation} from "react-query";
+import {useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     trainingForm: {
@@ -19,11 +22,11 @@ const useStyles = makeStyles(() => ({
         marginTop: '2vh',
         width: '60%'
     },
-    levelTitle:{
+    levelTitle: {
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
         margin: '0 auto',
-        width:'100%'
+        width: '100%'
     },
     checkboxes: {
         opacity: '60%',
@@ -36,8 +39,27 @@ const useStyles = makeStyles(() => ({
     },
 
 }))
-const TrainingProgramForm = () => {
+const TrainingProgramForm = (props) => {
     const classes = useStyles()
+    const navigate = useNavigate()
+    const playerId = props.id
+    const [posCounter, setPosCounter] = useState({
+        position1: 0,
+        position2: 0,
+        position3: 0,
+        position4: 0,
+        position5: 0,
+        position6: 0
+    })
+
+    const [minCounter, setMinCounter] = useState({
+        position1: 0,
+        position2: 0,
+        position3: 0,
+        position4: 0,
+        position5: 0,
+        position6: 0
+    })
     const [level, setLevel] = useState({
         easy: false,
         medium: false,
@@ -53,13 +75,50 @@ const TrainingProgramForm = () => {
     };
 
     const [nextPage, setNext] = useState(false)
+    const [message, setMessage] = useState('')
 
+    async function postProgram(program) {
+        const response = await axios.post('/api/training/programs/addprogram', program, {
+            headers: {
+                "Content-type": "application/json",
+                "x-access-token": localStorage.getItem('token')
+            }
+        })
+        console.log(response)
+
+        setMessage(response.data)
+        navigate("/main")
+    }
+
+    const {isLoading, isError, error, mutate} = useMutation('program', postProgram)
+    const addProgram = () => {
+        const trainingProgram = {
+            positions: {
+                pos1: posCounter.position1,
+                pos2: posCounter.position2,
+                pos3: posCounter.position3,
+                pos4: posCounter.position4,
+                pos5: posCounter.position5,
+                pos6: posCounter.position6,
+                minReqPos1: minCounter.position1,
+                minReqPos2: minCounter.position2,
+                minReqPos3: minCounter.position3,
+                minReqPos4: minCounter.position4,
+                minReqPos5: minCounter.position5,
+                minReqPos6: minCounter.position6,
+            },
+            level: level.easy ? 'Easy' : level.medium ? 'Medium' : 'Hard',
+            userId: playerId
+        }
+
+        mutate({trainingProgram})
+    }
     return (
         <div>
             <form className={classes.trainingForm}>
                 <Grid container alignItems="center" justifyContent="center" direction="column">
                     <Grid style={{display: (!nextPage ? 'block' : 'none')}} item className={classes.checkboxes}>
-                        <Typography  className={classes.levelTitle}>Choose Level of the training program</Typography>
+                        <Typography className={classes.levelTitle}>Choose Level of the training program</Typography>
                         <FormControlLabel
                             control={
                                 <Checkbox checked={easy} onChange={handleCheckbox} name="easy"/>
@@ -82,7 +141,8 @@ const TrainingProgramForm = () => {
                     <div>
                         <Typography
                             className={classes.subTitlePositions}>{!nextPage ? "Select Positions For Throws" : "Select Minimum Per Position"}</Typography>
-                        <PositionsFormSection next={nextPage}/>
+                        <PositionsFormSection next={nextPage} posCounter={posCounter} setPosCounter={setPosCounter}
+                                              minCounter={minCounter} setMinCounter={setMinCounter}/>
                         <ToastContainer/>
 
                     </div>
@@ -93,13 +153,17 @@ const TrainingProgramForm = () => {
 
                     <Grid item style={{display: (nextPage ? 'block' : 'none')}}>
                         <FormControl>
-                            <Button className={classes.registerBtn} variant="outlined">
-                                Register
+                            <Button onClick={addProgram} className={classes.registerBtn} variant="outlined">
+                                Add
                             </Button>
                         </FormControl>
                     </Grid>
                 </Grid>
             </form>
+            <div>
+                {isLoading ? "Saving..." : " "}
+                {isError ? error.message : ""}
+            </div>
         </div>
     )
 }
