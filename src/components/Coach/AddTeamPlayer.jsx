@@ -22,6 +22,9 @@ const useStyles = makeStyles(() => ({
         width: '60%',
         marginTop: '5vh',
         marginBottom: '2vh',
+    },
+    space:{
+        height:'150px'
     }
 }))
 // const arrangeAllPlayers = (playersInfo) => {
@@ -128,6 +131,7 @@ const AddTeamPlayer = () => {
                 onChange={(value)=> findUsers(value)}
                 callback={(record) => console.log(record)}
             />
+            <div className={classes.space}></div>
         </div>
 
     )
