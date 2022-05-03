@@ -9,6 +9,8 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
     positionsSection: {
+        marginBottom:'5vh',
+        marginTop:'5vh',
         margin: '0 auto',
         border: '0.5px solid black',
         borderRadius: '5px',
@@ -29,6 +31,7 @@ const useStyles = makeStyles(() => ({
     subTitlePositions: {
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
+
         margin: '0 auto',
         marginBottom: '2vh',
         marginTop: '2vh',
@@ -39,9 +42,6 @@ const useStyles = makeStyles(() => ({
 
 const PositionsFormSection = (props) => {
     const classes = useStyles()
-    // const posCounter = props.posCounter
-    // const setPosCounter = props.setPosCounter
-    // const minCounter = props;
     const {posCounter,setPosCounter,minCounter,setMinCounter, next } = props
 
 

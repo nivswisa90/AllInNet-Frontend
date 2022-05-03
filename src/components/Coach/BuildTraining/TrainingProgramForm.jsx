@@ -27,7 +27,8 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
         margin: '0 auto',
-        width: '100%'
+        width: '100%',
+        marginTop:'5vh'
     },
     checkboxes: {
         opacity: '60%',
@@ -117,26 +118,29 @@ const TrainingProgramForm = (props) => {
         <div>
             <form className={classes.trainingForm}>
                 <Grid container alignItems="center" justifyContent="center" direction="column">
-                    <Grid style={{display: (!nextPage ? 'block' : 'none')}} item className={classes.checkboxes}>
+                    <Grid style={{display: (!nextPage ? 'block' : 'none')}} item >
                         <Typography className={classes.levelTitle}>Choose Level of the training program</Typography>
-                        <FormControlLabel
-                            control={
-                                <Checkbox checked={easy} onChange={handleCheckbox} name="easy"/>
-                            }
-                            label="Easy"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox checked={medium} onChange={handleCheckbox} name="medium"/>
-                            }
-                            label="Medium"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox checked={hard} onChange={handleCheckbox} name="hard"/>
-                            }
-                            label="Hard"
-                        />
+                        <div className={classes.checkboxes}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox checked={easy} onChange={handleCheckbox} name="easy"/>
+                                }
+                                label="Easy"
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox checked={medium} onChange={handleCheckbox} name="medium"/>
+                                }
+                                label="Medium"
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox checked={hard} onChange={handleCheckbox} name="hard"/>
+                                }
+                                label="Hard"
+                            />
+                        </div>
+
                     </Grid>
                     <div>
                         <Typography
