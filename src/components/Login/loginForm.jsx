@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react'
+import {useNavigate} from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import { FormControl } from "@mui/material";
+import {makeStyles} from "@material-ui/core/styles";
+import {FormControl} from "@mui/material";
 
 
 const useStyles = makeStyles(() => ({
@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
         contrastText: "black",
     },
     loginFrom: {
-        marginTop:'5vh',
+        marginTop: '5vh',
         padding: '1vh'
     },
     forgotPass: {
@@ -48,13 +48,10 @@ const LoginForm = (props) => {
             .then(data => {
                 data.json().then(d => {
                     if (d.msg === 'Successfully connected') {
-                        // localStorage.setItem('name', d.user.name)
                         localStorage.setItem('token', d.token)
-                        // localStorage.setItem('role', d.user.role)
                         navigate('/main')
-                    }
-                    else {
-                        console.log('No token')
+                    } else {
+                        console.log(d.msg)
                     }
                 })
             })
@@ -62,7 +59,7 @@ const LoginForm = (props) => {
     }
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target
+        const {name, value} = e.target
 
         setValues({
             ...values,

@@ -24,7 +24,8 @@ const Error = (props) =>{
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-            />{props.msg}</div>
+            />{props.msg}
+        </div>
     )
 }
 export default Error
