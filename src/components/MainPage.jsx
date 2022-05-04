@@ -9,6 +9,7 @@ import {useOutletContext} from "react-router-dom"
 import CourtModal from "./Utils/CourtModal";
 import CoachPlayers from "./Coach/CoachPlayers";
 import AddTeamPlayer from "./Coach/AddTeamPlayer";
+import LoadingTriangle from "./Utils/LoadingTriangle";
 
 
 const useStyles = makeStyles(() => ({
@@ -45,8 +46,9 @@ const MainPage = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
 
-    return (
-        <div>
+    return(
+        !user ? (<LoadingTriangle/>) :
+        (<div>
             <AvatarMenu user={user}/>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
@@ -61,8 +63,8 @@ const MainPage = () => {
                 </div>
                 }
             </div>
-        </div>
-
+        </div>)
     )
+
 }
 export default MainPage
