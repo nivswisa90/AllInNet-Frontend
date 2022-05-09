@@ -9,6 +9,10 @@ import {Card} from "react-bootstrap";
 
 // Icons
 import {RiNumber1, RiNumber2, RiNumber3, RiNumber4, RiNumber5} from "react-icons/ri"
+import {MdDoubleArrow} from "react-icons/md"
+import Button from "@mui/material/Button";
+import LoadingTriangle from "../Utils/LoadingTriangle";
+import {toast, ToastContainer} from "react-toastify";
 
 
 const useStyles = makeStyles(() => ({
@@ -17,7 +21,7 @@ const useStyles = makeStyles(() => ({
         border: '1px solid black',
         borderRadius: '10px',
         margin: '5px',
-        width: '25%',
+        width: '30%',
         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)'
     },
     cardTitle: {
@@ -38,7 +42,7 @@ const useStyles = makeStyles(() => ({
     },
     startBtn: {
         margin: '0 auto',
-        width: '50%',
+        width: '35%',
     }
 
 }))
@@ -48,15 +52,42 @@ const ProgramCard = (props) => {
     const navigate = useNavigate()
     const [message, setMessage] = useState('')
     const {isLoading, isError, error, mutate} = useMutation('training', startTraining)
-
+    const currentTrainingID = props.program.id
     async function startTraining(minReq) {
         const response = await axios.post('/api/training/programs/startt', minReq)
         setMessage(response.data)
         // navigate('/start')
     }
+    // const goToTraining = () =>{
+    //     mutate({currentTrainingID})
+    // }
+    if (isLoading) {
+        return <LoadingTriangle/>
+    }
 
-    // if(is)
-    // console.log(props.program.positions.pos1)
+    if (isError) {
+        toast.error(error.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: 0,
+        });
+        return <div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            /></div>
+    }
     return (
         <Card className={classes.programCard}>
             <Card.Body>
@@ -64,15 +95,15 @@ const ProgramCard = (props) => {
                     {props.program.level}
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
-                    <span>Position #<RiNumber1/>- {props.program.positions.pos1}</span>
-                    <span>position #<RiNumber2/>- {props.program.positions.pos2}</span>
-                    <span>Position #<RiNumber3/>- {props.program.positions.pos3}</span>
-                    <span>Position #<RiNumber4/>- {props.program.positions.pos4}</span>
-                    <span>Position #<RiNumber5/>- {props.program.positions.pos5}</span>
+                    <span>Position #1 {props.program.positions.pos1}</span>
+                    <span>position #2 {props.program.positions.pos2}</span>
+                    <span>Position #3 {props.program.positions.pos3}</span>
+                    <span>Position #4 {props.program.positions.pos4}</span>
+                    <span>Position #5 {props.program.positions.pos5}</span>
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
-                {/*<Button onClick={mutate({minReq:props.program.minimumRequest})}>Start <FaAngleRight/></Button>*/}
+                <Button> Go <MdDoubleArrow/></Button>
             </Card.Footer>
         </Card>
     )

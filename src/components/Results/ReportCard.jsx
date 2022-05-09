@@ -4,12 +4,12 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
     reportCard:{
         fontFamily: 'Roboto Mono',
-        width: '80%',
+        width: '40%',
         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
         border: '1px solid black',
         borderRadius: '10px',
-        marginLeft:'5vh',
-        marginTop:'5vh'
+        marginTop:'5vh',
+        margin:'0 auto'
     },
     cardTitle:{
         fontSize: '15px',
@@ -24,7 +24,8 @@ const useStyles = makeStyles(() => ({
         }
     }
 }))
-const ReportCard = () =>{
+
+const ReportCard = (props) =>{
     const classes = useStyles();
     return(
         <Card className={classes.reportCard}>
@@ -35,11 +36,11 @@ const ReportCard = () =>{
                     <hr/>
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
-                    <span>position #1 4</span>
-                    <span>position #2 4</span>
-                    <span>position #3 4</span>
-                    <span>position #3 4</span>
-                    <span>position #3 4</span>
+                    <span>position #1 {props.positions.successPos1}</span>
+                    <span>position #2 {props.positions.successPos2}</span>
+                    <span>position #3 {props.positions.successPos3}</span>
+                    <span>position #3 {props.positions.successPos4}</span>
+                    <span>position #3 {props.positions.successPos5}</span>
                 </Card.Text>
             </Card.Body>
         </Card>

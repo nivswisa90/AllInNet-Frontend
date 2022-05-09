@@ -3,7 +3,7 @@ import React from 'react'
 //Style
 import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
-import {FcBullish} from "react-icons/fc";
+import {VscGraphLine} from "react-icons/vsc";
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
@@ -18,8 +18,9 @@ const useStyles = makeStyles(() => ({
     cardTitle: {
         fontFamily: 'Roboto Mono',
         contrastText: "black",
+        marginTop:'2vh',
         margin: '0 auto',
-        width: '50%',
+        width: '80%',
         fontSize: '15px',
     },
     cardText: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles(() => ({
     },
     startBtn: {
         margin: '0 auto',
-        width: '50%',
+        width: '20%',
     }
 
 }))
@@ -40,9 +41,7 @@ const useStyles = makeStyles(() => ({
 const ResultCard = (props) => {
     let resultsString
     const classes = useStyles()
-
     resultsString = props.results.result
-
     return (
         <Card className={classes.resultCard}>
             <Card.Body>
@@ -54,9 +53,8 @@ const ResultCard = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
-                <Link to={'/report'} {...props}>
-                    <FcBullish/>
-
+                <Link to={'/report'} state={{result:props.results}}>
+                    <VscGraphLine size={30}/>
                 </Link>
             </Card.Footer>
         </Card>

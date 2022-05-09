@@ -47,7 +47,6 @@ const BuildTrainingProgram = () =>{
                 <div className={classes.titleBox}>
                     <Typography className={classes.mainTitle}>New training program</Typography>
                     <TrainingProgramForm id={id}/>
-
                 </div>
             </Box>
             <div className={classes.space}/>

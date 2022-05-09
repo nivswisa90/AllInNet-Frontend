@@ -6,6 +6,7 @@ import ReportCard from "./ReportCard";
 import Box from "@mui/material/Box";
 import ThrowGallery from "../Utils/ThrowGallery";
 import Back from "../Utils/Back";
+import axios from "../../axios";
 const useStyles = makeStyles(() => ({
     mainProgram: {
         background: '#FFF9F4',
@@ -20,20 +21,20 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
         fontSize: '25px',
         margin: '0 auto',
-        width: '59%',
+        width: '30%',
     },
     improveBox:{
-        width: '70%',
+        width: '50%',
         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
         border: '1px solid black',
         borderRadius: '10px',
-        marginLeft:'7vh',
-        marginTop:'2vh'
+        marginTop:'2vh',
+        margin:'0 auto'
     },
     subTitle:{
         marginTop:'3vh',
         margin: '0 auto',
-        width: '50%',
+        width: '30%',
         fontFamily: 'Roboto Mono',
         fontSize: '25px',
     },
@@ -44,14 +45,15 @@ const useStyles = makeStyles(() => ({
     }
 
 }))
+
+
 const ResultReport = () =>{
     const classes = useStyles();
     let location = useLocation();
+    const result = location.state.result
 
-    let params= useParams()
-    // const { state } = location.state;
-    // console.log(state)
-    console.log(params)
+
+    console.log('results in report',result)
     return(
         <div>
             <Back/>
@@ -59,7 +61,7 @@ const ResultReport = () =>{
             <div className={classes.mainProgram}>
                 <Typography className={classes.mainTitle}> Results Report </Typography>
                 <section>
-                    <ReportCard/>
+                    <ReportCard positions={result.positions}/>
                 </section>
                 <section>
                     <Typography className={classes.subTitle}> Improvement </Typography>

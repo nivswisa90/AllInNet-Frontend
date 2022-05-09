@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react'
 import ReactSearchBox from "react-search-box";
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
-import {useQuery} from "react-query";
+import {useMutation, useQuery} from "react-query";
 import axios from "../../axios";
 import LoadingTriangle from "../Utils/LoadingTriangle";
 import {toast} from "react-toastify";
 import Error from "../Utils/Error";
+import {useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     searchBox: {
@@ -27,14 +28,7 @@ const useStyles = makeStyles(() => ({
         height:'150px'
     }
 }))
-// const arrangeAllPlayers = (playersInfo) => {
-//     const arr = []
-//     playersInfo.data.map(player => {
-//         return arr.push({key: player.email, value: player.firstName})
-//     })
-//
-//     return arr
-// }
+
 async function fetchUsers(value) {
     const {data} = await axios.get(`/api/login/users/${value}`, {
         headers:{
@@ -53,7 +47,6 @@ const AddTeamPlayer = () => {
     const {data, error, isError, isLoading} = useQuery('users', fetchUsers)
     const [players, setPlayers] = useState()
     const [infos, setInfos] = useState()
-
     useEffect(()=>{
         if(players)
             players.map(player=>{
@@ -65,7 +58,6 @@ const AddTeamPlayer = () => {
             })
     },[players])
 
-    console.log(infos)
     if (isLoading) {
         return <LoadingTriangle/>
     }
@@ -89,8 +81,21 @@ const AddTeamPlayer = () => {
                 setPlayers(users)
             })
     }
+    console.log('players',players)
 
 
+    const addTeamPlayer = () =>{
+        axios.post('/api/coach/addplayer/',players[0].email, {
+            headers: {
+                "Content-type": "application/json",
+                "Access-Control-Allow-Origin":"*",
+                "x-access-token": localStorage.getItem('token')
+            }
+        }).then(res => {
+            console.log(res)
+        })
+            .catch(err => console.log(err))
+    }
 
 
 
@@ -127,7 +132,7 @@ const AddTeamPlayer = () => {
                 data={infos}
                 leftIcon={<>🔍</>}
                 clearOnSelect={true}
-                onSelect={(value) => console.log(value)}
+                onSelect={() => addTeamPlayer()}
                 onChange={(value)=> findUsers(value)}
                 callback={(record) => console.log(record)}
             />

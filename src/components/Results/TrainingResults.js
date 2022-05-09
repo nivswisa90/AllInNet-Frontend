@@ -21,7 +21,9 @@ async function fetchResults() {
 
 const useStyles = makeStyles(() => ({
     resultsContainer: {
-        marginLeft: '3vh',
+        margin:'0 auto',
+        width:'50%',
+        // marginLeft: '3vh',
         marginTop: '2vh',
         display: 'flex',
         flexWrap: 'wrap',
@@ -30,8 +32,9 @@ const useStyles = makeStyles(() => ({
     resultsTitle: {
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
+        marginTop:'2vh',
         margin: '0 auto',
-        width: '50%'
+        width: '25%'
     }
 }))
 const TrainingResults = () => {
