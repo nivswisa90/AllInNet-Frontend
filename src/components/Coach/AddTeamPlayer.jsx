@@ -85,7 +85,7 @@ const AddTeamPlayer = () => {
 
 
     const addTeamPlayer = () =>{
-        axios.post('/api/coach/addplayer/',players[0].email, {
+        axios.post('/api/coach/addplayer/',{email:players[0].email}, {
             headers: {
                 "Content-type": "application/json",
                 "Access-Control-Allow-Origin":"*",

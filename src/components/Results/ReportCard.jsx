@@ -39,8 +39,8 @@ const ReportCard = (props) =>{
                     <span>position #1 {props.positions.successPos1}</span>
                     <span>position #2 {props.positions.successPos2}</span>
                     <span>position #3 {props.positions.successPos3}</span>
-                    <span>position #3 {props.positions.successPos4}</span>
-                    <span>position #3 {props.positions.successPos5}</span>
+                    <span>position #4 {props.positions.successPos4}</span>
+                    <span>position #5 {props.positions.successPos5}</span>
                 </Card.Text>
             </Card.Body>
         </Card>
