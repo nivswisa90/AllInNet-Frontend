@@ -38,7 +38,7 @@ const LoginForm = (props) => {
     })
 
     async function loginUser(credentials) {
-        fetch('http://localhost:5001/api/login/signin', {
+        fetch('/api/login/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
