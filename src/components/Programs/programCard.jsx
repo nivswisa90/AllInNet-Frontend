@@ -50,23 +50,21 @@ const ProgramCard = (props) => {
     const classes = useStyles()
     const navigate = useNavigate()
     const [message, setMessage] = useState('')
-    const currentTrainingID = props.program.id
+    const program = props.program
 
-    async function startTraining(minReq) {
-        const response = await axios.post('/api/training/programs/start', minReq,
+    async function startTraining(program) {
+        const response = await axios.post('/api/training/programs/start', program,
             {
                 headers: {
                     "x-access-token": localStorage.getItem("token")
                 }
             })
-        console.log(response)
         setMessage(response.data)
-        // navigate('/start')
     }
     const {isLoading, isError, error, mutate} = useMutation('training', startTraining)
 
     const goToTraining = () => {
-        mutate({currentTrainingID})
+        mutate({program})
     }
 
     if (isLoading) {
@@ -108,6 +106,7 @@ const ProgramCard = (props) => {
                     <span>Position #3 {props.program.positions.pos3}</span>
                     <span>Position #4 {props.program.positions.pos4}</span>
                     <span>Position #5 {props.program.positions.pos5}</span>
+                    <span>Position #6 {props.program.positions.pos6}</span>
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
