@@ -8,7 +8,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
 
 // Icons
-import {RiNumber1, RiNumber2, RiNumber3, RiNumber4, RiNumber5} from "react-icons/ri"
 import {MdDoubleArrow} from "react-icons/md"
 import Button from "@mui/material/Button";
 import LoadingTriangle from "../Utils/LoadingTriangle";
@@ -51,16 +50,25 @@ const ProgramCard = (props) => {
     const classes = useStyles()
     const navigate = useNavigate()
     const [message, setMessage] = useState('')
-    const {isLoading, isError, error, mutate} = useMutation('training', startTraining)
     const currentTrainingID = props.program.id
+
     async function startTraining(minReq) {
-        const response = await axios.post('/api/training/programs/startt', minReq)
+        const response = await axios.post('/api/training/programs/start', minReq,
+            {
+                headers: {
+                    "x-access-token": localStorage.getItem("token")
+                }
+            })
+        console.log(response)
         setMessage(response.data)
         // navigate('/start')
     }
-    // const goToTraining = () =>{
-    //     mutate({currentTrainingID})
-    // }
+    const {isLoading, isError, error, mutate} = useMutation('training', startTraining)
+
+    const goToTraining = () => {
+        mutate({currentTrainingID})
+    }
+
     if (isLoading) {
         return <LoadingTriangle/>
     }
@@ -103,7 +111,7 @@ const ProgramCard = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
-                <Button> Go <MdDoubleArrow/></Button>
+                <Button onClick={goToTraining}> Go <MdDoubleArrow/></Button>
             </Card.Footer>
         </Card>
     )

@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import {FormControl} from "@mui/material";
+import axios from "../../axios";
 
 
 const useStyles = makeStyles(() => ({
@@ -37,23 +38,19 @@ const LoginForm = (props) => {
         password: ''
     })
 
-    async function loginUser(credentials) {
-        fetch('/api/login/signin', {
-            method: 'POST',
+    async function loginUser() {
+        axios.post('/api/login/signin', {values}, {
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
+            }
         })
             .then(data => {
-                data.json().then(d => {
-                    if (d.msg === 'Successfully connected') {
-                        localStorage.setItem('token', d.token)
-                        navigate('/main')
-                    } else {
-                        console.log(d.msg)
-                    }
-                })
+                if (data.data.msg === 'Successfully connected') {
+                    localStorage.setItem('token', data.data.token)
+                    navigate('/main')
+                } else {
+                    console.log(data.data.msg)
+                }
             })
             .catch(err => console.log(err))
     }
@@ -69,9 +66,7 @@ const LoginForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await loginUser({
-            values
-        })
+        await loginUser()
     };
 
     return (

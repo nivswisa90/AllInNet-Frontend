@@ -81,7 +81,6 @@ const AddTeamPlayer = () => {
                 setPlayers(users)
             })
     }
-    console.log('players',players)
 
 
     const addTeamPlayer = () =>{
