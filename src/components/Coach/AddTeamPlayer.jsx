@@ -2,12 +2,7 @@ import React, {useEffect, useState} from 'react'
 import ReactSearchBox from "react-search-box";
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
-import {useMutation, useQuery} from "react-query";
 import axios from "../../axios";
-import LoadingTriangle from "../Utils/LoadingTriangle";
-import {toast} from "react-toastify";
-import Error from "../Utils/Error";
-import {useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     searchBox: {
@@ -24,19 +19,13 @@ const useStyles = makeStyles(() => ({
         marginTop: '5vh',
         marginBottom: '2vh',
     },
-    space:{
-        height:'150px'
+    space: {
+        height: '150px'
     }
 }))
 
-async function fetchUsers(value) {
-    const {data} = await axios.get(`/api/login/users/${value}`, {
-        headers:{
-            "x-access-token":localStorage.getItem('token')
-        }
-    })
-    return data
-}
+
+const players = []
 
 
 // HERE we have problem, the search bar find the users, but returns and display in the UI
@@ -44,50 +33,35 @@ async function fetchUsers(value) {
 // LINE 54 in the USEEFFECT!!!!!!!!
 const AddTeamPlayer = () => {
     const classes = useStyles()
-    const {data, error, isError, isLoading} = useQuery('users', fetchUsers)
-    const [players, setPlayers] = useState()
-    const [infos, setInfos] = useState()
-    useEffect(()=>{
-        if(players)
-            players.map(player=>{
-                const newPlayer = {
-                    key: player.email,
-                    value: player.email
+
+    useEffect(async () => {
+        await axios.get(`/api/login/users`, {
+            headers: {
+                "x-access-token": localStorage.getItem('token')
+            }
+        })
+            .then(data => {
+                for(const player in data.data) {
+                    const newPlayer = {
+                        key: data.data[player].email,
+                        value: data.data[player].name
+                    }
+                   players.push(newPlayer)
                 }
-                 return setInfos([newPlayer])
             })
-    },[players])
+            .catch(err => console.log(err))
+    }, [])
 
-    if (isLoading) {
-        return <LoadingTriangle/>
-    }
-
-    if (isError) {
-        toast.error(error.message, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: 0,
-        });
-        return <Error/>
-    }
-
-    const findUsers =(value) =>{
-        if(value !== '')
-            fetchUsers(value).then(users => {
-                setPlayers(users)
-            })
-    }
+    // const findUsers = (value) => {
+    //     console.log(value)
+    // }
 
 
-    const addTeamPlayer = () =>{
-        axios.post('/api/coach/addplayer/',{email:players[0].email}, {
+    const addTeamPlayer = (item) => {
+        axios.post('/api/coach/addplayer/', {email: item.item.key}, {
             headers: {
                 "Content-type": "application/json",
-                "Access-Control-Allow-Origin":"*",
+                "Access-Control-Allow-Origin": "*",
                 "x-access-token": localStorage.getItem('token')
             }
         }).then(res => {
@@ -96,30 +70,6 @@ const AddTeamPlayer = () => {
             .catch(err => console.log(err))
     }
 
-
-
-    // const data = [
-    //     {
-    //         key: "john",
-    //         value: "John Doe",
-    //     },
-    //     {
-    //         key: "jane",
-    //         value: "Jane Doe",
-    //     },
-    //     {
-    //         key: "mary",
-    //         value: "Mary Phillips",
-    //     },
-    //     {
-    //         key: "robert",
-    //         value: "Robert",
-    //     },
-    //     {
-    //         key: "karius",
-    //         value: "Karius",
-    //     },
-    // ];
     return (
         <div className={classes.searchBox}>
             <Typography className={classes.searchTitle}>
@@ -128,11 +78,11 @@ const AddTeamPlayer = () => {
             <ReactSearchBox
                 placeholder="Search for player by email"
                 value="Due"
-                data={infos}
+                data={players}
                 leftIcon={<>🔍</>}
                 clearOnSelect={true}
-                onSelect={() => addTeamPlayer()}
-                onChange={(value)=> findUsers(value)}
+                onSelect={(item) => addTeamPlayer(item)}
+                // onChange={(value) => findUsers(value)}
                 callback={(record) => console.log(record)}
             />
             <div className={classes.space}></div>
