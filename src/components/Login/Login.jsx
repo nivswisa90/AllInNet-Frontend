@@ -51,10 +51,10 @@ const Login = () => {
             <div className={classes.space}/>
             <Box className={classes.landingBox}>
                 <div className={classes.titleBox}>
-                    <Typography className={classes.mainTitle}>Sing In</Typography>
+                    <Typography className={classes.mainTitle}>Sign In</Typography>
                     <LoginForm />
                     <Link className={classes.registerLink} to='/register'>
-                        <Typography className={classes.register}>Dont have user? Register now!</Typography>
+                        <Typography className={classes.register}>Don't have user? Register now!</Typography>
                     </Link>
                 </div>
             </Box>
