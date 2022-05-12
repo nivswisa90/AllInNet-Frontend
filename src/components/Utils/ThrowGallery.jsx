@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import ImageGallery from 'react-image-gallery';
 import axios from "../../axios";
 
@@ -18,17 +18,33 @@ const images = [
     },
 ];
 
-const ThrowGallery = () => {
-    useEffect(() => {
-        axios.get('/api/training/results/frames', {
+const ThrowGallery = (props) => {
+    console.log(props.frameList)
+    const [img, setImg] = useState('');
+    const fetchFrame = async () => {
+        const res = await axios.get('/api/training/results/frames', {responseType: 'blob'}, {
             headers: {
-                'x-access-token': localStorage.getItem("token")
+                'x-access-token': localStorage.getItem("token"),
+                'Content-Type': 'image/jpeg'
             }
         })
-            .then(docs => console.log(docs))
-            .catch(err => console.log(err))
+        console.log(res)
+        const frameBlob = await res.data.arrayBuffer()
+        let frame = new Blob([frameBlob],{type:"image/jpeg"})
+        const frameUrl = URL.createObjectURL(frame)
+        setImg(frameUrl)
+        console.log(img)
+    }
+    useEffect(() => {
+        fetchFrame().then(r => console.log(r))
     }, [])
 
-    return (<ImageGallery items={images}/>)
+
+    return (<div>
+            <img src={img}/>
+            <ImageGallery items={images}/>
+
+        </div>
+    )
 }
 export default ThrowGallery
