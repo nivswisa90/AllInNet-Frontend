@@ -9,7 +9,7 @@ import {toast, ToastContainer} from "react-toastify";
 import ResultCard from "./ResultCard";
 
 async function fetchResults() {
-    const {data} = await axios.get('/api/training/results/', {
+    const {data} = await axios.get('/api/training/results/trainingResult', {
         headers: {
             "Content-type": "application/json",
             "x-access-token": localStorage.getItem('token')
