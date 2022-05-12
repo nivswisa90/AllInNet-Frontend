@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import ImageGallery from 'react-image-gallery';
+import axios from "../../axios";
 
 
 const images = [
@@ -17,7 +18,17 @@ const images = [
     },
 ];
 
-const ThrowGallery = ()=>{
-    return(<ImageGallery items={images} />)
+const ThrowGallery = () => {
+    useEffect(() => {
+        axios.get('/api/training/results/frames', {
+            headers: {
+                'x-access-token': localStorage.getItem("token")
+            }
+        })
+            .then(docs => console.log(docs))
+            .catch(err => console.log(err))
+    }, [])
+
+    return (<ImageGallery items={images}/>)
 }
 export default ThrowGallery
