@@ -5,6 +5,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
 import {VscGraphLine} from "react-icons/vsc";
 import {Link} from "react-router-dom";
+import {Typography} from "@mui/material";
 
 const useStyles = makeStyles(() => ({
     resultCard: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles(() => ({
         border: '1px solid black',
         borderRadius: '10px',
         margin: '5px',
-        width: '40%',
+        width: '30%',
         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)'
     },
     cardTitle: {
@@ -20,13 +21,13 @@ const useStyles = makeStyles(() => ({
         contrastText: "black",
         marginTop:'2vh',
         margin: '0 auto',
-        width: '80%',
+        width: '50%',
         fontSize: '15px',
     },
     cardText: {
         fontFamily: 'Roboto Mono',
         margin: '5px',
-        width: '100%',
+        width: '90%',
         fontSize: '29px',
         fontWeight: '900',
         textAlign: 'center',

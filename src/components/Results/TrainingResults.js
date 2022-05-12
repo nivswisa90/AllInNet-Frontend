@@ -22,7 +22,7 @@ async function fetchResults() {
 const useStyles = makeStyles(() => ({
     resultsContainer: {
         margin:'0 auto',
-        width:'50%',
+        width:'80%',
         // marginLeft: '3vh',
         marginTop: '2vh',
         display: 'flex',
