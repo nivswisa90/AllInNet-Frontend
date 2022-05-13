@@ -15,8 +15,8 @@ const useStyles = makeStyles(() => ({
         contrastText: "black",
     },
     registerForm: {
-        width: '373px',
-        background: '#FEFEFE',
+        marginTop: '2vh',
+        padding: '1vh'
 
     },
     checkboxes: {

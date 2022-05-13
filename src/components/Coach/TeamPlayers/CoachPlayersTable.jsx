@@ -96,7 +96,6 @@ export default function CoachPlayersTable(props) {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-    console.log('coach table,',props.rows)
     return (
         <TableContainer style={{width:'80%', margin:'0 auto'}}>
             <Table sx={{minWidth: 500, border: '2px solid black', borderRadius: '20px', marginBottom: '5vh'}}
