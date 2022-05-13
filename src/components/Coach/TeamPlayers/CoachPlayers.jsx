@@ -1,5 +1,5 @@
 import CoachPlayersTable from "./CoachPlayersTable";
-import axios from "../../axios";
+import axios from "../../../axios";
 import {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";

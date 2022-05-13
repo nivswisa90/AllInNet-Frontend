@@ -7,8 +7,8 @@ import TrainingResults from "./Results/TrainingResults"
 import AvatarMenu from "./Utils/AvatarMenu"
 import {useOutletContext} from "react-router-dom"
 import CourtModal from "./Utils/CourtModal";
-import CoachPlayers from "./Coach/CoachPlayers";
-import AddTeamPlayer from "./Coach/AddTeamPlayer";
+import CoachPlayers from "./Coach/TeamPlayers/CoachPlayers";
+import AddTeamPlayer from "./Coach/TeamPlayers/AddTeamPlayer";
 import LoadingTriangle from "./Utils/LoadingTriangle";
 
 

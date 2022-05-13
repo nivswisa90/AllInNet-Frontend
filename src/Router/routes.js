@@ -10,7 +10,7 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import ResultReport from "../components/Results/ResultReport";
 import BuildTrainingProgram from "../components/Coach/BuildTraining/BuildTrainingProgram";
-import CoachPlayersResults from "../components/Coach/CoachPlayersResults";
+import CoachPlayersResults from "../components/Coach/TeamPlayers/CoachPlayersResults";
 
 const ReactRouter = () => (
     <Routes>

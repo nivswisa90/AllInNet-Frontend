@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import ReactSearchBox from "react-search-box";
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
-import axios from "../../axios";
+import axios from "../../../axios";
 
 const useStyles = makeStyles(() => ({
     searchBox: {
@@ -27,10 +27,6 @@ const useStyles = makeStyles(() => ({
 
 const players = []
 
-
-// HERE we have problem, the search bar find the users, but returns and display in the UI
-// just one option instead of the users that he found
-// LINE 54 in the USEEFFECT!!!!!!!!
 const AddTeamPlayer = () => {
     const classes = useStyles()
 
@@ -52,16 +48,12 @@ const AddTeamPlayer = () => {
             .catch(err => console.log(err))
     }, [])
 
-    // const findUsers = (value) => {
-    //     console.log(value)
-    // }
 
 
     const addTeamPlayer = (item) => {
         axios.post('/api/coach/addplayer/', {email: item.item.key}, {
             headers: {
                 "Content-type": "application/json",
-                "Access-Control-Allow-Origin": "*",
                 "x-access-token": localStorage.getItem('token')
             }
         }).then(res => {
@@ -85,7 +77,7 @@ const AddTeamPlayer = () => {
                 // onChange={(value) => findUsers(value)}
                 callback={(record) => console.log(record)}
             />
-            <div className={classes.space}></div>
+            <div className={classes.space}/>
         </div>
 
     )

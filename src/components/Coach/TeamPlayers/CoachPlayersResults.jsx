@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {useLocation, useOutletContext} from "react-router-dom";
-import AvatarMenu from "../Utils/AvatarMenu";
+import AvatarMenu from "../../Utils/AvatarMenu";
 import {makeStyles} from "@material-ui/core/styles";
-import axios from "../../axios";
+import axios from "../../../axios";
 import {useQuery} from "react-query";
-import LoadingTriangle from "../Utils/LoadingTriangle";
+import LoadingTriangle from "../../Utils/LoadingTriangle";
 import {toast} from "react-toastify";
-import Error from "../Utils/Error";
-import ResultCard from "../Results/ResultCard";
+import Error from "../../Utils/Error";
+import ResultCard from "../../Results/ResultCard";
 import {Typography} from "@mui/material";
 import {CardGroup} from "react-bootstrap";
 
