@@ -23,9 +23,7 @@ const useStyles = makeStyles(() => ({
         opacity: '60%',
         margin: '2vh',
     }
-
 }));
-
 
 const RegisterForm = () => {
     const navigate = useNavigate()

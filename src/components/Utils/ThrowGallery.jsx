@@ -22,22 +22,24 @@ const ThrowGallery = (props) => {
     console.log(props.frameList)
     const [img, setImg] = useState('');
     const fetchFrame = async () => {
-        const res = await axios.get('/api/training/results/frames', {responseType: 'blob'}, {
+        const res = await axios.get('/api/training/results/frames', {responseType: 'arraybuffer'}, {
             headers: {
                 'x-access-token': localStorage.getItem("token"),
                 'Content-Type': 'image/jpeg'
-            }
+            },
+            mode:'cors'
         })
-        console.log(res)
-        const frameBlob = await res.data.arrayBuffer()
-        let frame = new Blob([frameBlob],{type:"image/jpeg"})
-        const frameUrl = URL.createObjectURL(frame)
-        console.log('blobURlFram', frameUrl)
-        setImg(frameUrl)
-        console.log(img)
+        // console.log('#####',res)
+        // const frameBlob = await res.data.arrayBuffer()
+        // const frameUrl = URL.createObjectURL(frameBlob)
+        // // let frame = new Blob([frameBlob],{type:"image/jpeg"})
+        // // const frameUrl = URL.createObjectURL(frame)
+        // console.log('blobURlFram', frameUrl)
+        // setImg(frameBlob)
+        // console.log(img)
     }
     useEffect(() => {
-        fetchFrame().then(r => console.log(r))
+        fetchFrame().then(res => console.log(res.data))
     }, [])
 
 
