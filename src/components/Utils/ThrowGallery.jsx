@@ -32,6 +32,7 @@ const ThrowGallery = (props) => {
         const frameBlob = await res.data.arrayBuffer()
         let frame = new Blob([frameBlob],{type:"image/jpeg"})
         const frameUrl = URL.createObjectURL(frame)
+        console.log('blobURlFram', frameUrl)
         setImg(frameUrl)
         console.log(img)
     }

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 
-
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -16,7 +15,6 @@ import Logout from '@mui/icons-material/Logout';
 
 
 const AvatarMenu = (props) => {
-    // const classes = useStyles()
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
 

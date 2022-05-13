@@ -96,7 +96,7 @@ export default function CoachPlayersTable(props) {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
+    console.log('coach table,',props.rows)
     return (
         <TableContainer style={{width:'80%', margin:'0 auto'}}>
             <Table sx={{minWidth: 500, border: '2px solid black', borderRadius: '20px', marginBottom: '5vh'}}
@@ -111,10 +111,12 @@ export default function CoachPlayersTable(props) {
                                 {row.name}
                             </TableCell>
                             <TableCell style={{width: 160}} align="right">
-                                <Button>See results</Button>
+                                <Link to='/results' state={{id:row.id, name:row.id}}>
+                                    <Button>See results</Button>
+                                </Link>
                             </TableCell>
                             <TableCell style={{width: 160}} align="right">
-                                <Link to='/buildtraining' state={{id: row.id}}>
+                                <Link to='/buildtraining' state={{id:row.id}}>
                                     <Button>Create program</Button>
                                 </Link>
                             </TableCell>

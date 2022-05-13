@@ -10,6 +10,7 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import ResultReport from "../components/Results/ResultReport";
 import BuildTrainingProgram from "../components/Coach/BuildTraining/BuildTrainingProgram";
+import CoachPlayersResults from "../components/Coach/CoachPlayersResults";
 
 const ReactRouter = () => (
     <Routes>
@@ -17,7 +18,7 @@ const ReactRouter = () => (
             <Route path="/" element={<InnerContent/>}>
                 <Route path='/' element={<Navigate replace to='main'/>}/>
                 <Route path="/main" element={<MainPage/>}/>
-                <Route path='/results' element={<TrainingResults/>}/>
+                <Route path='/results' element={<CoachPlayersResults/>}/>
                 <Route path='/report' element={<ResultReport/>}/>
                 <Route path="/programs" element={<TrainingPrograms/>}/>
                 <Route path="/buildtraining" element={<BuildTrainingProgram/>}/>
