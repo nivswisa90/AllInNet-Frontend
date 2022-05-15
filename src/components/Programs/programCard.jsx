@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 import axios from "../../axios";
 import {useMutation} from "react-query";
-
+import redNotfication from '../../media/redCircle.png'
 //Style
 import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
@@ -42,13 +42,19 @@ const useStyles = makeStyles(() => ({
     startBtn: {
         margin: '0 auto',
         width: '35%',
+    },
+    notification: {
+
+        backgroundImage: `url(${redNotfication})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        height: '30px',
     }
 
 }))
 
 const ProgramCard = (props) => {
     const classes = useStyles()
-    const navigate = useNavigate()
     const [message, setMessage] = useState('')
     const program = props.program
 
@@ -61,6 +67,7 @@ const ProgramCard = (props) => {
             })
         setMessage(response.data)
     }
+
     const {isLoading, isError, error, mutate} = useMutation('training', startTraining)
 
     const goToTraining = () => {
@@ -70,7 +77,6 @@ const ProgramCard = (props) => {
     if (isLoading) {
         return <LoadingTriangle/>
     }
-
     if (isError) {
         toast.error(error.message, {
             position: "top-center",
@@ -94,11 +100,40 @@ const ProgramCard = (props) => {
                 pauseOnHover
             /></div>
     }
+    // if (props.program.isNew) {
+    //     console.log('inside',props.program.isNew)
+    //
+    //     toast.success('You have new training program from your coach!', {
+    //         position: "top-center",
+    //         autoClose: 5000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true,
+    //         progress: 0,
+    //     });
+    //     return <div>
+    //         <ToastContainer
+    //             position="top-center"
+    //             autoClose={5000}
+    //             hideProgressBar={false}
+    //             newestOnTop={false}
+    //             closeOnClick
+    //             rtl={false}
+    //             pauseOnFocusLoss
+    //             draggable
+    //             pauseOnHover
+    //         /></div>
+    // }
+
+    console.log(props.program)
     return (
         <Card className={classes.programCard}>
             <Card.Body>
+                <span>{props.isNew}</span>
                 <Card.Title className={classes.cardTitle}>
                     {props.program.level}
+                    {props.program.isNew}
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
                     <span>Position #1 {props.program.positions.pos1}</span>
