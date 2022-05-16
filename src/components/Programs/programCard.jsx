@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {useNavigate} from 'react-router-dom';
 import axios from "../../axios";
 import {useMutation} from "react-query";
 import redNotfication from '../../media/redCircle.png'
@@ -12,6 +11,7 @@ import {MdDoubleArrow} from "react-icons/md"
 import Button from "@mui/material/Button";
 import LoadingTriangle from "../Utils/LoadingTriangle";
 import {toast, ToastContainer} from "react-toastify";
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
 
 
 const useStyles = makeStyles(() => ({
@@ -100,6 +100,7 @@ const ProgramCard = (props) => {
                 pauseOnHover
             /></div>
     }
+
     // if (props.program.isNew) {
     //     console.log('inside',props.program.isNew)
     //
@@ -126,14 +127,13 @@ const ProgramCard = (props) => {
     //         /></div>
     // }
 
-    console.log(props.program)
     return (
         <Card className={classes.programCard}>
             <Card.Body>
                 <span>{props.isNew}</span>
                 <Card.Title className={classes.cardTitle}>
                     {props.program.level}
-                    {props.program.isNew}
+                    {props.program.isNew ? <NewReleasesIcon style={{position: 'relative', right:0, top:0}} color={'error'}/> : null}
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
                     <span>Position #1 {props.program.positions.pos1}</span>
