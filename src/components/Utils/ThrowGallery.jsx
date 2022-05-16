@@ -1,29 +1,18 @@
 import React, {useEffect, useState} from 'react'
 import axios from "../../axios";
-import {useQuery} from "react-query";
-import LoadingTriangle from "./LoadingTriangle";
-import {toast} from "react-toastify";
-import Error from "./Error";
+
 import ImageGallery from "react-image-gallery";
 
-async function fetchFrameList() {
-    const {data} = await axios.get('/api/training/results/frameslist', {
-        headers: {
-            "x-access-token": localStorage.getItem('token')
-        }
-    })
-    console.log(data)
-    return data
-}
 
-
-
-const ThrowGallery = () => {
-    const [img, setImg] = useState();
-    const {data, error, isError, isLoading} = useQuery('frames', fetchFrameList, {refetchInterval: 5000})
+const ThrowGallery = (props) => {
+    const [img, setImg] = useState()
+    const [nextImg, setNextImg] = useState([])
+    const frameList = props.frameList
+    let imagesURLs = []
 
     const fetchFrame = async () => {
-        axios.get('/api/training/results/frames', {
+
+        axios.get(`/api/training/results/frames/${frameList[0]}`, {
                 headers: {
                     "x-access-token": localStorage.getItem('token'),
                 }, responseType: 'blob'
@@ -31,6 +20,8 @@ const ThrowGallery = () => {
         ).then(r => {
             const url = window.URL.createObjectURL(new Blob([r.data]));
             setImg(url)
+            frameList.shift()
+            console.log('this is frame list inside the first', frameList)
         })
     }
 
@@ -38,31 +29,26 @@ const ThrowGallery = () => {
         fetchFrame().then()
     }, [])
 
-    if (isLoading)
-        return <LoadingTriangle/>
 
-    if (isError) {
-        toast.error(error.message, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: 0,
-        });
-        return <Error/>
-    }
-    const nextFrame = () =>{
-        // axios.get('/api/training/results/frames', {
-        //         headers: {
-        //             "x-access-token": localStorage.getItem('token'),
-        //         }, responseType: 'blob'
-        //     }
-        // ).then(r => {
-        //     const url = window.URL.createObjectURL(new Blob([r.data]));
-        //     setImg(url)
-        // })
+    const nextFrame = () => {
+        console.log('#@$@#$@#', frameList)
+        axios.get(`/api/training/results/frames/${frameList[0]}`, {
+                headers: {
+                    "x-access-token": localStorage.getItem('token'),
+                }, responseType: 'blob'
+            }
+        ).then(async r => {
+            const url = window.URL.createObjectURL(new Blob([r.data]));
+
+            frameList.shift()
+
+            setNextImg([{
+                ...nextImg,'original':url
+                }]
+            )
+            console.log(nextImg[0])
+
+        })
     }
 
     const images = [
@@ -71,12 +57,12 @@ const ThrowGallery = () => {
             thumbnail: img,
         },
         {
-            original: 'https://picsum.photos/id/1015/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1015/250/150/',
+            original: nextImg[0],
+            thumbnail: nextImg[0],
         },
         {
-            original: 'https://picsum.photos/id/1019/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1019/250/150/',
+            original: nextImg[0],
+            thumbnail: nextImg[0],
         },
     ];
 
