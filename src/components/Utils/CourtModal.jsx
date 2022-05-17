@@ -28,7 +28,8 @@ const useStyles = makeStyles(() => ({
         fontSize: '20px',
     },
     modalLocation:{
-        marginLeft:'50vh'
+        margin:'0 auto',
+        width:'30%'
     }
 }))
 

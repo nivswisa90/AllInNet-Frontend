@@ -1,16 +1,16 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import TrainingPrograms from '../components/Programs/trainingPrograms'
-import TrainingResults from '../components/Results/TrainingResults'
 import MainPage from "../components/MainPage";
 import ProtectedRoutes from "../components/RouteManagement/ProtectedRoutes";
 import PublicRoutes from "../components/RouteManagement/PublicRoutes";
 import InnerContent from "../components/RouteManagement/InnerContent";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
-import ResultReport from "../components/Results/ResultReport";
 import BuildTrainingProgram from "../components/Coach/BuildTraining/BuildTrainingProgram";
 import CoachPlayersResults from "../components/Coach/TeamPlayers/CoachPlayersResults";
+import ResultReport from "../components/Results/Report/ResultReport";
+import HistoryReport from "../components/Results/Analysis/HistoryReport";
 
 const ReactRouter = () => (
     <Routes>
@@ -22,6 +22,7 @@ const ReactRouter = () => (
                 <Route path='/report' element={<ResultReport/>}/>
                 <Route path="/programs" element={<TrainingPrograms/>}/>
                 <Route path="/buildtraining" element={<BuildTrainingProgram/>}/>
+                <Route path='/analysis' element={<HistoryReport/>}/>
             </Route>
         </Route>
 

@@ -3,15 +3,18 @@ import {Card} from "react-bootstrap";
 import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
     reportCard:{
+        float: 'left',
         fontFamily: 'Roboto Mono',
-        width: '40%',
+        width: '12%',
         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
-        border: '1px solid black',
+        border: '0.2px solid black',
         borderRadius: '10px',
         marginTop:'5vh',
-        margin:'0 auto'
+        margin:'0 auto',
+        background:'white'
     },
     cardTitle:{
+        fontWeight:'bold',
         fontSize: '15px',
         textAlign:'center'
     },
@@ -25,25 +28,20 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-const ReportCard = (props) =>{
+
+const OnePosCard = (props) =>{
     const classes = useStyles();
     return(
         <Card className={classes.reportCard}>
             <Card.Body>
                 <Card.Title className={classes.cardTitle}>
-                    <span>13/03/2022</span>
-                    <p>3 Line Training</p>
-                    <hr/>
+                    <p>Position #{props.id}</p>
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
-                    <span>position #1 {props.positions.successPos1}</span>
-                    <span>position #2 {props.positions.successPos2}</span>
-                    <span>position #3 {props.positions.successPos3}</span>
-                    <span>position #4 {props.positions.successPos4}</span>
-                    <span>position #5 {props.positions.successPos5}</span>
+                    <span>{props.suc}/{props.min}</span>
                 </Card.Text>
             </Card.Body>
         </Card>
     )
 }
-export default ReportCard
+export default OnePosCard

@@ -5,7 +5,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
 import {VscGraphLine} from "react-icons/vsc";
 import {Link} from "react-router-dom";
-import {Typography} from "@mui/material";
 
 const useStyles = makeStyles(() => ({
     resultCard: {

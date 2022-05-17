@@ -1,16 +1,19 @@
-import React, {useState} from 'react'
-import {useLocation, useParams} from 'react-router-dom'
+import React from 'react'
+import {useLocation} from 'react-router-dom'
+import {useQuery} from "react-query";
+import axios from '../../../axios'
+
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
-import ReportCard from "./ReportCard";
 import Box from "@mui/material/Box";
-import ThrowGallery from "../Utils/ThrowGallery";
-import Back from "../Utils/Back";
-import axios from "../../axios";
-import {useQuery} from "react-query";
-import LoadingTriangle from "../Utils/LoadingTriangle";
 import {toast} from "react-toastify";
-import Error from "../Utils/Error";
+import ThrowGallery from "../../Utils/ThrowGallery";
+import ReportCard from "./ReportCard";
+import Back from "../../Utils/Back";
+import Error from "../../Utils/Error";
+import LoadingTriangle from "../../Utils/LoadingTriangle";
+
+
 
 async function fetchFrameList() {
     const {data} = await axios.get('/api/training/results/frameslist', {
@@ -83,13 +86,13 @@ const ResultReport = () =>{
         return <Error/>
     }
     return(
-        <div>
-            <Back/>
+        <div >
+            <span><Back/></span>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
-                <Typography className={classes.mainTitle}> Results Report </Typography>
+                <Typography className={classes.mainTitle}> Results Report - {result.date}</Typography>
                 <section>
-                    <ReportCard positions={result.positions}/>
+                    <ReportCard result={result}/>
                 </section>
                 <section>
                     <Typography className={classes.subTitle}> Improvement </Typography>

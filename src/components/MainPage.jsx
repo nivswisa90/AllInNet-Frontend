@@ -10,6 +10,7 @@ import CourtModal from "./Utils/CourtModal";
 import CoachPlayers from "./Coach/TeamPlayers/CoachPlayers";
 import AddTeamPlayer from "./Coach/TeamPlayers/AddTeamPlayer";
 import LoadingTriangle from "./Utils/LoadingTriangle";
+import AnalysisLink from "./Results/Analysis/AnalysisLink";
 
 
 const useStyles = makeStyles(() => ({
@@ -54,6 +55,7 @@ const MainPage = () => {
             <div className={classes.mainProgram}>
                 <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>
                 {user.role === 'player' ? <div>
+                    <AnalysisLink/>
                     <CourtModal/>
                     <TrainingPrograms/>
                     <TrainingResults/>
