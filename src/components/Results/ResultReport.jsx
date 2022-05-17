@@ -94,7 +94,8 @@ const ResultReport = () =>{
                 <section>
                     <Typography className={classes.subTitle}> Improvement </Typography>
                     <Box className={classes.improveBox}>
-                        <p className={classes.improveText}>You should bla bla bla bla bla </p>
+                        <p className={classes.improveText}>Congratulations! The training is over. Your strongest shot position is Number 1 with a 75% success rate.
+                        The position you should improve is number 6, where you have a 25% success rate</p>
                     </Box>
                 </section>
                 <section>

@@ -9,9 +9,9 @@ const ThrowGallery = (props) => {
     const [nextImg, setNextImg] = useState([])
     const frameList = props.frameList
     let imagesURLs = []
+    const [newFrame, setNewFrame] = useState(false)
 
     const fetchFrame = async () => {
-
         axios.get(`/api/training/results/frames/${frameList[0]}`, {
                 headers: {
                     "x-access-token": localStorage.getItem('token'),
@@ -19,9 +19,13 @@ const ThrowGallery = (props) => {
             }
         ).then(r => {
             const url = window.URL.createObjectURL(new Blob([r.data]));
-            setImg(url)
+            setNextImg(
+                [
+                    ...nextImg, {'original': url, 'thumbnail': url}
+                ]
+            )
+            setNewFrame(true)
             frameList.shift()
-            console.log('this is frame list inside the first', frameList)
         })
     }
 
@@ -29,9 +33,12 @@ const ThrowGallery = (props) => {
         fetchFrame().then()
     }, [])
 
+    useEffect(() => {
+        nextFrame()
+    }, [newFrame])
+
 
     const nextFrame = () => {
-        console.log('#@$@#$@#', frameList)
         axios.get(`/api/training/results/frames/${frameList[0]}`, {
                 headers: {
                     "x-access-token": localStorage.getItem('token'),
@@ -39,35 +46,36 @@ const ThrowGallery = (props) => {
             }
         ).then(async r => {
             const url = window.URL.createObjectURL(new Blob([r.data]));
-
-            frameList.shift()
-
-            setNextImg([{
-                ...nextImg,'original':url
-                }]
+            setNextImg(
+                [
+                    ...nextImg, {'original': url, 'thumbnail': url}
+                ]
             )
-            console.log(nextImg[0])
-
+            frameList.shift()
         })
     }
 
-    const images = [
-        {
-            original: img,
-            thumbnail: img,
-        },
-        {
-            original: nextImg[0],
-            thumbnail: nextImg[0],
-        },
-        {
-            original: nextImg[0],
-            thumbnail: nextImg[0],
-        },
-    ];
+    useEffect(() => {
+        console.log(nextImg)
+    }, [nextImg])
+
+    // const images = [
+    //     {
+    //         original: img,
+    //         thumbnail: img,
+    //     },
+    //     {
+    //         original: nextImg[0],
+    //         thumbnail: nextImg[0],
+    //     },
+    //     {
+    //         original: nextImg[0],
+    //         thumbnail: nextImg[0],
+    //     },
+    // ];
 
     return (<div>
-            <ImageGallery items={images} onSlide={nextFrame}/>
+            <ImageGallery items={nextImg} onSlide={nextFrame}/>
         </div>
     )
 }
