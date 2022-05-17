@@ -3,6 +3,7 @@ import ReactSearchBox from "react-search-box";
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
 import axios from "../../../axios";
+import {useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     searchBox: {
@@ -25,10 +26,11 @@ const useStyles = makeStyles(() => ({
 }))
 
 
-const players = []
+let players = []
 
 const AddTeamPlayer = () => {
     const classes = useStyles()
+    const navigate = useNavigate()
 
     useEffect(async () => {
         await axios.get(`/api/login/users`, {
@@ -37,17 +39,16 @@ const AddTeamPlayer = () => {
             }
         })
             .then(data => {
-                for(const player in data.data) {
+                for (const player in data.data) {
                     const newPlayer = {
                         key: data.data[player].email,
                         value: data.data[player].name
                     }
-                   players.push(newPlayer)
+                    players.push(newPlayer)
                 }
             })
             .catch(err => console.log(err))
     }, [])
-
 
 
     const addTeamPlayer = (item) => {
@@ -56,11 +57,12 @@ const AddTeamPlayer = () => {
                 "Content-type": "application/json",
                 "x-access-token": localStorage.getItem('token')
             }
-        }).then(res => {
-            console.log(res)
+        }).then(() => {
+            navigate('/')
         })
             .catch(err => console.log(err))
     }
+
 
     return (
         <div className={classes.searchBox}>
@@ -74,7 +76,7 @@ const AddTeamPlayer = () => {
                 leftIcon={<>🔍</>}
                 clearOnSelect={true}
                 onSelect={(item) => addTeamPlayer(item)}
-                // onChange={(value) => findUsers(value)}
+                onChange={() => players = []}
                 callback={(record) => console.log(record)}
             />
             <div className={classes.space}/>

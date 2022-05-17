@@ -21,8 +21,8 @@ async function fetchResults() {
 
 const useStyles = makeStyles(() => ({
     resultsContainer: {
-        margin:'0 auto',
-        width:'80%',
+        margin: '0 auto',
+        width: '80%',
         // marginLeft: '3vh',
         marginTop: '2vh',
         display: 'flex',
@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     resultsTitle: {
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
-        marginTop:'2vh',
+        marginTop: '2vh',
         margin: '0 auto',
         width: '25%'
     }
@@ -79,7 +79,8 @@ const TrainingResults = () => {
             <CardGroup className={classes.resultsContainer}>
                 {results ? results.map((result, index) => (
                     <ResultCard key={result.id} index={index} results={result}/>
-                )) : null}
+                )) : null
+                }
             </CardGroup>
         </div>
     )
