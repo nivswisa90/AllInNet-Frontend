@@ -23,7 +23,6 @@ const useStyles = makeStyles(() => ({
     resultsContainer: {
         margin: '0 auto',
         width: '80%',
-        // marginLeft: '3vh',
         marginTop: '2vh',
         display: 'flex',
         flexWrap: 'wrap',

@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 
 const Back = () =>{
     return (
-        <Link to={'/main'}>
-         <span>
+        <Link to={'/main'} style={{textDecoration:'none!important'}}>
+         <span style={{textDecoration:'none!important'}}>
              <MdArrowBackIos/> Back
          </span>
         </Link>

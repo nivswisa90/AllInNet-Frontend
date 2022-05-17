@@ -55,9 +55,6 @@ const ThrowGallery = (props) => {
         })
     }
 
-    useEffect(() => {
-        console.log(nextImg)
-    }, [nextImg])
 
     // const images = [
     //     {
