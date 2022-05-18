@@ -12,7 +12,6 @@ import AddTeamPlayer from "./Coach/TeamPlayers/AddTeamPlayer";
 import LoadingTriangle from "./Utils/LoadingTriangle";
 import AnalysisLink from "./Results/Analysis/AnalysisLink";
 
-
 const useStyles = makeStyles(() => ({
     mainProgram: {
         background: '#FFF9F4',
@@ -47,25 +46,25 @@ const MainPage = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
 
-    return(
+    return (
         !user ? (<LoadingTriangle/>) :
-        (<div>
-            <AvatarMenu user={user}/>
-            <div className={classes.space}/>
-            <div className={classes.mainProgram}>
-                <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>
-                {user.role === 'player' ? <div>
-                    <AnalysisLink/>
-                    <CourtModal/>
-                    <TrainingPrograms/>
-                    <TrainingResults/>
-                </div> : <div>
-                    <CoachPlayers/>
-                    <AddTeamPlayer/>
+            (<div>
+                <AvatarMenu user={user}/>
+                <div className={classes.space}/>
+                <div className={classes.mainProgram}>
+                    <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>
+                    {user.role === 'player' ? <div>
+                        <AnalysisLink/>
+                        <CourtModal/>
+                        <TrainingPrograms/>
+                        <TrainingResults/>
+                    </div> : <div>
+                        <CoachPlayers/>
+                        <AddTeamPlayer/>
+                    </div>
+                    }
                 </div>
-                }
-            </div>
-        </div>)
+            </div>)
     )
 
 }

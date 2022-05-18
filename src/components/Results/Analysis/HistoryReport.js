@@ -3,12 +3,6 @@ import AvatarMenu from "../../Utils/AvatarMenu";
 
 import {makeStyles} from "@material-ui/core/styles";
 import {useOutletContext} from "react-router-dom";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel'
-import {RiNumber0} from 'react-icons/ri'
 import FilterByPositions from "./FilterByPositions";
 
 const useStyles = makeStyles(() => ({
@@ -29,13 +23,13 @@ const useStyles = makeStyles(() => ({
         fontSize: '15px',
 
     },
-    graphContainer:{
+    graphContainer: {
         border: '0.2px solid black',
     },
-    precentageContainer:{
+    precentageContainer: {
         border: '0.2px solid black',
     },
-    pieContainer:{
+    pieContainer: {
         border: '0.2px solid black',
     },
     space: {
@@ -49,22 +43,23 @@ const HistoryReport = () => {
     const classes = useStyles()
     const [positionsFilter, setPositionsFilter] = useState(
         {
-            pos1:false,
-            pos2:false,
-            pos3:false,
-            pos4:false,
-            pos5:false,
-            pos6:false,
+            pos1: false,
+            pos2: false,
+            pos3: false,
+            pos4: false,
+            pos5: false,
+            pos6: false,
         }
     )
     // NOT WORKIMNG YET
     const handleCheckbox = (event) => {
-    console.log(event.target)
+        console.log(event.target)
         setPositionsFilter({
             ...positionsFilter,
             [event.target.name]: event.target.checked,
         });
     };
+
     return (
         <div>
             <AvatarMenu user={user}/>
