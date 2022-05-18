@@ -12,6 +12,8 @@ import ReportCard from "./ReportCard";
 import Back from "../../Utils/Back";
 import Error from "../../Utils/Error";
 import LoadingTriangle from "../../Utils/LoadingTriangle";
+import ChartBar from "../../Charts/PositionsChart";
+import PositionsChart from "../../Charts/PositionsChart";
 
 
 
@@ -93,6 +95,9 @@ const ResultReport = () =>{
                 <Typography className={classes.mainTitle}> Results Report - {result.date}</Typography>
                 <section>
                     <ReportCard result={result}/>
+                </section>
+                <section style={{marginTop: 70}}>
+                    <PositionsChart result={result}/>
                 </section>
                 <section>
                     <Typography className={classes.subTitle}> Improvement </Typography>
