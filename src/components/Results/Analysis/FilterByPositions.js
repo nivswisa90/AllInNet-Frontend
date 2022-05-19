@@ -29,6 +29,7 @@ const FilterByPositions = (props) => {
             <FormLabel className={classes.filterPosTitle} id="demo-row-radio-buttons-group-label">Filter by
                 position:</FormLabel>
             <RadioGroup
+                defaultValue={"All"}
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"

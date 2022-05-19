@@ -42,7 +42,7 @@ const ChartPerPosition = (props) => {
                     argumentField="argument"
                     color={data[0].color}
                 />
-                <Legend position="bottom"/>
+                <Legend position="right"/>
                 <Title text={argument}/>
                 <Stack />
             </Chart>

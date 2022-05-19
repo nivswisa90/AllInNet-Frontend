@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import AvatarMenu from "../../Utils/AvatarMenu";
 
 import {makeStyles} from "@material-ui/core/styles";
@@ -9,6 +9,7 @@ import LoadingTriangle from "../../Utils/LoadingTriangle";
 import {toast} from "react-toastify";
 import Error from "../../Utils/Error";
 import axios from "../../../axios";
+import PositionsChart from "../../Charts/PositionsChart";
 import ChartPerPosition from "../../Charts/ChartPerPosition";
 
 const useStyles = makeStyles(() => ({
@@ -58,13 +59,23 @@ const HistoryReport = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
     const [filtered, setFiltered] = useState()
-    const [positionsFilter, setPositionsFilter] = useState({})
+    const [positionsFilter, setPositionsFilter] = useState({
+        "All": true
+    })
+
+    useEffect(() => {
+        const pos = Object.keys(positionsFilter)[0]
+        fetchResults(pos).then(doc => setFiltered(doc))
+    }, [])
 
     const handleCheckbox = (event) => {
+        setFiltered()
         setPositionsFilter({
             [event.target.name]: event.target.checked
         });
-        fetchResults(event.target.name).then(doc => setFiltered(doc))
+        fetchResults(event.target.name).then(doc => {
+            setFiltered(doc)
+        })
     };
 
     const {data, error, isError, isLoading} = useQuery('results', fetchResults)
@@ -95,7 +106,9 @@ const HistoryReport = () => {
                 <div className={classes.filterBar}>
                     <FilterByPositions handleCheckbox={handleCheckbox}/>
                     <div className={classes.graphContainer}>
-                        {filtered ? <ChartPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
+                        {/*{positionsFilter["All"] ? <PositionsChart result={filtered}/> :*/}
+                        {/*    <ChartPerPosition data={filtered} position={positionsFilter}/>}*/}
+                        {filtered && positionsFilter["All"] ? <PositionsChart result={filtered}/> : filtered ? <ChartPerPosition data={filtered} position={positionsFilter}/>: <LoadingTriangle/>}
                     </div>
                     <div className={classes.precentageContainer}>
                         SHOULD BE %%%
