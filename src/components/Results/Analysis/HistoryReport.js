@@ -4,6 +4,12 @@ import AvatarMenu from "../../Utils/AvatarMenu";
 import {makeStyles} from "@material-ui/core/styles";
 import {useOutletContext} from "react-router-dom";
 import FilterByPositions from "./FilterByPositions";
+import {useQuery} from "react-query";
+import LoadingTriangle from "../../Utils/LoadingTriangle";
+import {toast} from "react-toastify";
+import Error from "../../Utils/Error";
+import axios from "../../../axios";
+import ChartPerPosition from "../../Charts/ChartPerPosition";
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
@@ -38,27 +44,48 @@ const useStyles = makeStyles(() => ({
 
 }))
 
+async function fetchResults(filter) {
+    const {data} = await axios.get(`/api/training/results/getResults/${filter}`, {
+        headers: {
+            "x-access-token": localStorage.getItem('token')
+        }
+    })
+    return data
+}
+
+
 const HistoryReport = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
-    const [positionsFilter, setPositionsFilter] = useState(
-        {
-            pos1: false,
-            pos2: false,
-            pos3: false,
-            pos4: false,
-            pos5: false,
-            pos6: false,
-        }
-    )
-    // NOT WORKIMNG YET
+    const [filtered, setFiltered] = useState()
+    const [positionsFilter, setPositionsFilter] = useState({})
+
     const handleCheckbox = (event) => {
-        console.log(event.target)
         setPositionsFilter({
-            ...positionsFilter,
-            [event.target.name]: event.target.checked,
+            [event.target.name]: event.target.checked
         });
+        fetchResults(event.target.name).then(doc => setFiltered(doc))
     };
+
+    const {data, error, isError, isLoading} = useQuery('results', fetchResults)
+
+    if (isLoading) {
+        return <LoadingTriangle/>
+    }
+
+    if (isError) {
+        toast.error(error.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: 0,
+        });
+        return <Error/>
+    }
+
 
     return (
         <div>
@@ -68,7 +95,7 @@ const HistoryReport = () => {
                 <div className={classes.filterBar}>
                     <FilterByPositions handleCheckbox={handleCheckbox}/>
                     <div className={classes.graphContainer}>
-                        SHOULD BE GRAPH
+                        {filtered ? <ChartPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
                     </div>
                     <div className={classes.precentageContainer}>
                         SHOULD BE %%%
