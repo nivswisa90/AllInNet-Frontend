@@ -1,6 +1,6 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper';
-import {ArgumentAxis, BarSeries, Chart, ValueAxis,} from '@devexpress/dx-react-chart-material-ui';
+import {ArgumentAxis, BarSeries, Chart, ValueAxis, Legend, Title} from '@devexpress/dx-react-chart-material-ui';
 import {Stack} from '@devexpress/dx-react-chart';
 
 const ChartPerPosition = (props) => {
@@ -42,6 +42,8 @@ const ChartPerPosition = (props) => {
                     argumentField="argument"
                     color={data[0].color}
                 />
+                <Legend position="bottom"/>
+                <Title text={argument}/>
                 <Stack />
             </Chart>
         </Paper>
