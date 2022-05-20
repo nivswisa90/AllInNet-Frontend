@@ -11,6 +11,7 @@ import Error from "../../Utils/Error";
 import axios from "../../../axios";
 import PositionsChart from "../../Charts/PositionsChart";
 import ChartPerPosition from "../../Charts/ChartPerPosition";
+import PChart from "../../Charts/PChart";
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles(() => ({
         width: '80%',
         margin: '0 auto'
     },
-    filterPosTilte: {
+    filterPosTitle: {
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
 
@@ -33,7 +34,7 @@ const useStyles = makeStyles(() => ({
     graphContainer: {
         border: '0.2px solid black',
     },
-    precentageContainer: {
+    percentageContainer: {
         border: '0.2px solid black',
     },
     pieContainer: {
@@ -106,15 +107,14 @@ const HistoryReport = () => {
                 <div className={classes.filterBar}>
                     <FilterByPositions handleCheckbox={handleCheckbox}/>
                     <div className={classes.graphContainer}>
-                        {/*{positionsFilter["All"] ? <PositionsChart result={filtered}/> :*/}
-                        {/*    <ChartPerPosition data={filtered} position={positionsFilter}/>}*/}
-                        {filtered && positionsFilter["All"] ? <PositionsChart result={filtered}/> : filtered ? <ChartPerPosition data={filtered} position={positionsFilter}/>: <LoadingTriangle/>}
+                        {filtered && positionsFilter["All"] ? <PositionsChart result={filtered}/> : filtered ?
+                            <ChartPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
                     </div>
-                    <div className={classes.precentageContainer}>
+                    <div className={classes.percentageContainer}>
                         SHOULD BE %%%
                     </div>
                     <div className={classes.pieContainer}>
-                        SHOULD BE PIEEE
+                        {filtered ? <PChart result={filtered}/> : <LoadingTriangle/>}
                     </div>
                 </div>
             </div>

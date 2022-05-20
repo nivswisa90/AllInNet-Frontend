@@ -4,7 +4,7 @@ import {ArgumentAxis, BarSeries, Chart, ValueAxis, Legend, Title} from '@devexpr
 import {Stack} from '@devexpress/dx-react-chart';
 
 const ChartPerPosition = (props) => {
-    const results = props.data
+    const results = props.data.positions
     const argument = Object.keys(props.position)[0]
 
     const data = [
