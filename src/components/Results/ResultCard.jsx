@@ -13,8 +13,9 @@ const useStyles = makeStyles(() => ({
         borderRadius: '10px',
         margin: '5px',
         width: '30%',
-        boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)'
-    },
+        boxShadow:'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
+
+},
     cardTitle: {
         fontFamily: 'Roboto Mono',
         contrastText: "black",

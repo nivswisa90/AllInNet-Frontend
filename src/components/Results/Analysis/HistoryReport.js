@@ -12,18 +12,16 @@ import axios from "../../../axios";
 import PositionsChart from "../../Charts/PositionsChart";
 import ChartPerPosition from "../../Charts/ChartPerPosition";
 import PChart from "../../Charts/PChart";
+import PrecentBox from "./PrecentBox";
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
         background: '#FFF9F4',
         borderRadius: '28px',
-        opacity: '90%',
         width: '100%'
     },
-    filterBar: {
-        border: '0.2px solid black',
-        borderRadius: '5px',
-        width: '80%',
+    graphsContainer: {
+        width: '100%',
         margin: '0 auto'
     },
     filterPosTitle: {
@@ -31,18 +29,33 @@ const useStyles = makeStyles(() => ({
         fontSize: '15px',
 
     },
-    graphContainer: {
-        border: '0.2px solid black',
+    chartContainer: {
+        margin:'0 auto',
+        marginTop:'2vh',
+        marginBottom:'2vh',
+        borderRadius:'5px',
+        width:'90%',
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
     },
     percentageContainer: {
         border: '0.2px solid black',
     },
     pieContainer: {
-        border: '0.2px solid black',
+        margin:'0 auto',
+        marginTop:'2vh',
+        marginBottom:'2vh',
+        borderRadius:'5px',
+        background:'white',
+        width:'50%',
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
     },
     space: {
         height: '180px'
     },
+    filterBar:{
+        width:'90%',
+        margin:'0 auto'
+    }
 
 }))
 
@@ -64,6 +77,15 @@ const HistoryReport = () => {
     const [positionsFilter, setPositionsFilter] = useState({
         "All": true
     })
+    const [selected, setSelected] = useState('All');
+
+    const handleChange = (event) => {
+        setSelected(event.target.value);
+    };
+
+    useEffect(()=>{
+        handleCheckbox(selected)
+    },[selected])
 
     useEffect(() => {
         const pos = Object.keys(positionsFilter)[0]
@@ -73,12 +95,12 @@ const HistoryReport = () => {
         })
     }, [])
 
-    const handleCheckbox = (event) => {
+    const handleCheckbox = (val) => {
         setFiltered()
         setPositionsFilter({
-            [event.target.name]: event.target.checked
+            [val]: true
         });
-        fetchResults(event.target.name).then(doc => {
+        fetchResults(val).then(doc => {
             setFiltered(doc)
         })
     };
@@ -102,20 +124,21 @@ const HistoryReport = () => {
         return <Error/>
     }
 
-
     return (
         <div>
             <AvatarMenu user={user}/>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
-                <div className={classes.filterBar}>
-                    <FilterByPositions handleCheckbox={handleCheckbox}/>
-                    <div className={classes.graphContainer}>
+                <div className={classes.graphsContainer}>
+                    <section className={classes.filterBar} >
+                        <FilterByPositions handleCheckbox={handleCheckbox} handleChange={handleChange} selected={selected}/>
+                    </section>
+                    <div className={classes.chartContainer}>
                         {filtered && positionsFilter["All"] ? <PositionsChart result={filtered}/> : filtered ?
                             <ChartPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
                     </div>
                     <div className={classes.percentageContainer}>
-                        SHOULD BE %%%
+                        <PrecentBox/>
                     </div>
                     <div className={classes.pieContainer}>
                         {pie?<PChart result={pie}/>:<LoadingTriangle/>}

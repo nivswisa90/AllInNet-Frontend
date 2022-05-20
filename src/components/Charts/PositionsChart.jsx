@@ -2,9 +2,21 @@ import React from "react";
 import Paper from '@material-ui/core/Paper';
 import {ArgumentAxis, BarSeries, Chart, Legend, Title, ValueAxis} from '@devexpress/dx-react-chart-material-ui';
 import {Stack} from '@devexpress/dx-react-chart';
+import {makeStyles} from "@material-ui/core/styles";
+import {Typography} from "@mui/material";
+const useStyles = makeStyles(() => ({
+    title:{
+        fontFamily: 'Roboto Mono',
+        margin:'0 auto',
+        width:'65%',
+        fontSize:'25px'
+    }
+}))
+
 
 const PositionsChart = (props) => {
     const result = props.result.positions
+    const classes = useStyles()
 
     const data = [
         {
@@ -53,6 +65,7 @@ const PositionsChart = (props) => {
 
     return (
         <Paper>
+            <Typography className={classes.title}>Result Chart Per Positions</Typography>
             <Chart
                 data={data}
             >
@@ -77,7 +90,6 @@ const PositionsChart = (props) => {
                     color="green"
                 />
                 <Legend position="right"/>
-                <Title text="Results"/>
                 <Stack/>
             </Chart>
         </Paper>

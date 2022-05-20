@@ -2,11 +2,21 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper';
 import {ArgumentAxis, BarSeries, Chart, ValueAxis, Legend, Title} from '@devexpress/dx-react-chart-material-ui';
 import {Stack} from '@devexpress/dx-react-chart';
-
+import {makeStyles} from "@material-ui/core/styles";
+import {Typography} from "@mui/material";
+const useStyles = makeStyles(() => ({
+    title:{
+        fontFamily: 'Roboto Mono',
+        margin:'0 auto',
+        width:'25%',
+        fontSize:'25px'
+    }
+}))
 const ChartPerPosition = (props) => {
+    const classes = useStyles()
+
     const results = props.data.positions
     const argument = Object.keys(props.position)[0]
-
     const data = [
         {
             argument: argument,
@@ -19,6 +29,7 @@ const ChartPerPosition = (props) => {
 
     return (
         <Paper>
+            <Typography className={classes.title}>{argument}</Typography>
             <Chart
                 data={data}
             >
@@ -43,11 +54,9 @@ const ChartPerPosition = (props) => {
                     color={data[0].color}
                 />
                 <Legend position="right"/>
-                <Title text={argument}/>
-                <Stack />
+                <Stack/>
             </Chart>
         </Paper>
     )
 }
-
 export default ChartPerPosition
