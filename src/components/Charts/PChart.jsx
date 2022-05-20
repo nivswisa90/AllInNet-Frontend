@@ -11,12 +11,13 @@ const sumOfConversions = (result) => {
     return total
 }
 
-let cData
 
 const createPieData = (results) => {
     let i = 0
     const totalConversion = sumOfConversions(results) * 100
-    cData = []
+    const cData = []
+    const colors = ['red', 'blue', 'brown', 'yellow', 'green', 'purple']
+    const positions = ['Pos1', 'Pos2', 'Pos3', 'Pos4', 'Pos5', 'Pos6']
     Object.keys(results).map(result => {
         if (result.includes('successPos')) {
             cData.push({
@@ -30,8 +31,6 @@ const createPieData = (results) => {
     return cData
 }
 
-const colors = ['red', 'blue', 'brown', 'yellow', 'green', 'purple']
-const positions = ['Pos1', 'Pos2', 'Pos3', 'Pos4', 'Pos5', 'Pos6']
 
 const PChart = (props) => {
     const [chartData, setChartData] = useState([])
