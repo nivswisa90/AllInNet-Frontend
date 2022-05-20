@@ -60,13 +60,17 @@ const HistoryReport = () => {
     const [user] = useOutletContext()
     const classes = useStyles()
     const [filtered, setFiltered] = useState()
+    const [pie, setPie] = useState()
     const [positionsFilter, setPositionsFilter] = useState({
         "All": true
     })
 
     useEffect(() => {
         const pos = Object.keys(positionsFilter)[0]
-        fetchResults(pos).then(doc => setFiltered(doc))
+        fetchResults(pos).then(doc => {
+            setFiltered(doc)
+            setPie(doc)
+        })
     }, [])
 
     const handleCheckbox = (event) => {
@@ -114,7 +118,7 @@ const HistoryReport = () => {
                         SHOULD BE %%%
                     </div>
                     <div className={classes.pieContainer}>
-                        {filtered ? <PChart result={filtered}/> : <LoadingTriangle/>}
+                        {pie?<PChart result={pie}/>:<LoadingTriangle/>}
                     </div>
                 </div>
             </div>
