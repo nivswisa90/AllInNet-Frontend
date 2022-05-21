@@ -1,5 +1,5 @@
 import React from 'react'
-import {useLocation} from 'react-router-dom'
+import {useLocation, useOutletContext} from 'react-router-dom'
 import {useQuery} from "react-query";
 import axios from '../../../axios'
 
@@ -13,6 +13,7 @@ import Back from "../../Utils/Back";
 import Error from "../../Utils/Error";
 import LoadingTriangle from "../../Utils/LoadingTriangle";
 import PositionsChart from "../Analysis/Charts/PositionsChart";
+import Header from "../../Utils/Header";
 
 
 
@@ -69,6 +70,8 @@ const useStyles = makeStyles(() => ({
 const ResultReport = () =>{
     const classes = useStyles();
     let location = useLocation();
+    const [user] = useOutletContext()
+
     const result = location.state.result
     const {data, error, isError, isLoading} = useQuery('frames', fetchFrameList, {refetchInterval: 5000})
     if (isLoading)
@@ -88,6 +91,7 @@ const ResultReport = () =>{
     }
     return(
         <div >
+            <Header user={user}/>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
                 <Typography className={classes.mainTitle}> Results Report {result.date}</Typography>
