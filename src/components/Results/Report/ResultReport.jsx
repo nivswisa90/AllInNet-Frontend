@@ -28,7 +28,7 @@ async function fetchFrameList() {
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
-        background: '#FFF9F4',
+        background: 'white',
         borderRadius: '28px',
         opacity: '95%',
         width: '100%'
