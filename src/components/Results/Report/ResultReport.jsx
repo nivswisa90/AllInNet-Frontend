@@ -12,7 +12,7 @@ import ReportCard from "./ReportCard";
 import Back from "../../Utils/Back";
 import Error from "../../Utils/Error";
 import LoadingTriangle from "../../Utils/LoadingTriangle";
-import PositionsChart from "../../Charts/PositionsChart";
+import PositionsChart from "../Analysis/Charts/PositionsChart";
 
 
 
@@ -88,7 +88,6 @@ const ResultReport = () =>{
     }
     return(
         <div >
-            <span><Back/></span>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
                 <Typography className={classes.mainTitle}> Results Report {result.date}</Typography>

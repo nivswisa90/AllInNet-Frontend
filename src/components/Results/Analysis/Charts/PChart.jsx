@@ -10,13 +10,13 @@ const createPieData = (results) => {
     const colors = ['red', 'blue', 'brown', 'yellow', 'green', 'purple']
     const positions = ['Pos1', 'Pos2', 'Pos3', 'Pos4', 'Pos5', 'Pos6']
     Object.keys(results).map(result => {
-        if (result.includes('successPos')) {
+        if (result.includes('successPos') && results[result]) {
+            i = parseInt(result[result.length - 1]) - 1
             cData.push({
                 title: positions[i],
                 value: results[result],
                 color: colors[i]
             })
-            i++
         }
     })
     return cData

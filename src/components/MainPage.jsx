@@ -11,6 +11,7 @@ import CoachPlayers from "./Coach/TeamPlayers/CoachPlayers";
 import AddTeamPlayer from "./Coach/TeamPlayers/AddTeamPlayer";
 import LoadingTriangle from "./Utils/LoadingTriangle";
 import AnalysisLink from "./Results/Analysis/AnalysisLink";
+import Header from "./Utils/Header";
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
@@ -50,7 +51,7 @@ const MainPage = () => {
     return (
         !user ? (<LoadingTriangle/>) :
             (<div>
-                <AvatarMenu user={user}/>
+                <Header user={user}/>
                 <div className={classes.space}/>
                 <div className={classes.mainProgram}>
                     <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>

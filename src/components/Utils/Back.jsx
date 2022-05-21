@@ -6,7 +6,7 @@ const Back = () =>{
     return (
         <Link to={'/main'} style={{textDecoration:'none!important'}}>
          <span style={{textDecoration:'none!important'}}>
-             <MdArrowBackIos/> Back
+             <MdArrowBackIos/>
          </span>
         </Link>
 

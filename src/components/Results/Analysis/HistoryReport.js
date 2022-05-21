@@ -6,14 +6,15 @@ import {useOutletContext} from "react-router-dom";
 import AvatarMenu from "../../Utils/AvatarMenu";
 import FilterByPositions from "./FilterByPositions";
 import LoadingTriangle from "../../Utils/LoadingTriangle";
-import PositionsChart from "../../Charts/PositionsChart";
-import ChartPerPosition from "../../Charts/ChartPerPosition";
-import PChart from "../../Charts/PChart";
+import PositionsChart from "./Charts/PositionsChart";
+import ChartPerPosition from "./Charts/ChartPerPosition";
+import PChart from "./Charts/PChart";
 import PrecentBox from "./PrecentBox";
 
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
 import Back from "../../Utils/Back";
+import ProgressBarPerPosition from "./Charts/ProgressBarPerPosition";
 
 
 const useStyles = makeStyles(() => ({
@@ -118,7 +119,6 @@ const HistoryReport = () => {
         <div>
             {user.role === 'coach' ? null : (<div>
                     <AvatarMenu user={user}/>
-                    <span><Back/></span>
                     <div className={classes.space}/>
                 </div>
             )}
@@ -135,7 +135,9 @@ const HistoryReport = () => {
                     <div className={classes.percentageContainer}>
                         <Typography className={classes.precentageTitle}>Improvement ratio at the last
                             week</Typography>
-                        <PrecentBox results={filtered}/>
+                        {filtered && positionsFilter["All"] ? <PrecentBox results={filtered}/> : filtered ?
+                            <ProgressBarPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
+                        {/*{filtered ? <PrecentBox results={filtered}/>: <LoadingTriangle/>}*/}
                     </div>
                     <div className={classes.pieContainer}>
                         {pie ? <PChart result={pie}/> : <LoadingTriangle/>}

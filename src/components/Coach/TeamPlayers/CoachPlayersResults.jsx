@@ -95,11 +95,10 @@ const CoachPlayersResults = () => {
         });
         return <Error/>
     }
-    console.log(results)
+
     return (
         <div>
             <AvatarMenu user={user}/>
-            <span><Back/></span>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
             <Typography className={classes.resultsTitle}> Training Results </Typography>

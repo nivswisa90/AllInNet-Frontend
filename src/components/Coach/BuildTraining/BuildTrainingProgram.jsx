@@ -45,7 +45,6 @@ const BuildTrainingProgram = () =>{
 
     return (
         <div className={classes.container}>
-            <span><Back/></span>
             <div className={classes.space}/>
             <Box className={classes.landingBox}>
                 <div className={classes.titleBox}>
