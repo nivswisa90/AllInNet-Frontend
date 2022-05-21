@@ -1,7 +1,6 @@
 import React from 'react'
 import {makeStyles} from "@material-ui/core/styles";
 import {VscArrowDown, VscArrowUp} from 'react-icons/vsc'
-import {Typography} from "@mui/material";
 
 
 const useStyles = makeStyles(() => ({

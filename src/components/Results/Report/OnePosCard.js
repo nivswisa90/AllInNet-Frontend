@@ -35,7 +35,7 @@ const OnePosCard = (props) => {
         <Card className={classes.reportCard}>
             <Card.Body>
                 <Card.Title className={classes.cardTitle}>
-                    <p>Position #{props.id}</p>
+                    <p>Position {props.id}</p>
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
                     <span style={{color: parseInt(props.suc) >= parseInt(props.min) ? 'green' : 'red'}}>{props.suc}/{props.total}</span>

@@ -10,10 +10,12 @@ import Error from "../../Utils/Error";
 import ResultCard from "../../Results/ResultCard";
 import {Typography} from "@mui/material";
 import {CardGroup} from "react-bootstrap";
+import HistoryReport from "../../Results/Analysis/HistoryReport";
+import Back from "../../Utils/Back";
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
-        background: '#FFF9F4',
+        background: 'white',
         borderRadius: '28px',
         opacity: '90%',
         width: '100%'
@@ -37,10 +39,20 @@ const useStyles = makeStyles(() => ({
     },
     resultsTitle: {
         fontFamily: 'Roboto Mono',
-        fontSize: '15px',
+        fontSize: '30px',
         marginTop: '2vh',
         margin: '0 auto',
-        width: '25%'
+        width: '40%'
+    },
+    historyContainer:{
+        marginTop:'4vh',
+
+    },
+    playerHistoryTitle:{
+        fontFamily: 'Roboto Mono',
+        fontSize: '30px',
+        width:'60%',
+        margin:'0 auto'
     }
 
 }))
@@ -83,9 +95,11 @@ const CoachPlayersResults = () => {
         });
         return <Error/>
     }
+    console.log(results)
     return (
         <div>
             <AvatarMenu user={user}/>
+            <span><Back/></span>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
             <Typography className={classes.resultsTitle}> Training Results </Typography>
@@ -94,9 +108,14 @@ const CoachPlayersResults = () => {
                     <ResultCard key={result.id} index={index} results={result}/>
                 )) : null}
             </CardGroup>
+                <section className={classes.historyContainer}>
+                    <Typography className={classes.playerHistoryTitle}>Player History Analysis</Typography>
+                    <HistoryReport/>
+                </section>
                 <div className={classes.space}/>
             </div>
             <div className={classes.space}/>
+
         </div>
     )
 }

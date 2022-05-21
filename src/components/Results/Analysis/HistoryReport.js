@@ -10,10 +10,10 @@ import PositionsChart from "../../Charts/PositionsChart";
 import ChartPerPosition from "../../Charts/ChartPerPosition";
 import PChart from "../../Charts/PChart";
 import PrecentBox from "./PrecentBox";
-import Back from "../../Utils/Back";
 
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
+import Back from "../../Utils/Back";
 
 
 const useStyles = makeStyles(() => ({
@@ -64,7 +64,7 @@ const useStyles = makeStyles(() => ({
         margin: '0 auto',
         width: '75%',
         fontSize: '25px',
-        marginBottom:'2vh'
+        marginBottom: '2vh'
     }
 
 }))
@@ -116,10 +116,12 @@ const HistoryReport = () => {
     };
     return (
         <div>
-
-            <AvatarMenu user={user}/>
-            <span><Back/></span>
-            <div className={classes.space}/>
+            {user.role === 'coach' ? null : (<div>
+                    <AvatarMenu user={user}/>
+                    <span><Back/></span>
+                    <div className={classes.space}/>
+                </div>
+            )}
             <div className={classes.mainProgram}>
                 <div className={classes.graphsContainer}>
                     <section className={classes.filterBar}>

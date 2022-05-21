@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
         contrastText: "black",
         margin: "0 auto",
-        width: '45%',
+        width: '50%',
         fontSize: '30px',
     },
     programsTitle: {

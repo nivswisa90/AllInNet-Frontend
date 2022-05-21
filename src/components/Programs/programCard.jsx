@@ -100,33 +100,6 @@ const ProgramCard = (props) => {
                 pauseOnHover
             /></div>
     }
-
-    // if (props.program.isNew) {
-    //     console.log('inside',props.program.isNew)
-    //
-    //     toast.success('You have new training program from your coach!', {
-    //         position: "top-center",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: true,
-    //         draggable: true,
-    //         progress: 0,
-    //     });
-    //     return <div>
-    //         <ToastContainer
-    //             position="top-center"
-    //             autoClose={5000}
-    //             hideProgressBar={false}
-    //             newestOnTop={false}
-    //             closeOnClick
-    //             rtl={false}
-    //             pauseOnFocusLoss
-    //             draggable
-    //             pauseOnHover
-    //         /></div>
-    // }
-
     return (
         <Card className={classes.programCard}>
             <Card.Body>

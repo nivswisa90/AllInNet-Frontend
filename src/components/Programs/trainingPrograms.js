@@ -69,18 +69,6 @@ const TrainingPrograms = () => {
         return <Error/>
     }
 
-    // const [lastResult, setLastResult] = useState(null);
-    // const [alertCounter, setAlertCounter] = useState(0);
-
-    // const AlertResult = () => {
-    //     if (lastResult[0].result === 'Pass' && alertCounter !== 1) {
-    //         toast("You passed the training program!");
-    //         setAlertCounter(1)
-    //     } else if (lastResult[0].result === 'Fail' && alertCounter !== 1) {
-    //         setAlertCounter(1)
-    //         toast("You failed!");
-    //     }
-    // }
 
     return (
         <div id="trainingProgramWrapper">
