@@ -137,7 +137,6 @@ const HistoryReport = () => {
                             week</Typography>
                         {filtered && positionsFilter["All"] ? <PrecentBox results={filtered}/> : filtered ?
                             <ProgressBarPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
-                        {/*{filtered ? <PrecentBox results={filtered}/>: <LoadingTriangle/>}*/}
                     </div>
                     <div className={classes.pieContainer}>
                         {pie ? <PChart result={pie}/> : <LoadingTriangle/>}

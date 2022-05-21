@@ -3,13 +3,25 @@ import axios from "../../axios";
 
 import ImageGallery from "react-image-gallery";
 
+const images = []
+// const images = [
+//     {
+//         original: img,
+//         thumbnail: img,
+//     },
+//     {
+//         original: nextImg[0],
+//         thumbnail: nextImg[0],
+//     },
+//     {
+//         original: nextImg[0],
+//         thumbnail: nextImg[0],
+//     },
+// ];
 
 const ThrowGallery = (props) => {
-    const [img, setImg] = useState()
-    const [nextImg, setNextImg] = useState([])
+    const [img, setImg] = useState({})
     const frameList = props.frameList
-    let imagesURLs = []
-    const [newFrame, setNewFrame] = useState(false)
 
     const fetchFrame = async () => {
         axios.get(`/api/training/results/frames/${frameList[0]}`, {
@@ -19,12 +31,9 @@ const ThrowGallery = (props) => {
             }
         ).then(r => {
             const url = window.URL.createObjectURL(new Blob([r.data]));
-            setNextImg(
-                [
-                    ...nextImg, {'original': url, 'thumbnail': url}
-                ]
-            )
-            setNewFrame(true)
+            const newImg = {'original': url, 'thumbnail': url}
+
+            setImg(newImg)
             frameList.shift()
         })
     }
@@ -33,46 +42,21 @@ const ThrowGallery = (props) => {
         fetchFrame().then()
     }, [])
 
+
     useEffect(() => {
-        nextFrame()
-    }, [newFrame])
+        if(images.length < frameList.length)
+            images.push(img)
 
-
-    const nextFrame = () => {
-        axios.get(`/api/training/results/frames/${frameList[0]}`, {
-                headers: {
-                    "x-access-token": localStorage.getItem('token'),
-                }, responseType: 'blob'
-            }
-        ).then(async r => {
-            const url = window.URL.createObjectURL(new Blob([r.data]));
-            setNextImg(
-                [
-                    ...nextImg, {'original': url, 'thumbnail': url}
-                ]
-            )
-            frameList.shift()
-        })
-    }
-
-
-    // const images = [
-    //     {
-    //         original: img,
-    //         thumbnail: img,
-    //     },
-    //     {
-    //         original: nextImg[0],
-    //         thumbnail: nextImg[0],
-    //     },
-    //     {
-    //         original: nextImg[0],
-    //         thumbnail: nextImg[0],
-    //     },
-    // ];
+        if(Object.keys(images[0]).length === 0){
+            images.shift()
+        }
+        if(images.length === 1){
+            fetchFrame().then()
+        }
+    }, [img])
 
     return (<div>
-            <ImageGallery items={nextImg} onSlide={nextFrame}/>
+            <ImageGallery items={images} onSlide={fetchFrame}/>
         </div>
     )
 }
