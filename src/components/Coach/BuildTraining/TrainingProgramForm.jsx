@@ -13,11 +13,11 @@ import LoadingTriangle from "../../Utils/LoadingTriangle";
 const useStyles = makeStyles(() => ({
     trainingForm: {
         marginTop: '5vh',
-        height: '100%'
+        // height: '80%'
     },
     subTitlePositions: {
         fontFamily: 'Roboto Mono',
-        fontSize: '15px',
+        fontSize: '20px',
         margin: '0 auto',
         marginBottom: '2vh',
         marginTop: '2vh',
@@ -119,27 +119,27 @@ const TrainingProgramForm = (props) => {
             <form className={classes.trainingForm}>
                 <Grid container alignItems="center" justifyContent="center" direction="column">
                     <Grid style={{display: (!nextPage ? 'block' : 'none')}} item >
-                        <Typography className={classes.levelTitle}>Choose Level of the training program</Typography>
-                        <div className={classes.checkboxes}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox checked={easy} onChange={handleCheckbox} name="easy"/>
-                                }
-                                label="Easy"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox checked={medium} onChange={handleCheckbox} name="medium"/>
-                                }
-                                label="Medium"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox checked={hard} onChange={handleCheckbox} name="hard"/>
-                                }
-                                label="Hard"
-                            />
-                        </div>
+                        {/*<Typography className={classes.levelTitle}>Choose Level of the training program</Typography>*/}
+                        {/*<div className={classes.checkboxes}>*/}
+                        {/*    <FormControlLabel*/}
+                        {/*        control={*/}
+                        {/*            <Checkbox checked={easy} onChange={handleCheckbox} name="easy"/>*/}
+                        {/*        }*/}
+                        {/*        label="Easy"*/}
+                        {/*    />*/}
+                        {/*    <FormControlLabel*/}
+                        {/*        control={*/}
+                        {/*            <Checkbox checked={medium} onChange={handleCheckbox} name="medium"/>*/}
+                        {/*        }*/}
+                        {/*        label="Medium"*/}
+                        {/*    />*/}
+                        {/*    <FormControlLabel*/}
+                        {/*        control={*/}
+                        {/*            <Checkbox checked={hard} onChange={handleCheckbox} name="hard"/>*/}
+                        {/*        }*/}
+                        {/*        label="Hard"*/}
+                        {/*    />*/}
+                        {/*</div>*/}
 
                     </Grid>
                     <div>

@@ -14,7 +14,8 @@ import AnalysisLink from "./Results/Analysis/AnalysisLink";
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
-        background: '#FFF9F4',
+        // background: '#FFF9F4',
+        background:'white',
         borderRadius: '28px',
         opacity: '90%',
         width: '100%'

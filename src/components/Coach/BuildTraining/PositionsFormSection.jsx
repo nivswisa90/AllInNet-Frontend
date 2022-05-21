@@ -9,17 +9,16 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
     positionsSection: {
-        marginBottom:'5vh',
+        boxShadow: 'rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px',
+        marginBottom:'2vh',
         marginTop:'5vh',
         margin: '0 auto',
-        border: '0.5px solid black',
         borderRadius: '5px',
         width: '80%',
         display: 'flex',
         flexWrap: 'wrap',
         '& div': {
             margin: '0 auto',
-            // width:'40%',
             marginLeft: '3vh',
             padding: '1vh'
         }
@@ -31,7 +30,6 @@ const useStyles = makeStyles(() => ({
     subTitlePositions: {
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
-
         margin: '0 auto',
         marginBottom: '2vh',
         marginTop: '2vh',

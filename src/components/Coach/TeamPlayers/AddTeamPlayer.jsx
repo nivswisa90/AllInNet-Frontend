@@ -8,9 +8,11 @@ import {useNavigate} from "react-router-dom";
 const useStyles = makeStyles(() => ({
     searchBox: {
         margin: '0 auto',
-        width: '80%',
+        width: '85%',
         marginTop: '5vh',
-        marginBottom: '5vh'
+        marginBottom: '5vh',
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
+        borderRadius:'10px',
     },
     searchTitle: {
         fontFamily: 'Roboto Mono',
@@ -62,8 +64,6 @@ const AddTeamPlayer = () => {
         })
             .catch(err => console.log(err))
     }
-
-
     return (
         <div className={classes.searchBox}>
             <Typography className={classes.searchTitle}>
@@ -72,6 +72,9 @@ const AddTeamPlayer = () => {
             <ReactSearchBox
                 placeholder="Search for player by email"
                 value="Due"
+                inputFontColor={'grey'}
+                inputBorderColor={'#44B6EF'}
+                dropDownHoverColor={'#FFF9F4'}
                 data={players}
                 leftIcon={<>🔍</>}
                 clearOnSelect={true}

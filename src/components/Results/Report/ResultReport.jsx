@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
     mainProgram: {
         background: '#FFF9F4',
         borderRadius: '28px',
-        opacity: '90%',
+        opacity: '95%',
         width: '100%'
     },
     space:{
@@ -92,7 +92,7 @@ const ResultReport = () =>{
             <span><Back/></span>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
-                <Typography className={classes.mainTitle}> Results Report - {result.date}</Typography>
+                <Typography className={classes.mainTitle}> Results Report {result.date}</Typography>
                 <section>
                     <ReportCard result={result}/>
                 </section>

@@ -12,6 +12,13 @@ const useStyles = makeStyles(() => ({
         width: '30%',
         marginTop:'5vh',
         marginBottom:'2vh',
+    },
+    teamPlayersContainer:{
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
+        borderRadius:'10px',
+        width:'85%',
+        margin:'0 auto'
+
     }
 
 }))
@@ -33,7 +40,7 @@ const CoachPlayers = () => {
     },[])
 
     return (
-        <div>
+        <div className={classes.teamPlayersContainer}>
             <Typography className={classes.teamTitle}>My team players</Typography>
             {players ? <CoachPlayersTable rows={players}/> : null}
         </div>

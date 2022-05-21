@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
         contrastText: "black",
         marginTop:'2vh',
         margin: '0 auto',
-        width: '50%',
+        width: '60%',
         fontSize: '15px',
     },
     cardText: {

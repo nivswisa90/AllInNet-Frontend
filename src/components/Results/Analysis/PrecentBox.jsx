@@ -1,14 +1,11 @@
 import React from 'react'
 import {makeStyles} from "@material-ui/core/styles";
+import {VscArrowDown, VscArrowUp} from 'react-icons/vsc'
+import {Typography} from "@mui/material";
+
 
 const useStyles = makeStyles(() => ({
-    title:{
-        fontFamily: 'Roboto Mono',
-        margin:'0 auto',
-        width:'25%',
-        fontSize:'25px'
-    },
-    percentContainer:{
+    percentContainer: {
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'center',
@@ -16,22 +13,23 @@ const useStyles = makeStyles(() => ({
             margin: '0 auto',
             marginLeft: '3vh',
             padding: '1vh',
-            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
+            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
+            alignItems: 'center',
+            borderRadius: '5px'
         }
     }
 }))
 
-const PercentBox = () =>{
+const PercentBox = (props) => {
     const classes = useStyles()
-
-    return(
+    return (
         <div className={classes.percentContainer}>
-            <div> + %6</div>
-            <div> + %6</div>
-            <div> + %6</div>
-            <div> + %6</div>
-            <div> + %6</div>
-            <div> + %6</div>
+            <div><VscArrowUp/> %6</div>
+            <div><VscArrowDown/> %6</div>
+            <div><VscArrowDown/> %6</div>
+            <div><VscArrowDown/> %6</div>
+            <div><VscArrowUp/> %6</div>
+            <div><VscArrowUp/> %6</div>
         </div>
     )
 }

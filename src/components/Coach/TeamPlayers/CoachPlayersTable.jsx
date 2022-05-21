@@ -98,7 +98,7 @@ export default function CoachPlayersTable(props) {
     };
     return (
         <TableContainer style={{width:'80%', margin:'0 auto'}}>
-            <Table sx={{minWidth: 500, border: '2px solid black', borderRadius: '20px', marginBottom: '5vh'}}
+            <Table sx={{minWidth: 500, border: '0.5px solid #44B6EF', borderRadius: '20px', marginBottom: '5vh'}}
                    aria-label="custom pagination table">
                 <TableBody>
                     {(rowsPerPage > 0
