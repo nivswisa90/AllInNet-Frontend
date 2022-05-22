@@ -7,9 +7,9 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
     postTitle:{
         fontFamily: 'Roboto Mono',
-        fontSize: '10px',
-        width:'38%',
-        margin:'0 auto'
+        fontSize: '15px',
+        width:'50%',
+        margin:'0 auto',
     }
 }))
 const ProgressBar = (props) => {
@@ -19,7 +19,7 @@ const ProgressBar = (props) => {
     const classes = useStyles();
 
     return(
-        <div style={{ width: 190, height: 200 }}>
+        <div style={{ width: 190, height: 215 }}>
             <Typography className={classes.postTitle}>{props.pos}</Typography>
             <CircularProgressbar value={value} text={`${value}%`} styles={buildStyles({
                 rotation: 1,
