@@ -70,8 +70,8 @@ const useStyles = makeStyles(() => ({
 
 }))
 
-async function fetchResults(filter) {
-    const {data} = await axios.get(`/api/training/results/getResults/${filter}`, {
+async function fetchResults(filter, playerId) {
+    const {data} = await axios.get(`/api/training/results/getResults/${playerId}/${filter}`, {
         headers: {
             "x-access-token": localStorage.getItem('token')
         }
@@ -80,11 +80,12 @@ async function fetchResults(filter) {
 }
 
 
-const HistoryReport = () => {
+const HistoryReport = (props) => {
     const [user] = useOutletContext()
     const classes = useStyles()
     const [filtered, setFiltered] = useState()
     const [pie, setPie] = useState()
+    const playerId = user.role === 'coach' ? props.playerId: user.id
     const [positionsFilter, setPositionsFilter] = useState({
         "All": true
     })
@@ -100,7 +101,7 @@ const HistoryReport = () => {
 
     useEffect(() => {
         const pos = Object.keys(positionsFilter)[0]
-        fetchResults(pos).then(doc => {
+        fetchResults(pos, playerId).then(doc => {
             setFiltered(doc)
             setPie(doc)
         })
@@ -111,7 +112,7 @@ const HistoryReport = () => {
         setPositionsFilter({
             [val]: true
         });
-        fetchResults(val).then(doc => {
+        fetchResults(val, playerId).then(doc => {
             setFiltered(doc)
         })
     };
