@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from "../../axios";
 
 import ImageGallery from "react-image-gallery";
+import {useLocation} from "react-router-dom";
 
 const images = []
 // const images = [
@@ -22,9 +23,14 @@ const images = []
 const ThrowGallery = (props) => {
     const [img, setImg] = useState({})
     const frameList = props.frameList
+    const frameListLength = frameList.length
+    let location = useLocation();
+
+    const playerId = location.state.result.playerId
+    const trainingProgramId = location.state.result.trainingProgramId
 
     const fetchFrame = async () => {
-        axios.get(`/api/training/results/frames/${frameList[0]}`, {
+        axios.get(`/api/training/results/frames/${playerId}/${trainingProgramId}/${frameList[0]}`, {
                 headers: {
                     "x-access-token": localStorage.getItem('token'),
                 }, responseType: 'blob'
@@ -44,19 +50,20 @@ const ThrowGallery = (props) => {
 
 
     useEffect(() => {
-        if(images.length < frameList.length)
+        if (images.length < frameListLength) {
             images.push(img)
+        }
 
-        if(Object.keys(images[0]).length === 0){
+        if (Object.keys(images[0]).length === 0) {
             images.shift()
         }
-        if(images.length === 1){
+        if (images.length === 1 && frameList[0]) {
             fetchFrame().then()
         }
     }, [img])
 
     return (<div>
-            <ImageGallery items={images} onSlide={fetchFrame}/>
+            <ImageGallery items={images} />
         </div>
     )
 }

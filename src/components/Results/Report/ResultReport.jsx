@@ -17,8 +17,10 @@ import Header from "../../Utils/Header";
 
 
 
-async function fetchFrameList() {
-    const {data} = await axios.get('/api/training/results/frameslist', {
+async function fetchFrameList({ queryKey }) {
+    const [_, playerId, trainingProgramId] = queryKey
+
+    const {data} = await axios.get(`/api/training/results/frameslist/${playerId}/${trainingProgramId}`, {
         headers: {
             "x-access-token": localStorage.getItem('token')
         }
@@ -72,8 +74,11 @@ const ResultReport = () =>{
     let location = useLocation();
     const [user] = useOutletContext()
 
+    const playerId = location.state.result.playerId
+
     const result = location.state.result
-    const {data, error, isError, isLoading} = useQuery('frames', fetchFrameList, {refetchInterval: 5000})
+    const trainingProgramId = result.trainingProgramId
+    const {data, error, isError, isLoading} = useQuery(['frames', playerId, trainingProgramId], fetchFrameList, {refetchInterval: 5000})
     if (isLoading)
         return <LoadingTriangle/>
 
