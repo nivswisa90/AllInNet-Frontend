@@ -109,7 +109,7 @@ const CoachPlayersResults = () => {
             </CardGroup>
                 <section className={classes.historyContainer}>
                     <Typography className={classes.playerHistoryTitle}>Player History Analysis</Typography>
-                    <HistoryReport/>
+                    {playerName.id? <HistoryReport playerId={playerName.id}/>: <LoadingTriangle/>}
                 </section>
                 <div className={classes.space}/>
             </div>
