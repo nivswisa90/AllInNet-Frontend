@@ -13,7 +13,6 @@ import PrecentBox from "./PrecentBox";
 
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
-import Back from "../../Utils/Back";
 import ProgressBarPerPosition from "./Charts/ProgressBarPerPosition";
 
 

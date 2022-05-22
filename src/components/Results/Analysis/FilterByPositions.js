@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import FormControl from "@mui/material/FormControl";
 
 import {makeStyles} from "@material-ui/core/styles";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+
 const useStyles = makeStyles(() => ({
     filterBar: {
         border: '0.2px solid black',
@@ -15,10 +16,10 @@ const useStyles = makeStyles(() => ({
     filterPosTitle: {
         fontFamily: 'Roboto Mono',
         fontSize: '30px',
-        marginLeft:'20vh'
+        marginLeft: '20vh'
     },
-    barContainer:{
-        width:'100%'
+    barContainer: {
+        width: '100%'
     }
 }))
 
@@ -28,8 +29,8 @@ const FilterByPositions = (props) => {
 
     return (
         <div>
-            <FormControl sx={{ m: 1, minWidth: 80 }}>
-                <InputLabel >Positions</InputLabel>
+            <FormControl sx={{m: 1, minWidth: 80}}>
+                <InputLabel>Positions</InputLabel>
                 <Select
                     labelId="demo-simple-select-autowidth-label"
                     id="demo-simple-select-autowidth"

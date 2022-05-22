@@ -4,7 +4,6 @@ import {makeStyles} from "@material-ui/core/styles"
 import 'react-toastify/dist/ReactToastify.css'
 import TrainingPrograms from "./Programs/trainingPrograms"
 import TrainingResults from "./Results/TrainingResults"
-import AvatarMenu from "./Utils/AvatarMenu"
 import {useOutletContext} from "react-router-dom"
 import CourtModal from "./Utils/CourtModal";
 import CoachPlayers from "./Coach/TeamPlayers/CoachPlayers";
