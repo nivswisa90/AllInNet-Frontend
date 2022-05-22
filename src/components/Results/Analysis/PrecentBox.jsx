@@ -26,22 +26,14 @@ const useStyles = makeStyles(() => ({
 const PercentBox = (props) => {
     const classes = useStyles()
     const positions = props.results.positions
-
     return (
         <div className={classes.percentContainer}>
-
-            <ProgressBar success={parseInt(positions.successPos1)} counter={parseInt(positions.counterPos1)}/>
-            <ProgressBar success={parseInt(positions.successPos2)} counter={parseInt(positions.counterPos2)}/>
-            <ProgressBar success={parseInt(positions.successPos3)} counter={parseInt(positions.counterPos3)}/>
-            <ProgressBar success={parseInt(positions.successPos4)} counter={parseInt(positions.counterPos4)}/>
-            <ProgressBar success={parseInt(positions.successPos5)} counter={parseInt(positions.counterPos5)}/>
-            <ProgressBar success={parseInt(positions.successPos6)} counter={parseInt(positions.counterPos6)}/>
-            {/*<div><VscArrowUp/> %6</div>*/}
-            {/*<div><VscArrowDown/> %6</div>*/}
-            {/*<div><VscArrowDown/> %6</div>*/}
-            {/*<div><VscArrowDown/> %6</div>*/}
-            {/*<div><VscArrowUp/> %6</div>*/}
-            {/*<div><VscArrowUp/> %6</div>*/}
+            <ProgressBar pos={'Position 1'} success={parseInt(positions.successPos1)} counter={parseInt(positions.counterPos1)}/>
+            <ProgressBar pos={'Position 2'} success={parseInt(positions.successPos2)} counter={parseInt(positions.counterPos2)}/>
+            <ProgressBar pos={'Position 3'} success={parseInt(positions.successPos3)} counter={parseInt(positions.counterPos3)}/>
+            <ProgressBar pos={'Position 4'} success={parseInt(positions.successPos4)} counter={parseInt(positions.counterPos4)}/>
+            <ProgressBar pos={'Position 5'} success={parseInt(positions.successPos5)} counter={parseInt(positions.counterPos5)}/>
+            <ProgressBar pos={'Position 6'} success={parseInt(positions.successPos6)} counter={parseInt(positions.counterPos6)}/>
         </div>
     )
 }

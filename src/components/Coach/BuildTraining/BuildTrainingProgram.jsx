@@ -3,8 +3,10 @@ import {makeStyles} from "@material-ui/core/styles";
 import Box from "@mui/material/Box";
 import {Typography} from "@mui/material";
 import TrainingProgramForm from "./TrainingProgramForm";
-import { useLocation} from "react-router-dom";
+import {useLocation, useOutletContext} from "react-router-dom";
 import Back from "../../Utils/Back";
+import CourtModal from "../../Utils/CourtModal";
+import Header from "../../Utils/Header";
 const useStyles = makeStyles(() => ({
     container: {
         // height: '100%'
@@ -36,19 +38,26 @@ const useStyles = makeStyles(() => ({
     space:{
         height:'500px'
     },
+    court:{
+        marginTop:'5vh'
+    }
 }))
 
 const BuildTrainingProgram = () =>{
     const classes = useStyles()
     const location = useLocation()
     const id = location.state.id
-
+    const [user] = useOutletContext()
     return (
         <div className={classes.container}>
+            <Header user={user}/>
             <div className={classes.space}/>
             <Box className={classes.landingBox}>
                 <div className={classes.titleBox}>
                     <Typography className={classes.mainTitle}>New training program</Typography>
+                    <section className={classes.court}>
+                        <CourtModal/>
+                    </section>
                     <TrainingProgramForm id={id}/>
                 </div>
             </Box>
