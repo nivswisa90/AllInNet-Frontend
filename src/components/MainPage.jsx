@@ -15,10 +15,11 @@ import Header from "./Utils/Header";
 const useStyles = makeStyles(() => ({
     mainProgram: {
         // background: '#FFF9F4',
-        background:'white',
+        background: 'white',
         borderRadius: '28px',
         opacity: '90%',
-        width: '100%'
+        width: '100%',
+        margin: '0 auto'
     },
     mainTitle: {
         fontFamily: 'Roboto Mono',
@@ -41,6 +42,11 @@ const useStyles = makeStyles(() => ({
     space: {
         height: '180px'
     },
+    description: {
+        display: 'flex',
+        position: 'relative',
+        alignItems: 'center'
+    }
 
 }))
 const MainPage = () => {
@@ -55,8 +61,10 @@ const MainPage = () => {
                 <div className={classes.mainProgram}>
                     <Typography className={classes.mainTitle}> {`Welcome Back ${user.name}`} </Typography>
                     {user.role === 'player' ? <div>
-                        <AnalysisLink/>
-                        <CourtModal/>
+                        <div className={classes.description}>
+                            <AnalysisLink/>
+                            <CourtModal/>
+                        </div>
                         <TrainingPrograms/>
                         <TrainingResults/>
                     </div> : <div>

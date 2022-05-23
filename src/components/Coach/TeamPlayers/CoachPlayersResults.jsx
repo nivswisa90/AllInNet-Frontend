@@ -40,9 +40,9 @@ const useStyles = makeStyles(() => ({
     resultsTitle: {
         fontFamily: 'Roboto Mono',
         fontSize: '30px',
-        marginTop: '2vh',
         margin: '0 auto',
-        width: '40%'
+        marginTop: '2vh',
+        width: '50%'
     },
     historyContainer:{
         marginTop:'4vh',

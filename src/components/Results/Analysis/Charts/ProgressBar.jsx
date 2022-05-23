@@ -15,18 +15,19 @@ const useStyles = makeStyles(() => ({
 const ProgressBar = (props) => {
     const success = props.success
     const counter = props.counter === 0 ? 1 : props.counter
-    const value = Math.round(success/counter*100)
+    const progressValue = Math.round(success/counter*100)
+    const color = progressValue > 50 ? '#00b300': '#f88'
     const classes = useStyles();
 
     return(
         <div style={{ width: 190, height: 215 }}>
             <Typography className={classes.postTitle}>{props.pos}</Typography>
-            <CircularProgressbar value={value} text={`${value}%`} styles={buildStyles({
+            <CircularProgressbar progressValue={progressValue} text={`${progressValue}%`} styles={buildStyles({
                 rotation: 1,
                 strokeLinecap: 'round',
                 textSize: '15px',
-                pathColor: `rgba(62, 152, 199, ${value / 100})`,
-                textColor: '#f88',
+                pathColor: `rgba(62, 152, 199, ${progressValue / 100})`,
+                textColor: color,
                 trailColor: '#d6d6d6',
                 backgroundColor: '#3e98c7',
             })}/>

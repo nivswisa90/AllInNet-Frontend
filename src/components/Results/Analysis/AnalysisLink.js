@@ -6,9 +6,10 @@ import {useNavigate} from 'react-router-dom';
 const useStyles = makeStyles(() => ({
     analysisContainer: {
         margin: '0 auto',
-        width: '23%',
+        width: '30%',
         marginBottom: '2vh',
-        marginTop: '2vh'
+        marginTop: '2vh',
+        display: 'inline-block',
     }
 }))
 const AnalysisLink = () => {

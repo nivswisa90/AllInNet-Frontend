@@ -106,6 +106,10 @@ const HistoryReport = (props) => {
         })
     }, [positionsFilter])
 
+    useEffect(() => {
+        setPositionsFilter({"All": true})
+    }, [])
+
     const handleCheckbox = (val) => {
         setFiltered()
         setPositionsFilter({
@@ -133,8 +137,7 @@ const HistoryReport = (props) => {
                             <ChartPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
                     </div>
                     <div className={classes.percentageContainer}>
-                        <Typography className={classes.precentageTitle}>Improvement ratio at the last
-                            week</Typography>
+                        <Typography className={classes.precentageTitle}>Effectiveness by position</Typography>
                         {filtered && positionsFilter["All"] ? <PrecentBox results={filtered}/> : filtered ?
                             <ProgressBarPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
                     </div>

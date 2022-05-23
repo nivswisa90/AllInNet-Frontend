@@ -30,10 +30,10 @@ const useStyles = makeStyles(() => ({
     },
     resultsTitle: {
         fontFamily: 'Roboto Mono',
-        fontSize: '15px',
-        marginTop: '2vh',
+        fontSize: '30px',
         margin: '0 auto',
-        width: '25%'
+        marginTop: '2vh',
+        width: '50%'
     }
 }))
 const TrainingResults = () => {

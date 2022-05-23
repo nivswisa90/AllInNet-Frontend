@@ -28,17 +28,17 @@ const useStyles = makeStyles(() => ({
     programsContainer: {
         marginTop: '2vh',
         margin: '0 auto',
-        width: '80%',
+        width: '90%',
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'center'
     },
     programsTitle: {
         fontFamily: 'Roboto Mono',
-        fontSize: '15px',
+        fontSize: '30px',
         margin: '0 auto',
         marginTop: '2vh',
-        width: '25%'
+        width: '50%'
     }
 }))
 

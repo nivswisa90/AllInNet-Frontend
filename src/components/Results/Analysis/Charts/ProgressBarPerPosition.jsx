@@ -7,7 +7,7 @@ const ProgressBarPerPosition = (props) => {
     const value = Math.round(success/total*100)
 
     return(
-        <div style={{ width: 200, height: 200 }}>
+        <div style={{ width: 200, height: 200, margin:'0 auto' }}>
             <CircularProgressbar value={value} text={`${value}%`}/>
         </div>
     )

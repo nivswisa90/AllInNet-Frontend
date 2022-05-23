@@ -13,13 +13,13 @@ const useStyles = makeStyles(() => ({
         borderRadius: '10px',
         margin: '5px',
         width: '30%',
-        boxShadow:'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
 
-},
+    },
     cardTitle: {
         fontFamily: 'Roboto Mono',
         contrastText: "black",
-        marginTop:'2vh',
+        marginTop: '2vh',
         margin: '0 auto',
         width: '60%',
         fontSize: '15px',
@@ -54,7 +54,7 @@ const ResultCard = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
-                <Link to={'/report'} state={{result:props.results}}>
+                <Link to={'/report'} state={{result: props.results}}>
                     <VscGraphLine size={30}/>
                 </Link>
             </Card.Footer>

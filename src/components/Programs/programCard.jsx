@@ -20,23 +20,24 @@ const useStyles = makeStyles(() => ({
         border: '1px solid black',
         borderRadius: '10px',
         margin: '5px',
-        width: '30%',
-        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
+        width: '40%',
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
     },
     cardTitle: {
         fontFamily: 'Roboto Mono',
         contrastText: "black",
         margin: '0 auto',
-        width: '20%',
-        fontSize: '15px',
+        width: '60%',
+        fontSize: '20px',
     },
     cardText: {
         fontFamily: 'Roboto Mono',
         margin: '0 auto',
-        width: '50%',
-        fontSize: '10px',
+        width: '65%',
+        fontSize: '15px',
         "& span": {
-            display: 'block'
+            display: 'block',
+            marginTop: 5
         }
     },
     startBtn: {
@@ -44,7 +45,6 @@ const useStyles = makeStyles(() => ({
         width: '35%',
     },
     notification: {
-
         backgroundImage: `url(${redNotfication})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
@@ -105,16 +105,16 @@ const ProgramCard = (props) => {
             <Card.Body>
                 <span>{props.isNew}</span>
                 <Card.Title className={classes.cardTitle}>
-                    {props.program.level}
-                    {props.program.isNew ? <NewReleasesIcon style={{position: 'relative', right:0, top:0}} color={'error'}/> : null}
+                    Level:{program.level}
+                    {program.isNew ? <NewReleasesIcon style={{position: 'relative', right:0, top:0}} color={'error'}/> : null}
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
-                    <span>Position #1 {props.program.positions.pos1}</span>
-                    <span>position #2 {props.program.positions.pos2}</span>
-                    <span>Position #3 {props.program.positions.pos3}</span>
-                    <span>Position #4 {props.program.positions.pos4}</span>
-                    <span>Position #5 {props.program.positions.pos5}</span>
-                    <span>Position #6 {props.program.positions.pos6}</span>
+                    <span>Position 1: {program.positions.minReqPos1}/{program.positions.pos1}</span>
+                    <span>position 2: {program.positions.minReqPos2}/{program.positions.pos2}</span>
+                    <span>Position 3: {program.positions.minReqPos3}/{program.positions.pos3}</span>
+                    <span>Position 4: {program.positions.minReqPos4}/{program.positions.pos4}</span>
+                    <span>Position 5: {program.positions.minReqPos5}/{program.positions.pos5}</span>
+                    <span>Position 6: {program.positions.minReqPos6}/{program.positions.pos6}</span>
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>

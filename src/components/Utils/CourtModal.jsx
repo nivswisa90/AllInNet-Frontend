@@ -28,8 +28,11 @@ const useStyles = makeStyles(() => ({
         fontSize: '20px',
     },
     modalLocation:{
-        margin:'0 auto',
-        width:'30%'
+        margin: '0 auto',
+        width: '40%',
+        marginBottom: '2vh',
+        marginTop: '2vh',
+        display: 'inline-block',
     }
 }))
 
@@ -50,7 +53,7 @@ const CourtModal = () => {
             >
                 <Box sx={style}>
                     <Typography className={classes.desc} id="modal-modal-title" variant="h6" component="h2">
-                       Each colored circle represent the position you should throw from!
+                       Each colored circle represents the position you should throw from!
                     </Typography>
                     <div className={classes.courtPositions}/>
                 </Box>

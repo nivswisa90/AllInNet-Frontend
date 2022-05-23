@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
     loading: {
         position: 'absolute',
         top: '60vh',
-        left: '25vh'
+        left: '50vh',
     }
 }))
 const LoadingTriangle = () => {
