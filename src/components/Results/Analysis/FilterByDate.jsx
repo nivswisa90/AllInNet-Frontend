@@ -24,28 +24,24 @@ const useStyles = makeStyles(() => ({
 }))
 
 
-const FilterByPositions = (props) => {
+const FilterByDate = (props) => {
     const classes = useStyles()
 
     return (
         <div style={{display:'inline-block'}}>
             <FormControl sx={{m: 1, minWidth: 80}}>
-                <InputLabel>Positions</InputLabel>
+                <InputLabel>Date</InputLabel>
                 <Select
                     labelId="demo-simple-select-autowidth-label"
                     id="demo-simple-select-autowidth"
-                    value={props.selected}
-                    onChange={props.handlePositionChange}
+                    value={props.selectedDate}
+                    onChange={props.handleDateChange}
                     autoWidth
                     label="position"
                     defaultValue='All'
                 >
-                    <MenuItem value={'Position1'}>Position 1</MenuItem>
-                    <MenuItem value={'Position2'}>Position 2</MenuItem>
-                    <MenuItem value={'Position3'}>Position 3</MenuItem>
-                    <MenuItem value={'Position4'}>Position 4</MenuItem>
-                    <MenuItem value={'Position5'}>Position 5</MenuItem>
-                    <MenuItem value={'Position6'}>Position 6</MenuItem>
+                    <MenuItem value={'7 days'}>7 days</MenuItem>
+                    <MenuItem value={'30 days'}>30 days</MenuItem>
                     <MenuItem value={'All'}>All</MenuItem>
                 </Select>
             </FormControl>
@@ -53,4 +49,4 @@ const FilterByPositions = (props) => {
 
     )
 }
-export default FilterByPositions
+export default FilterByDate

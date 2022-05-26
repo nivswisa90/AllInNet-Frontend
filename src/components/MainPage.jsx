@@ -45,7 +45,9 @@ const useStyles = makeStyles(() => ({
     description: {
         display: 'flex',
         position: 'relative',
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: '0 auto',
+        width: '80%',
     }
 
 }))

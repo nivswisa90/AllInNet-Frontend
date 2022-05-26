@@ -45,6 +45,9 @@ const ThrowGallery = (props) => {
     }
 
     useEffect(() => {
+        setImg({})
+        images.slice(0, images.length)
+        console.log(images)
         fetchFrame().then()
     }, [])
 
@@ -57,9 +60,9 @@ const ThrowGallery = (props) => {
         if (Object.keys(images[0]).length === 0) {
             images.shift()
         }
-        if (images.length === 1 && frameList[0]) {
-            fetchFrame().then()
-        }
+        // if (images.length > 1 && frameList[0]) {
+        //     fetchFrame().then()
+        // }
     }, [img])
 
     return (<div>

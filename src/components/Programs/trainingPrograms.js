@@ -20,6 +20,9 @@ async function fetchPrograms() {
             "x-access-token": localStorage.getItem('token')
         }
     })
+    data.sort(function (x, y) {
+        return (x.isNew === y.isNew) ? 0 : x ? -1 : 1
+    })
     return data
 }
 

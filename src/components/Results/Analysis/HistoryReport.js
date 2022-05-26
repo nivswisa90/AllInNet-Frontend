@@ -14,6 +14,7 @@ import PrecentBox from "./PrecentBox";
 import {makeStyles} from "@material-ui/core/styles";
 import {Typography} from "@mui/material";
 import ProgressBarPerPosition from "./Charts/ProgressBarPerPosition";
+import FilterByDate from "./FilterByDate";
 
 
 const useStyles = makeStyles(() => ({
@@ -57,9 +58,9 @@ const useStyles = makeStyles(() => ({
     },
     filterBar: {
         width: '90%',
-        margin: '0 auto'
+        margin: '0 auto',
     },
-    precentageTitle: {
+    percentageTitle: {
         fontFamily: 'Roboto Mono',
         margin: '0 auto',
         width: '75%',
@@ -84,23 +85,33 @@ const HistoryReport = (props) => {
     const classes = useStyles()
     const [filtered, setFiltered] = useState()
     const [pie, setPie] = useState()
-    const playerId = user.role === 'coach' ? props.playerId: user.id
+    const playerId = user.role === 'coach' ? props.playerId : user.id
     const [positionsFilter, setPositionsFilter] = useState({
         "All": true
     })
-    const [selected, setSelected] = useState('All');
+    const [selectedPosition, setSelectedPosition] = useState('All');
+    const [selectedDate, setSelectedDate] = useState('All')
 
-    const handleChange = (event) => {
-        setSelected(event.target.value);
+    const handlePositionChange = (event) => {
+        setSelectedPosition(event.target.value);
     };
+    
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value)
+    }
 
     useEffect(() => {
-        handleCheckbox(selected)
-    }, [selected])
+        handlePositionCheckBox(selectedPosition)
+    }, [selectedPosition])
+
+    useEffect(() => {
+        handleDateCheckBox(selectedDate)
+    }, [selectedDate])
 
     useEffect(() => {
         const pos = Object.keys(positionsFilter)[0]
-        fetchResults(pos, playerId).then(doc => {
+        const date = 'toAdd'
+        fetchResults(pos, playerId, date).then(doc => {
             setFiltered(doc)
             setPie(doc)
         })
@@ -110,7 +121,7 @@ const HistoryReport = (props) => {
         setPositionsFilter({"All": true})
     }, [])
 
-    const handleCheckbox = (val) => {
+    const handlePositionCheckBox = (val) => {
         setFiltered()
         setPositionsFilter({
             [val]: true
@@ -119,6 +130,11 @@ const HistoryReport = (props) => {
             setFiltered(doc)
         })
     };
+
+    const handleDateCheckBox = (val) => {
+        console.log(filtered)
+    }
+
     return (
         <div>
             {user.role === 'coach' ? null : (<div>
@@ -129,15 +145,15 @@ const HistoryReport = (props) => {
             <div className={classes.mainProgram}>
                 <div className={classes.graphsContainer}>
                     <section className={classes.filterBar}>
-                        <FilterByPositions handleCheckbox={handleCheckbox} handleChange={handleChange}
-                                           selected={selected}/>
+                        <FilterByPositions handlePositionChange={handlePositionChange} selectedPosition={selectedPosition}/>
+                        <FilterByDate handleDateChange={handleDateChange} selectedDate={selectedDate}/>
                     </section>
                     <div className={classes.chartContainer}>
                         {filtered && positionsFilter["All"] ? <PositionsChart result={filtered}/> : filtered ?
                             <ChartPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
                     </div>
                     <div className={classes.percentageContainer}>
-                        <Typography className={classes.precentageTitle}>Effectiveness by position</Typography>
+                        <Typography className={classes.percentageTitle}>Effectiveness by position</Typography>
                         {filtered && positionsFilter["All"] ? <PrecentBox results={filtered}/> : filtered ?
                             <ProgressBarPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
                     </div>
