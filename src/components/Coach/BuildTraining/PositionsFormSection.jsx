@@ -9,9 +9,8 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
     positionsSection: {
-        boxShadow: 'rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px',
-        marginBottom:'2vh',
-        marginTop:'5vh',
+        marginBottom: '2vh',
+        marginTop: '5vh',
         margin: '0 auto',
         borderRadius: '5px',
         width: '80%',
@@ -20,33 +19,46 @@ const useStyles = makeStyles(() => ({
         '& div': {
             margin: '0 auto',
             marginLeft: '3vh',
-            padding: '1vh'
+            marginTop:'3%',
+            padding: '1vh',
+            width: '25%'
         }
     },
     positionTitles: {
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
+        fontWeight:'600'
     },
     subTitlePositions: {
         fontFamily: 'Roboto Mono',
         fontSize: '15px',
         margin: '0 auto',
-        marginBottom: '2vh',
-        marginTop: '2vh',
         width: '60%'
+    },
+    subPositionTitles:{
+        fontFamily: 'Roboto Mono',
+        fontSize: '13px',
+    },
+    minAndTotalContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: '0 auto',
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 9px -2px, rgba(0, 0, 0, 0.3) 0px 3px 0px -3px',
+        borderRadius:'10%',
     }
 }))
 
 
 const PositionsFormSection = (props) => {
     const classes = useStyles()
-    const {posCounter,setPosCounter,minCounter,setMinCounter, next } = props
+    const {posCounter, setPosCounter} = props
 
-
-    const changePos = (pos, method) => {
+    const changePos = (pos, id, method, mode) => {
         let value
-        if (!next) {
-            value = posCounter[pos]
+        if (mode === 'total') {
+            value = posCounter[id].total
             method === 'increment' ? value++ : (
                 value > 0 ? value-- : toast.error('Unable to do less then 0!', {
                     position: "top-center",
@@ -58,75 +70,52 @@ const PositionsFormSection = (props) => {
                     progress: undefined,
                 })
             )
-            setPosCounter({...posCounter, [pos]: value})
+            setPosCounter({...posCounter, [id]: {...posCounter[id], total: value}})
         } else {
-            value = minCounter[pos]
-            if (method === 'increment') {
-                if (value < posCounter[pos]) {
-                    value++
-                    setMinCounter({...minCounter, [pos]: value})
-                }
-                else{
-                    toast.error('Cannot set minimum more then the position counter!', {
-                        position: "top-center",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: 0,
-                    });
-                }
-            } else {
-                if (value > 0) {
-                    value--
-                    setMinCounter({...minCounter, [pos]: value})
-                } else {
-                    toast.error('Cannot set minimum less then 0!', {
-                        position: "top-center",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: 0,
-                    });
-                }
-            }
+            value = posCounter[id].minimum
+            method === 'increment' ? value++ : (
+                value > 0 ? value-- : toast.error('Unable to do less then 0!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+            )
+            setPosCounter({...posCounter, [id]: {...posCounter[id], minimum: value}})
         }
     }
 
-
     return (
         <Grid className={classes.positionsSection}>
-            {!next ?
-                Object.keys(posCounter).map((position, index) => {
+            {posCounter ?
+                Object.entries(posCounter).map((position, index) => {
                     return (
-                        <div key={index}>
-                            <Typography className={classes.positionTitles}>{position}</Typography>
-                            <IconButton
-                                onClick={() => (changePos(position, 'decrement'))}><VscChevronDown/></IconButton>
-                            <span>{posCounter[position]}</span>
-                            <IconButton
-                                onClick={() => (changePos(position, 'increment'))}><VscChevronUp/></IconButton>
+                        <div key={index} className={classes.minAndTotalContainer}>
+                            <Typography className={classes.positionTitles}>{position[1].name}</Typography>
+                            <section>
+                                <Typography className={classes.subPositionTitles}>Total</Typography>
+                                <IconButton
+                                    onClick={() => (changePos(position[1], index, 'decrement', 'total'))}><VscChevronDown/></IconButton>
+                                <span>{posCounter[index].total}</span>
+                                <IconButton
+                                    onClick={() => (changePos(position[1], index, 'increment', 'total'))}><VscChevronUp/></IconButton>
+                            </section>
+                            <section>
+                                <Typography className={classes.subPositionTitles}>Minimum</Typography>
+                                <IconButton
+                                    onClick={() => (changePos(position[1], index, 'decrement', 'min'))}><VscChevronDown/></IconButton>
+                                <span>{posCounter[index].minimum}</span>
+                                <IconButton
+                                    onClick={() => (changePos(position[1], index, 'increment', 'min'))}><VscChevronUp/></IconButton>
+                            </section>
                         </div>
                     )
                 }) :
-                (Object.keys(minCounter).map((position, index) => {
-                    return (
-                        <div key={index}>
-                            <Typography className={classes.positionTitles}>{position}</Typography>
-                            <IconButton
-                                onClick={() => (changePos(position, 'decrement'))}><VscChevronDown/></IconButton>
-                            <span>{minCounter[position]}/{posCounter[position]}</span>
-                            <IconButton
-                                onClick={() => (changePos(position, 'increment'))}><VscChevronUp/></IconButton>
-                        </div>
-
-                    )
-                }))
+                null
             }
-
         </Grid>)
 
 

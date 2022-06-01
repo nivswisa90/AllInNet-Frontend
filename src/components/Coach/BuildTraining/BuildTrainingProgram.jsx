@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     landingBox: {
         margin:'0 auto',
         width: '550px',
-        height: '550px',
+        height: '750px',
         background: '#FEFEFE',
         borderRadius: '23px',
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
@@ -38,9 +38,7 @@ const useStyles = makeStyles(() => ({
     space:{
         height:'500px'
     },
-    court:{
-        marginTop:'5vh'
-    }
+
 }))
 
 const BuildTrainingProgram = () =>{
@@ -55,9 +53,6 @@ const BuildTrainingProgram = () =>{
             <Box className={classes.landingBox}>
                 <div className={classes.titleBox}>
                     <Typography className={classes.mainTitle}>New training program</Typography>
-                    <section className={classes.court}>
-                        <CourtModal/>
-                    </section>
                     <TrainingProgramForm id={id}/>
                 </div>
             </Box>

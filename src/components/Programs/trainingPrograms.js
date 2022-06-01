@@ -78,7 +78,7 @@ const TrainingPrograms = () => {
             <Typography className={classes.programsTitle}> Training Programs </Typography>
             <CardGroup className={classes.programsContainer}>
                 {programs ? programs.map((program, index) => (
-                    <ProgramCard key={program.id} index={index} program={program} isNew={program.isNew}/>
+                    <ProgramCard key={program.id} index={index} program={program} isNew={program.isNew} title={program.title}/>
                 )) : null}
             </CardGroup>
         </div>

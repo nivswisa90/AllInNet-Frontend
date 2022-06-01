@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import court from '../../media/courtPositions.jpeg'
 import {makeStyles} from "@material-ui/core/styles";
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -20,14 +21,14 @@ const useStyles = makeStyles(() => ({
     courtPositions: {
         backgroundImage: `url(${court})`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition:'center',
+        backgroundPosition: 'center',
         height: '400px',
     },
-    desc:{
+    desc: {
         fontFamily: 'Roboto Mono',
         fontSize: '20px',
     },
-    modalLocation:{
+    modalLocation: {
         margin: '0 auto',
         width: '40%',
         marginBottom: '2vh',
@@ -44,7 +45,8 @@ const CourtModal = () => {
 
     return (
         <div className={classes.modalLocation}>
-            <Button onClick={handleOpen} variant="outlined">Positions Descriptions</Button>
+            <Button style={{
+                color: '#44B6EF', fontFamily: 'Roboto Mono'}} onClick={handleOpen} variant="outlined">Positions Descriptions</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -53,7 +55,7 @@ const CourtModal = () => {
             >
                 <Box sx={style}>
                     <Typography className={classes.desc} id="modal-modal-title" variant="h6" component="h2">
-                       Each colored circle represents the position you should throw from!
+                        Each colored circle represents the position you should throw from!
                     </Typography>
                     <div className={classes.courtPositions}/>
                 </Box>
