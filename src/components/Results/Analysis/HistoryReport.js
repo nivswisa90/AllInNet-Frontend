@@ -70,8 +70,8 @@ const useStyles = makeStyles(() => ({
 
 }))
 
-async function fetchResults(filter, playerId) {
-    const {data} = await axios.get(`/api/training/results/getResults/${playerId}/${filter}`, {
+async function fetchResults(filter, playerId, date) {
+    const {data} = await axios.get(`/api/training/results/getResults/${playerId}/${filter}/${date}`, {
         headers: {
             "x-access-token": localStorage.getItem('token')
         }
@@ -89,6 +89,9 @@ const HistoryReport = (props) => {
     const [positionsFilter, setPositionsFilter] = useState({
         "All": true
     })
+    const [dateFilter, setDateFilter] = useState({
+        "All": true
+    })
     const [selectedPosition, setSelectedPosition] = useState('All');
     const [selectedDate, setSelectedDate] = useState('All')
 
@@ -102,6 +105,9 @@ const HistoryReport = (props) => {
 
     useEffect(() => {
         handlePositionCheckBox(selectedPosition)
+        fetchResults(positionsFilter, playerId, dateFilter).then(doc => {
+            setFiltered(doc)
+        })
     }, [selectedPosition])
 
     useEffect(() => {
@@ -110,15 +116,16 @@ const HistoryReport = (props) => {
 
     useEffect(() => {
         const pos = Object.keys(positionsFilter)[0]
-        const date = 'toAdd'
+        const date = Object.keys(dateFilter)[0]
         fetchResults(pos, playerId, date).then(doc => {
             setFiltered(doc)
             setPie(doc)
         })
-    }, [positionsFilter])
+    }, [positionsFilter, dateFilter])
 
     useEffect(() => {
         setPositionsFilter({"All": true})
+        setDateFilter({"All": true})
     }, [])
 
     const handlePositionCheckBox = (val) => {
@@ -126,13 +133,19 @@ const HistoryReport = (props) => {
         setPositionsFilter({
             [val]: true
         });
-        fetchResults(val, playerId).then(doc => {
-            setFiltered(doc)
-        })
+        // fetchResults(val, playerId, dateFilter).then(doc => {
+        //     setFiltered(doc)
+        // })
     };
 
     const handleDateCheckBox = (val) => {
-        console.log(filtered)
+        setFiltered()
+        setDateFilter({
+            [val]: true
+        })
+        // fetchResults(positionsFilter, playerId, val).then(doc => {
+        //     setFiltered(doc)
+        // })
     }
 
     return (

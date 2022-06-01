@@ -37,6 +37,7 @@ const ThrowGallery = (props) => {
             }
         ).then(r => {
             const url = window.URL.createObjectURL(new Blob([r.data]));
+            console.log(url)
             const newImg = {'original': url, 'thumbnail': url}
 
             setImg(newImg)
@@ -47,8 +48,7 @@ const ThrowGallery = (props) => {
     useEffect(() => {
         setImg({})
         images.slice(0, images.length)
-        console.log(images)
-        fetchFrame().then()
+        // fetchFrame().then()
     }, [])
 
 
@@ -60,6 +60,7 @@ const ThrowGallery = (props) => {
         if (Object.keys(images[0]).length === 0) {
             images.shift()
         }
+        fetchFrame().then()
         // if (images.length > 1 && frameList[0]) {
         //     fetchFrame().then()
         // }
