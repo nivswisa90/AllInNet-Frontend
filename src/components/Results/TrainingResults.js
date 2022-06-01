@@ -15,7 +15,10 @@ async function fetchResults() {
             "x-access-token": localStorage.getItem('token')
         }
     })
-    return data.sort((a, b) => (a.date < b.date ? -1 : 1))
+    data.sort(function (x, y) {
+        return (Date.parse(x.date) >= Date.parse(y.date)) ? 0 : x ? -1 : 1
+    })
+    return data
 }
 
 

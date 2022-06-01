@@ -73,6 +73,9 @@ const CoachPlayersResults = () => {
                 "x-access-token": localStorage.getItem('token')
             }
         })
+        data.sort(function (x, y) {
+            return (Date.parse(x.date) >= Date.parse(y.date)) ? 0 : x ? -1 : 1
+        })
         return data
     }
 

@@ -26,17 +26,19 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
         contrastText: "black",
         margin: '0 auto',
-        width: '60%',
+        width: '50%',
         fontSize: '20px',
+        fontWeight:'600',
+        marginTop:'5%'
     },
     cardText: {
         fontFamily: 'Roboto Mono',
         margin: '0 auto',
-        width: '65%',
+        width: '55%',
         fontSize: '15px',
         "& span": {
             display: 'block',
-            marginTop: 5
+            marginTop: '5px',
         }
     },
     startBtn: {
@@ -99,13 +101,18 @@ const ProgramCard = (props) => {
                 pauseOnHover
             /></div>
     }
+    console.log(program.title)
     return (
         <Card className={classes.programCard}>
             <Card.Body>
                 <span>{props.isNew}</span>
                 <Card.Title className={classes.cardTitle}>
-                    Level:{program.level}
+                    {program.title}
                     {program.isNew ? <NewReleasesIcon style={{position: 'relative', right:0, top:0}} color={'error'}/> : null}
+                    <hr/>
+                    <h4 style={{fontWeight:'200', fontSize:'15px',margin:'0 auto',width:'80%'}}>
+                        Level:{program.level}
+                    </h4>
                 </Card.Title>
                 <Card.Text className={classes.cardText}>
                     <span>Position 1: {program.positions.minReqPos1}/{program.positions.pos1}</span>
