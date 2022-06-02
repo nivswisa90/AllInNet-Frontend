@@ -47,6 +47,9 @@ const useStyles = makeStyles(() => ({
         margin: '0 auto',
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 9px -2px, rgba(0, 0, 0, 0.3) 0px 3px 0px -3px',
         borderRadius:'10%',
+    },
+    positionNumber: {
+        fontSize: '11px'
     }
 }))
 
@@ -73,8 +76,17 @@ const PositionsFormSection = (props) => {
             setPosCounter({...posCounter, [id]: {...posCounter[id], total: value}})
         } else {
             value = posCounter[id].minimum
-            method === 'increment' ? value++ : (
-                value > 0 ? value-- : toast.error('Unable to do less then 0!', {
+            method === 'increment' ? value > 95 ?
+                toast.error('Unable to do more than 100%!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }): value += 5 : (
+                value > 0 ? value -= 5 : toast.error('Unable to do less than 0%!', {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -99,7 +111,7 @@ const PositionsFormSection = (props) => {
                                 <Typography className={classes.subPositionTitles}>Total</Typography>
                                 <IconButton
                                     onClick={() => (changePos(position[1], index, 'decrement', 'total'))}><VscChevronDown/></IconButton>
-                                <span>{posCounter[index].total}</span>
+                                <span className={classes.positionNumber}>{posCounter[index].total}</span>
                                 <IconButton
                                     onClick={() => (changePos(position[1], index, 'increment', 'total'))}><VscChevronUp/></IconButton>
                             </section>
@@ -107,7 +119,7 @@ const PositionsFormSection = (props) => {
                                 <Typography className={classes.subPositionTitles}>Minimum</Typography>
                                 <IconButton
                                     onClick={() => (changePos(position[1], index, 'decrement', 'min'))}><VscChevronDown/></IconButton>
-                                <span>{posCounter[index].minimum}</span>
+                                <span className={classes.positionNumber}>{posCounter[index].minimum}%</span>
                                 <IconButton
                                     onClick={() => (changePos(position[1], index, 'increment', 'min'))}><VscChevronUp/></IconButton>
                             </section>
