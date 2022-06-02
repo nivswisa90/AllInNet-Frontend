@@ -34,7 +34,8 @@ const useStyles = makeStyles(() => ({
         width: '90%',
         display: 'flex',
         flexWrap: 'wrap',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'space-around'
     },
     programsTitle: {
         fontFamily: 'Roboto Mono',

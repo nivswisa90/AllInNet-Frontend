@@ -11,7 +11,6 @@ import ResultCard from "../../Results/ResultCard";
 import {Typography} from "@mui/material";
 import {CardGroup} from "react-bootstrap";
 import HistoryReport from "../../Results/Analysis/HistoryReport";
-import Back from "../../Utils/Back";
 
 const useStyles = makeStyles(() => ({
     mainProgram: {

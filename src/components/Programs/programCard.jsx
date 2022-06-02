@@ -18,9 +18,10 @@ const useStyles = makeStyles(() => ({
     programCard: {
         float: 'left',
         margin: '5px',
-        width: '40%',
+        width: '43%',
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
-        background:'white'
+        background: 'white',
+        borderRadius: '10px'
     },
     cardTitle: {
         fontFamily: 'Roboto Mono',
@@ -28,8 +29,8 @@ const useStyles = makeStyles(() => ({
         margin: '0 auto',
         width: '50%',
         fontSize: '20px',
-        fontWeight:'600',
-        marginTop:'5%'
+        fontWeight: '600',
+        marginTop: '5%'
     },
     cardText: {
         fontFamily: 'Roboto Mono',
@@ -50,7 +51,12 @@ const useStyles = makeStyles(() => ({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         height: '30px',
+    },
+    notificationSection: {
+        display: 'inline-block',
+        marginLeft:'15%'
     }
+
 
 }))
 
@@ -105,12 +111,14 @@ const ProgramCard = (props) => {
     return (
         <Card className={classes.programCard}>
             <Card.Body>
-                <span>{props.isNew}</span>
+
                 <Card.Title className={classes.cardTitle}>
                     {program.title}
-                    {program.isNew ? <NewReleasesIcon style={{position: 'relative', right:0, top:0}} color={'error'}/> : null}
+                    {program.isNew ? <span className={classes.notificationSection}>
+                        <NewReleasesIcon style={{position: 'relative', right: 0, top: 0}} color={'error'}/>
+                    </span> : null}
                     <hr/>
-                    <h4 style={{fontWeight:'200', fontSize:'15px',margin:'0 auto',width:'80%'}}>
+                    <h4 style={{fontWeight: '200', fontSize: '15px', margin: '0 auto', width: '80%'}}>
                         Level:{program.level}
                     </h4>
                 </Card.Title>

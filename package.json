@@ -17,6 +17,7 @@
     "axios": "^0.26.1",
     "buffer": "^6.0.3",
     "file-saver": "^2.0.5",
+    "moment": "^2.29.3",
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.3",
     "react-circular-progressbar": "^2.0.4",

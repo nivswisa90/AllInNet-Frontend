@@ -1,5 +1,5 @@
 import React from 'react'
-
+import moment from 'moment'
 //Style
 import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
@@ -9,12 +9,11 @@ import {Link} from "react-router-dom";
 const useStyles = makeStyles(() => ({
     resultCard: {
         float: 'left',
-        border: '1px solid black',
-        borderRadius: '10px',
         margin: '5px',
         width: '30%',
-        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
-
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
+        background:'white',
+        borderRadius:'10px'
     },
     cardTitle: {
         fontFamily: 'Roboto Mono',
@@ -38,11 +37,24 @@ const useStyles = makeStyles(() => ({
     }
 
 }))
-
+const calcDateDiff= (date) =>{
+    let today = moment().format('l')
+    today = new Date(today)
+    const trainingDate = new Date(date);
+    let diff = today.getTime() - trainingDate.getTime()
+    console.log(moment(diff, "YYYYMMDD").fromNow())
+}
 const ResultCard = (props) => {
     let resultsString
     const classes = useStyles()
     resultsString = props.results.result
+    // calcDateDiff(props.results.date)
+    // console.log(Date.parse(props.results.date) )
+    console.log(moment(Date.parse(props.results.date), "YYYYMMDD").fromNow())
+
+    const resultDate = moment().subtract(6, 'days').calendar();
+    // console.log(resultDate)
+
     return (
         <Card className={classes.resultCard}>
             <Card.Body>

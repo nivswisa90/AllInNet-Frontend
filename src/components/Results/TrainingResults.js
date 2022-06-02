@@ -25,11 +25,12 @@ async function fetchResults() {
 const useStyles = makeStyles(() => ({
     resultsContainer: {
         margin: '0 auto',
-        width: '80%',
+        width: '90%',
         marginTop: '2vh',
         display: 'flex',
         flexWrap: 'wrap',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'space-around'
     },
     resultsTitle: {
         fontFamily: 'Roboto Mono',

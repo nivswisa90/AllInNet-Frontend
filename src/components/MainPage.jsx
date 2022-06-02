@@ -14,7 +14,6 @@ import Header from "./Utils/Header";
 
 const useStyles = makeStyles(() => ({
     mainProgram: {
-        // background: '#FFF9F4',
         background: 'white',
         borderRadius: '28px',
         opacity: '90%',

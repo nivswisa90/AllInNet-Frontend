@@ -21,7 +21,7 @@ const AnalysisLink = () => {
     }
     return (
         <div className={classes.analysisContainer}>
-            <Button onClick={goToAnalyzePage} variant="outlined">Results Analysis</Button>
+            <Button style={{color: '#44B6EF', fontFamily: 'Roboto Mono'}} onClick={goToAnalyzePage} variant="outlined">Results Analysis</Button>
         </div>
     )
 }
