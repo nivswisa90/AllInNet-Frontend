@@ -98,7 +98,7 @@ const HistoryReport = (props) => {
     const handlePositionChange = (event) => {
         setSelectedPosition(event.target.value);
     };
-    
+
     const handleDateChange = (event) => {
         setSelectedDate(event.target.value)
     }
@@ -158,7 +158,8 @@ const HistoryReport = (props) => {
             <div className={classes.mainProgram}>
                 <div className={classes.graphsContainer}>
                     <section className={classes.filterBar}>
-                        <FilterByPositions handlePositionChange={handlePositionChange} selectedPosition={selectedPosition}/>
+                        <FilterByPositions handlePositionChange={handlePositionChange}
+                                           selectedPosition={selectedPosition}/>
                         <FilterByDate handleDateChange={handleDateChange} selectedDate={selectedDate}/>
                     </section>
                     <div className={classes.chartContainer}>

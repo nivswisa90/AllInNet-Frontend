@@ -68,9 +68,9 @@ const MainPage = () => {
                         </div>
                         <TrainingPrograms/>
                         <TrainingResults/>
-                    </div> : <div>
-                        <CoachPlayers/>
+                    </div> : <div style={{background:'white'}}>
                         <AddTeamPlayer/>
+                        <CoachPlayers/>
                     </div>
                     }
                 </div>

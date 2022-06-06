@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'center',
-        justifyContent:'space-around'
+        justifyContent: 'space-around'
     },
     resultsTitle: {
         fontFamily: 'Roboto Mono',

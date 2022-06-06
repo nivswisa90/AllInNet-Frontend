@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 const useStyles = makeStyles(() => ({
     searchBox: {
         margin: '0 auto',
+        backgroundColor:'white',
         width: '85%',
         marginTop: '5vh',
         marginBottom: '5vh',
@@ -80,7 +81,7 @@ const AddTeamPlayer = () => {
                 clearOnSelect={true}
                 onSelect={(item) => addTeamPlayer(item)}
                 onChange={() => players = []}
-                callback={(record) => console.log(record)}
+                // callback={(record) => console.log(record)}
             />
             <div className={classes.space}/>
         </div>

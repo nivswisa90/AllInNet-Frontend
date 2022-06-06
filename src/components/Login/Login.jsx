@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
         borderRadius: ' 17px 17px 0px 0px',
     },
     register:{
-        marginLeft:'14vh',
+        marginLeft:'20vh',
         fontFamily: 'Roboto Mono',
         contrastText: "black",
     },
@@ -51,7 +51,7 @@ const Login = () => {
             <div className={classes.space}/>
             <Box className={classes.landingBox}>
                 <div className={classes.titleBox}>
-                    <Typography className={classes.mainTitle}>Sing In</Typography>
+                    <Typography className={classes.mainTitle}>Sign In</Typography>
                     <LoginForm />
                     <Link className={classes.registerLink} to='/register'>
                         <Typography className={classes.register}>Dont have user? Register now!</Typography>

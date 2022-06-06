@@ -18,7 +18,6 @@ const useStyles = makeStyles(() => ({
         borderRadius:'10px',
         width:'85%',
         margin:'0 auto'
-
     }
 
 }))

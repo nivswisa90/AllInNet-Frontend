@@ -5,13 +5,15 @@ import redNotfication from '../../media/redCircle.png'
 //Style
 import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
+import Badge from '@mui/material/Badge';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
 
 // Icons
 import {MdDoubleArrow} from "react-icons/md"
 import Button from "@mui/material/Button";
 import LoadingTriangle from "../Utils/LoadingTriangle";
 import {toast, ToastContainer} from "react-toastify";
-import NewReleasesIcon from '@mui/icons-material/NewReleases';
+import StartTrainingDialog from "../Utils/StartTrainingDialog";
 
 
 const useStyles = makeStyles(() => ({
@@ -54,8 +56,8 @@ const useStyles = makeStyles(() => ({
     },
     notificationSection: {
         display: 'inline-block',
-        marginLeft:'15%'
-    }
+        marginLeft: '15%'
+    },
 
 
 }))
@@ -64,6 +66,12 @@ const ProgramCard = (props) => {
     const classes = useStyles()
     const [message, setMessage] = useState('')
     const program = props.program
+    const [openModel, setOpenModal] = useState(false);
+
+
+    const handleClose = () => {
+        setOpenModal(false);
+    };
 
     async function startTraining(program) {
         const response = await axios.post('/api/training/programs/start', program,
@@ -79,6 +87,7 @@ const ProgramCard = (props) => {
 
     const goToTraining = () => {
         mutate({program})
+        setOpenModal(true);
     }
 
     if (isLoading) {
@@ -107,16 +116,17 @@ const ProgramCard = (props) => {
                 pauseOnHover
             /></div>
     }
-    console.log(program.title)
     return (
         <Card className={classes.programCard}>
             <Card.Body>
 
                 <Card.Title className={classes.cardTitle}>
                     {program.title}
-                    {program.isNew ? <span className={classes.notificationSection}>
-                        <NewReleasesIcon style={{position: 'relative', right: 0, top: 0}} color={'error'}/>
-                    </span> : null}
+                    {program.isNew ?
+                        <Badge color="secondary" variant="dot">
+                            <FiberNewIcon/>
+                        </Badge> : null
+                    }
                     <hr/>
                     <h4 style={{fontWeight: '200', fontSize: '15px', margin: '0 auto', width: '80%'}}>
                         Level:{program.level}
@@ -133,6 +143,7 @@ const ProgramCard = (props) => {
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
                 <Button onClick={goToTraining}> Go <MdDoubleArrow/></Button>
+                <StartTrainingDialog open={openModel} handleClose={handleClose}/>
             </Card.Footer>
         </Card>
     )

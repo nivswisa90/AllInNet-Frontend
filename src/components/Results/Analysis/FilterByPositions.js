@@ -28,7 +28,7 @@ const FilterByPositions = (props) => {
     const classes = useStyles()
 
     return (
-        <div style={{display:'inline-block'}}>
+        <div style={{display: 'inline-block'}}>
             <FormControl sx={{m: 1, minWidth: 80}}>
                 <InputLabel>Positions</InputLabel>
                 <Select

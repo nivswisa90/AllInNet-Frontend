@@ -12,8 +12,8 @@ const useStyles = makeStyles(() => ({
         margin: '5px',
         width: '30%',
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
-        background:'white',
-        borderRadius:'10px'
+        background: 'white',
+        borderRadius: '10px'
     },
     cardTitle: {
         fontFamily: 'Roboto Mono',
@@ -22,6 +22,9 @@ const useStyles = makeStyles(() => ({
         margin: '0 auto',
         width: '60%',
         fontSize: '15px',
+        '& span':{
+            fontWeight:'600',
+        }
     },
     cardText: {
         fontFamily: 'Roboto Mono',
@@ -37,7 +40,7 @@ const useStyles = makeStyles(() => ({
     }
 
 }))
-const calcDateDiff= (date) =>{
+const calcDateDiff = (date) => {
     let today = moment().format('l')
     today = new Date(today)
     const trainingDate = new Date(date);
@@ -48,18 +51,16 @@ const ResultCard = (props) => {
     let resultsString
     const classes = useStyles()
     resultsString = props.results.result
-    // calcDateDiff(props.results.date)
-    // console.log(Date.parse(props.results.date) )
-    console.log(moment(Date.parse(props.results.date), "YYYYMMDD").fromNow())
-
-    const resultDate = moment().subtract(6, 'days').calendar();
-    // console.log(resultDate)
 
     return (
         <Card className={classes.resultCard}>
             <Card.Body>
                 <Card.Title className={classes.cardTitle}>
                     {props.results.date}
+                    <hr/>
+                    <span>
+                        {props.results.title}
+                    </span>
                 </Card.Title>
                 <Card.Text style={{color: (resultsString === 'Pass' ? 'green' : 'red')}} className={classes.cardText}>
                     {props.results.result}

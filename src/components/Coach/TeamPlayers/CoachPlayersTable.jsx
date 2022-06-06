@@ -17,6 +17,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 
+import Avatar from '@mui/material/Avatar';
 
 function TablePaginationActions(props) {
     const theme = useTheme();
@@ -107,6 +108,9 @@ export default function CoachPlayersTable(props) {
                     ).map((row) => (
                         <TableRow key={row.id}>
                             <TableCell component="th" scope="row">
+                                <div style={{display:'inline-block',marginRight:'10%'}}>
+                                    <Avatar  sx={{ width: 30, height: 30 }} alt={row.name} src="/static/images/avatar/1.jpg" />
+                                </div>
                                 {row.name}
                             </TableCell>
                             <TableCell style={{width: 160}} align="right">
@@ -121,7 +125,6 @@ export default function CoachPlayersTable(props) {
                             </TableCell>
                         </TableRow>
                     ))}
-
                     {emptyRows > 0 && (
                         <TableRow style={{height: 53 * emptyRows}}>
                             <TableCell colSpan={6}/>
