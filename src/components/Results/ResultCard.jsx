@@ -3,9 +3,11 @@ import moment from 'moment'
 //Style
 import {makeStyles} from "@material-ui/core/styles";
 import {Card} from "react-bootstrap";
-import {VscGraphLine} from "react-icons/vsc";
-import {Link} from "react-router-dom";
+import {SiGoogleanalytics} from "react-icons/si";
+import {FaRegSadCry} from "react-icons/fa"
+import {FaRegLaughBeam} from "react-icons/fa"
 
+import {Link} from "react-router-dom";
 const useStyles = makeStyles(() => ({
     resultCard: {
         float: 'left',
@@ -20,23 +22,33 @@ const useStyles = makeStyles(() => ({
         contrastText: "black",
         marginTop: '2vh',
         margin: '0 auto',
-        width: '60%',
+        width: '57%',
         fontSize: '15px',
-        '& span':{
-            fontWeight:'600',
+        '& div':{
+            marginTop:'5%',
+            fontWeight:'800',
+            marginLeft:'4%'
         }
     },
     cardText: {
         fontFamily: 'Roboto Mono',
         margin: '5px',
         width: '90%',
-        fontSize: '29px',
-        fontWeight: '900',
+        fontSize: '15px',
+        fontWeight: '500',
         textAlign: 'center',
+        '& span':{
+            display:'block',
+            color:'#44B6EF',
+            fontSize: '35px',
+            fontWeight: '800',
+        },
+        marginBottom:'7%'
     },
     startBtn: {
         margin: '0 auto',
         width: '20%',
+        marginBottom:'5%'
     }
 
 }))
@@ -47,28 +59,34 @@ const calcDateDiff = (date) => {
     let diff = today.getTime() - trainingDate.getTime()
     console.log(moment(diff, "YYYYMMDD").fromNow())
 }
-const ResultCard = (props) => {
-    let resultsString
-    const classes = useStyles()
-    resultsString = props.results.result
 
+const ResultCard = (props) => {
+    const classes = useStyles()
+    // get only the percent number
+    let resultsNumber = props.results.result.match(/(\d+)/)
+    console.log(parseInt(resultsNumber[0]))
     return (
         <Card className={classes.resultCard}>
             <Card.Body>
                 <Card.Title className={classes.cardTitle}>
                     {props.results.date}
-                    <hr/>
-                    <span>
+                    <div>
                         {props.results.title}
-                    </span>
+                    </div>
+                    <hr/>
                 </Card.Title>
-                <Card.Text style={{color: (resultsString === 'Pass' ? 'green' : 'red')}} className={classes.cardText}>
-                    {props.results.result}
+                <Card.Text  className={classes.cardText}>
+                    You have done
+                    <span>
+                        {props.results.result}
+                    </span>
+                   of the training!
+                    {parseInt(resultsNumber[0]) <  60 ? <FaRegSadCry/> : <FaRegLaughBeam/>}
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
                 <Link to={'/report'} state={{result: props.results}}>
-                    <VscGraphLine size={30}/>
+                    <SiGoogleanalytics size={30}/>
                 </Link>
             </Card.Footer>
         </Card>

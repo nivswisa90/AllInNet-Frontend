@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import {useLocation, useOutletContext} from 'react-router-dom'
 import {useQuery} from "react-query";
 import axios from '../../../axios'
@@ -67,18 +67,44 @@ const useStyles = makeStyles(() => ({
     }
 
 }))
+const images=[]
+const fetchFrame = async (trainingProgramId,playerId,frame) => {
+    axios.get(`/api/training/results/frames/${playerId}/${trainingProgramId}/${frame}`, {
+            headers: {
+                "x-access-token": localStorage.getItem('token'),
+            }, responseType: 'blob'
+        }
+    ).then(r => {
+        const url = window.URL.createObjectURL(new Blob([r.data]));
+        const newImg = {'original': url, 'thumbnail': url}
 
+        images.push(newImg)
+    })
+}
 
 const ResultReport = () =>{
     const classes = useStyles();
     let location = useLocation();
     const [user] = useOutletContext()
-
+    const [frames, setFrames] = useState([])
     const playerId = location.state.result.playerId
-
     const result = location.state.result
     const trainingProgramId = result.trainingProgramId
-    const {data, error, isError, isLoading} = useQuery(['frames', playerId, trainingProgramId], fetchFrameList, {refetchInterval: 5000})
+
+    const {data, error, isError, isLoading} = useQuery(['frames', playerId, trainingProgramId], fetchFrameList)
+
+    useEffect(()=>{
+        if(data?.length)
+            setFrames(data)
+    },[data])
+
+    if(frames?.length){
+        data.forEach(frame=>{
+            fetchFrame(trainingProgramId, location.state.result.playerId,frame ).then().catch()
+        })
+        setFrames([])
+    }
+
     if (isLoading)
         return <LoadingTriangle/>
 
@@ -106,16 +132,9 @@ const ResultReport = () =>{
                 <section style={{marginTop: 70}}>
                     <PositionsChart result={result}/>
                 </section>
-                {/*<section>*/}
-                {/*    <Typography className={classes.subTitle}> Improvement </Typography>*/}
-                {/*    <Box className={classes.improveBox}>*/}
-                {/*        <p className={classes.improveText}>Congratulations! The training is over. Your strongest shot position is Number 1 with a 75% success rate.*/}
-                {/*        The position you should improve is number 6, where you have a 25% success rate</p>*/}
-                {/*    </Box>*/}
-                {/*</section>*/}
                 <section>
                     <Typography className={classes.subTitle}> Throw Pictures </Typography>
-                    <ThrowGallery frameList={data}/>
+                    {images ?<ThrowGallery images={images}/>:null }
                 </section>
             </div>
         </div>

@@ -73,10 +73,9 @@ const TrainingPrograms = () => {
         return <Error/>
     }
 
-
     return (
         <div id="trainingProgramWrapper">
-            <Typography className={classes.programsTitle}> Training Programs </Typography>
+            <Typography className={classes.programsTitle}> Please select your program for today </Typography>
             <CardGroup className={classes.programsContainer}>
                 {programs ? programs.map((program, index) => (
                     <ProgramCard key={program.id} index={index} program={program} isNew={program.isNew}
