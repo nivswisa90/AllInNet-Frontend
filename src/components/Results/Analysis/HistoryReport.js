@@ -133,9 +133,6 @@ const HistoryReport = (props) => {
         setPositionsFilter({
             [val]: true
         });
-        // fetchResults(val, playerId, dateFilter).then(doc => {
-        //     setFiltered(doc)
-        // })
     };
 
     const handleDateCheckBox = (val) => {
@@ -143,11 +140,9 @@ const HistoryReport = (props) => {
         setDateFilter({
             [val]: true
         })
-        // fetchResults(positionsFilter, playerId, val).then(doc => {
-        //     setFiltered(doc)
-        // })
     }
-
+    console.log('this is fi;terrrr',filtered)
+    console.log('alll',positionsFilter["All"])
     return (
         <div>
             {user.role === 'coach' ? null : (<div>
@@ -163,7 +158,7 @@ const HistoryReport = (props) => {
                         <FilterByDate handleDateChange={handleDateChange} selectedDate={selectedDate}/>
                     </section>
                     <div className={classes.chartContainer}>
-                        {filtered && positionsFilter["All"] ? <PositionsChart result={filtered}/> : filtered ?
+                        {filtered !== undefined && positionsFilter["All"] ? <PositionsChart result={filtered}/> : filtered ?
                             <ChartPerPosition data={filtered} position={positionsFilter}/> : <LoadingTriangle/>}
                     </div>
                     <div className={classes.percentageContainer}>

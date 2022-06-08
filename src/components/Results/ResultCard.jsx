@@ -21,8 +21,9 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
         contrastText: "black",
         marginTop: '2vh',
+        textAlign: 'center',
         margin: '0 auto',
-        width: '57%',
+        width: '70%',
         fontSize: '15px',
         '& div':{
             marginTop:'5%',
@@ -43,7 +44,7 @@ const useStyles = makeStyles(() => ({
             fontSize: '35px',
             fontWeight: '800',
         },
-        marginBottom:'7%'
+        marginBottom:'7%',
     },
     startBtn: {
         margin: '0 auto',
@@ -64,7 +65,6 @@ const ResultCard = (props) => {
     const classes = useStyles()
     // get only the percent number
     let resultsNumber = props.results.result.match(/(\d+)/)
-    console.log(parseInt(resultsNumber[0]))
     return (
         <Card className={classes.resultCard}>
             <Card.Body>
@@ -76,11 +76,11 @@ const ResultCard = (props) => {
                     <hr/>
                 </Card.Title>
                 <Card.Text  className={classes.cardText}>
-                    You have done
+                    You have completed
                     <span>
                         {props.results.result}
                     </span>
-                   of the training!
+                   of the training! 
                     {parseInt(resultsNumber[0]) <  60 ? <FaRegSadCry/> : <FaRegLaughBeam/>}
                 </Card.Text>
             </Card.Body>

@@ -97,7 +97,7 @@ const ResultReport = () =>{
         if(data?.length)
             setFrames(data)
     },[data])
-
+    console.log(data)
     if(frames?.length){
         data.forEach(frame=>{
             fetchFrame(trainingProgramId, location.state.result.playerId,frame ).then().catch()
@@ -120,6 +120,7 @@ const ResultReport = () =>{
         });
         return <Error/>
     }
+    console.log('####',result)
     return(
         <div >
             <Header user={user}/>

@@ -26,6 +26,7 @@ const useStyles = makeStyles(() => ({
         margin: "0 auto",
         width: '50%',
         fontSize: '30px',
+        textAlign:'center'
     },
     programsTitle: {
         fontFamily: 'Roboto Mono',

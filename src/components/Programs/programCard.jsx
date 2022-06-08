@@ -32,7 +32,8 @@ const useStyles = makeStyles(() => ({
         width: '50%',
         fontSize: '20px',
         fontWeight: '600',
-        marginTop: '5%'
+        marginTop: '5%',
+        textAlign:'center'
     },
     cardText: {
         fontFamily: 'Roboto Mono',

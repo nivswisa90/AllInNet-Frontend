@@ -37,7 +37,8 @@ const useStyles = makeStyles(() => ({
         fontSize: '30px',
         margin: '0 auto',
         marginTop: '2vh',
-        width: '50%'
+        width: '50%',
+        textAlign:'center'
     }
 }))
 const TrainingResults = () => {

@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
 const PositionsChart = (props) => {
     const result = props.result.positions
     const classes = useStyles()
+    console.log(result)
 
     const data = [
         {
@@ -62,7 +63,7 @@ const PositionsChart = (props) => {
             color: parseInt(result.successPos6) >= parseInt(result.min6) ? 'green' : 'red'
         }
     ];
-
+    console.log(data)
     return (
         <Paper>
             <Typography className={classes.title}>Result Chart Per Positions</Typography>
