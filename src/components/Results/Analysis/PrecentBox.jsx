@@ -24,9 +24,9 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-const PercentBox = (props) => {
+const PercentBox = ({results}) => {
     const classes = useStyles()
-    const positions = props.results.positions
+    const positions = results.positions
     return (
         <div className={classes.percentContainer}>
             <ProgressBar pos={'Position 1'} success={parseInt(positions.successPos1)} counter={parseInt(positions.counterPos1)}/>

@@ -14,56 +14,54 @@ const useStyles = makeStyles(() => ({
 }))
 
 
-const PositionsChart = (props) => {
-    const result = props.result.positions
+const PositionsChart = ({results}) => {
+    const res = results.positions
     const classes = useStyles()
-    console.log(result)
-
+    console.log('res',results)
     const data = [
         {
             argument: 'Position 1',
-            success: parseInt(result.successPos1),
-            total: parseInt(result.counterPos1),
-            min: parseInt(result.min1),
-            color: parseInt(result.successPos1) >= parseInt(result.min1) ? 'green' : 'red'
+            success: parseInt(res.successPos1),
+            total: parseInt(res.counterPos1),
+            min: parseInt(res.min1),
+            color: parseInt(res.successPos1) >= parseInt(res.min1) ? 'green' : 'red'
         },
         {
             argument: 'Position 2',
-            success: parseInt(result.successPos2),
-            total: parseInt(result.counterPos2),
-            min: parseInt(result.min2),
-            color: parseInt(result.successPos2) >= parseInt(result.min2) ? 'green' : 'red'
+            success: parseInt(res.successPos2),
+            total: parseInt(res.counterPos2),
+            min: parseInt(res.min2),
+            color: parseInt(res.successPos2) >= parseInt(res.min2) ? 'green' : 'red'
         },
         {
             argument: 'Position 3',
-            success: parseInt(result.successPos3),
-            total: parseInt(result.counterPos3),
-            min: parseInt(result.min3),
-            color: parseInt(result.successPos3) >= parseInt(result.min3) ? 'green' : 'red'
+            success: parseInt(res.successPos3),
+            total: parseInt(res.counterPos3),
+            min: parseInt(res.min3),
+            color: parseInt(res.successPos3) >= parseInt(res.min3) ? 'green' : 'red'
         },
         {
             argument: 'Position 4',
-            success: parseInt(result.successPos4),
-            total: parseInt(result.counterPos4),
-            min: parseInt(result.min4),
-            color: parseInt(result.successPos4) >= parseInt(result.min4) ? 'green' : 'red'
+            success: parseInt(res.successPos4),
+            total: parseInt(res.counterPos4),
+            min: parseInt(res.min4),
+            color: parseInt(res.successPos4) >= parseInt(res.min4) ? 'green' : 'red'
         },
         {
             argument: 'Position 5',
-            success: parseInt(result.successPos5),
-            total: parseInt(result.counterPos5),
-            min: parseInt(result.min5),
-            color: parseInt(result.successPos5) >= parseInt(result.min5) ? 'green' : 'red'
+            success: parseInt(res.successPos5),
+            total: parseInt(res.counterPos5),
+            min: parseInt(res.min5),
+            color: parseInt(res.successPos5) >= parseInt(res.min5) ? 'green' : 'red'
         },
         {
             argument: 'Position 6',
-            success: parseInt(result.successPos6),
-            total: parseInt(result.counterPos6),
-            min: parseInt(result.min6),
-            color: parseInt(result.successPos6) >= parseInt(result.min6) ? 'green' : 'red'
+            success: parseInt(res.successPos6),
+            total: parseInt(res.counterPos6),
+            min: parseInt(res.min6),
+            color: parseInt(res.successPos6) >= parseInt(res.min6) ? 'green' : 'red'
         }
     ];
-    console.log(data)
     return (
         <Paper>
             <Typography className={classes.title}>Result Chart Per Positions</Typography>
@@ -73,24 +71,24 @@ const PositionsChart = (props) => {
                 <ArgumentAxis/>
                 <ValueAxis max={1000}/>
                 <BarSeries
-                    name="Total"
+                    name="Total Throws"
                     valueField="total"
                     argumentField='argument'
                     color={'blue'}
                 />
                 <BarSeries
-                    name="Minimum"
+                    name="Minimum To Pass Position"
                     valueField="min"
                     argumentField="argument"
                     color="yellow"
                 />
                 <BarSeries
-                    name="Success"
+                    name="Successful Throws"
                     valueField="success"
                     argumentField="argument"
                     color="green"
                 />
-                <Legend position="right"/>
+                <Legend position="bottom"/>
                 <Stack/>
             </Chart>
         </Paper>
