@@ -6,10 +6,8 @@ import moment from 'moment'
 import AvatarMenu from "../../Utils/AvatarMenu";
 import LoadingTriangle from "../../Utils/LoadingTriangle";
 import PositionsChart from "./Charts/PositionsChart";
-import PChart from "./Charts/PChart";
 import PrecentBox from "./PrecentBox";
 import {makeStyles} from "@material-ui/core/styles";
-import ProgressBarPerPosition from "./Charts/ProgressBarPerPosition";
 import DatePicker from "../../Utils/DatePicker"
 import {Typography} from "@mui/material";
 
@@ -132,13 +130,13 @@ const HistoryReport = (props) => {
         setPlayerId(id)
     }, [])
 
-    useEffect(()=>{
-        if(playerId !== undefined){
+    useEffect(() => {
+        if (playerId !== undefined) {
             fetchResults(playerId, startDate, endDate).then(r => {
                 setFilteredDate(r)
             })
         }
-    },[playerId])
+    }, [playerId])
 
     // const handlePositionCheckBox = (val) => {
     //     // setFilteredDate()
@@ -155,8 +153,6 @@ const HistoryReport = (props) => {
     // }
 
 
-
-
     const handleStartDate = (newValue) => {
         let parsed = moment(newValue, 'YYYY-MM-DD')
         setStartDate(parsed);
@@ -166,8 +162,8 @@ const HistoryReport = (props) => {
         setEndDate(parsed);
     };
 
-    const fetchFilteredResults = () =>{
-        fetchResults(playerId,startDate,endDate).then(doc => {
+    const fetchFilteredResults = () => {
+        fetchResults(playerId, startDate, endDate).then(doc => {
             setFilteredDate(doc)
         })
     }
@@ -183,16 +179,17 @@ const HistoryReport = (props) => {
                 <div className={classes.graphsContainer}>
                     <section className={classes.filterBar}>
                         <DatePicker handleEndDate={handleEndDate} handleStartDate={handleStartDate}
-                                    startDate={startDate} endDate={endDate} fetchFilteredResults={fetchFilteredResults}/>
+                                    startDate={startDate} endDate={endDate}
+                                    fetchFilteredResults={fetchFilteredResults}/>
                     </section>
                     <div className={classes.chartContainer}>
-                        {filterDate ? <PositionsChart results={filterDate}/>: <LoadingTriangle/>}
+                        {filterDate ? <PositionsChart results={filterDate}/> : <LoadingTriangle/>}
                     </div>
                     <div className={classes.percentageContainer}>
                         <Typography className={classes.percentageTitle}>Effectiveness by position</Typography>
                         {/*{filterDate && positionsFilter["All"] ? <PrecentBox results={filterDate}/> : filterDate ?*/}
                         {/*    <ProgressBarPerPosition data={filterDate} position={positionsFilter}/> : <LoadingTriangle/>}*/}
-                        {filterDate ? <PrecentBox results={filterDate}/>: <LoadingTriangle/>}
+                        {filterDate ? <PrecentBox results={filterDate}/> : <LoadingTriangle/>}
                     </div>
                     <div className={classes.pieContainer}>
                         {/*{pie ? <PChart result={pie}/> : <LoadingTriangle/>}*/}

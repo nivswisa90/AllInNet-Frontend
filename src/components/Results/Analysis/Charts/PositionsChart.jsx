@@ -15,9 +15,10 @@ const useStyles = makeStyles(() => ({
 
 
 const PositionsChart = ({results}) => {
+    console.log(results)
     const res = results.positions
     const classes = useStyles()
-    console.log('res',results)
+
     const data = [
         {
             argument: 'Position 1',

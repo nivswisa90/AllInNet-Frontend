@@ -65,11 +65,12 @@ const ResultCard = (props) => {
     const classes = useStyles()
     // get only the percent number
     let resultsNumber = props.results.result.match(/(\d+)/)
+    let date = new Date(props.results.date).toLocaleDateString()
     return (
         <Card className={classes.resultCard}>
             <Card.Body>
                 <Card.Title className={classes.cardTitle}>
-                    {props.results.date}
+                    {date}
                     <div>
                         {props.results.title}
                     </div>
@@ -85,7 +86,7 @@ const ResultCard = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={classes.startBtn}>
-                <Link to={'/report'} state={{result: props.results}}>
+                <Link to={'/report'} state={{results: props.results}}>
                     <SiGoogleanalytics size={30}/>
                 </Link>
             </Card.Footer>

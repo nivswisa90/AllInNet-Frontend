@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
         background: 'white',
         borderRadius: '28px',
         opacity: '90%',
-        width: '100%'
+        width: '100%',
     },
 
     loading: {
@@ -41,7 +41,8 @@ const useStyles = makeStyles(() => ({
         fontSize: '30px',
         margin: '0 auto',
         marginTop: '2vh',
-        width: '50%'
+        width: '50%',
+        alignItems:'center'
     },
     historyContainer:{
         marginTop:'4vh',

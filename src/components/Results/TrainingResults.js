@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
         margin: '0 auto',
         marginTop: '2vh',
         width: '50%',
-        textAlign:'center'
+        textAlign: 'center'
     }
 }))
 const TrainingResults = () => {

@@ -44,6 +44,7 @@ const useStyles = makeStyles(() => ({
         fontSize: '25px',
         margin: '0 auto',
         width: '30%',
+        alignItems:'center'
     },
     improveBox:{
         width: '50%',
@@ -87,8 +88,8 @@ const ResultReport = () =>{
     let location = useLocation();
     const [user] = useOutletContext()
     const [frames, setFrames] = useState([])
-    const playerId = location.state.result.playerId
-    const result = location.state.result
+    const playerId = location.state.results.playerId
+    const result = location.state.results
     const trainingProgramId = result.trainingProgramId
 
     const {data, error, isError, isLoading} = useQuery(['frames', playerId, trainingProgramId], fetchFrameList)
@@ -97,10 +98,10 @@ const ResultReport = () =>{
         if(data?.length)
             setFrames(data)
     },[data])
-    console.log(data)
+
     if(frames?.length){
         data.forEach(frame=>{
-            fetchFrame(trainingProgramId, location.state.result.playerId,frame ).then().catch()
+            fetchFrame(trainingProgramId, location.state.results.playerId,frame ).then().catch()
         })
         setFrames([])
     }
@@ -120,18 +121,19 @@ const ResultReport = () =>{
         });
         return <Error/>
     }
-    console.log('####',result)
+    let date = new Date(result.date).toLocaleDateString()
+
     return(
         <div >
             <Header user={user}/>
             <div className={classes.space}/>
             <div className={classes.mainProgram}>
-                <Typography className={classes.mainTitle}> Results Report {result.date}</Typography>
+                <Typography className={classes.mainTitle}> Results Report {date}</Typography>
                 <section>
-                    <ReportCard result={result}/>
+                    <ReportCard results={result}/>
                 </section>
                 <section style={{marginTop: 70}}>
-                    <PositionsChart result={result}/>
+                    <PositionsChart results={result}/>
                 </section>
                 <section>
                     <Typography className={classes.subTitle}> Throw Pictures </Typography>

@@ -43,7 +43,7 @@ const useStyles = makeStyles(() => ({
         margin: '0 auto',
         marginTop: '2vh',
         width: '70%',
-        textAlign:'center'
+        textAlign: 'center'
     }
 }))
 

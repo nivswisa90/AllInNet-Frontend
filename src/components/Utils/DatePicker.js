@@ -6,10 +6,11 @@ import {MobileDatePicker} from "@mui/x-date-pickers/MobileDatePicker";
 import Divider from '@mui/material/Divider';
 import Button from "@mui/material/Button";
 
-const DatePicker = ({startDate,endDate, handleStartDate,handleEndDate, fetchFilteredResults}) =>{
+const DatePicker = ({startDate, endDate, handleStartDate, handleEndDate, fetchFilteredResults}) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Stack direction="row" justifyContent="center" alignItems="center" spacing={7} divider={<Divider orientation="vertical" flexItem />}>
+            <Stack direction="row" justifyContent="center" alignItems="center" spacing={7}
+                   divider={<Divider orientation="vertical" flexItem/>}>
                 <MobileDatePicker
                     label="Pick Start Date"
                     inputFormat="MM/dd/yyyy"
