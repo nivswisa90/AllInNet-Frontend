@@ -13,6 +13,7 @@ import CourtModal from "../../Utils/CourtModal";
 
 const useStyles = makeStyles(() => ({
     trainingForm: {
+        width:'100%',
         marginTop: '5vh',
         // height: '80%'
     },
@@ -133,7 +134,7 @@ const TrainingProgramForm = (props) => {
     return (
         <div>
             <form className={classes.trainingForm}>
-                <Grid container alignItems="center" justifyContent="center" direction="column">
+                <Grid container alignItems="center" justifyContent="center" direction="row">
                     <Grid style={{display: (!nextPage ? 'block' : 'none')}} item>
                     </Grid>
                     <div>
