@@ -21,9 +21,10 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Roboto Mono',
     },
     landingBox: {
+        alignItems:'center',
         margin:'0 auto',
         width: '550px',
-        height: '750px',
+        height: '980px',
         background: '#FEFEFE',
         borderRadius: '23px',
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
